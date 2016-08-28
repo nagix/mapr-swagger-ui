@@ -1,0 +1,109 @@
+#!/usr/bin/python
+
+from pyquery import PyQuery as pq
+import re
+import sys
+
+filename = 'mapr.yaml'
+baseurl = 'http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax.html'
+
+# Print headers
+def print_headers(d):
+
+  # Print info
+  f.write('swagger: "2.0"\n')
+  f.write('info:\n')
+  f.write('  title: MapR API\n')
+  f.write('  description: The information about the MapR REST API\n')
+
+  # Print version
+  version = d('meta[name=version]').attr('content')
+  f.write('  version: "' + version + '"\n')
+
+  # Print other headers
+  f.write('schemes:\n')
+  f.write('  - https\n')
+  f.write('basePath: /rest\n')
+  f.write('produces:\n')
+  f.write('  - application/json\n')
+  f.write('securityDefinitions:\n')
+  f.write('  BasicAuth:\n')
+  f.write('    type: basic\n')
+  f.write('security:\n')
+  f.write('  - BasicAuth: []\n')
+  f.write('paths:\n')
+
+# Print command
+def print_command(url):
+
+  # Get command path
+  d = pq(url)
+  code = d('h2:contains("Syntax") ~ * code').eq(1).text().replace('\n',' ')
+  match = re.search('(?<=rest)/[a-z/<>]+', code)
+  if not match:
+    return
+  path = match.group().replace('<','{').replace('>','}')
+
+  # Handle MapR doc bug
+  if re.search('acl-set', url):
+    path = path.replace('edit', 'set')
+  if re.search('stream_edit', url):
+    path = path.replace('create', 'edit')
+  if re.search('stream_upstream_remove', url):
+    path = path.replace('add', 'remove')
+  if re.search('volume-link-create', url):
+    path = path.replace('remove', 'create')
+
+  # Print progress
+  sys.stderr.write('\r\033[KProcessing ' + path + '...')
+
+  # Print summary and description
+  summary = d('.shortdesc').text().replace('\n',' ')
+  description = d('.shortdesc+section:not(.refsyn)').text().replace('\n',' ')
+  f.write('  ' + path + ':\n')
+  f.write('    get:\n')
+  f.write('      summary: "' + summary + '"\n')
+  f.write('      description: "' + description + '"\n')
+
+  # Print parameters
+  if d('h2:contains("Parameters") ~ * tbody'):
+    f.write('      parameters:\n')
+    for i in d.items('h2:contains("Parameters") ~ * tbody tr'):
+      name = i('td:eq(0)').text().replace('\n',' ')
+      description = i('td:eq(1)').text().replace('\n',' ')
+      required = i('td:eq(0) strong')
+      f.write('        - name: ' + name + '\n')
+      if re.search('urls', url) and name == 'name':
+        f.write('          in: path\n')
+        required = True
+      else:
+        f.write('          in: query\n')
+      if re.search('"', description):
+        f.write('          description: \'' + description + '\'\n')
+      else:
+        f.write('          description: "' + description + '"\n')
+      if required:
+        f.write('          required: true\n')
+      f.write('          type: string\n')
+
+  # Print responses
+  f.write('      responses:\n')
+  f.write('        200:\n')
+  f.write('          description: OK\n')
+
+# Main
+f = open(filename, "w")
+d = pq(baseurl)
+print_headers(d)
+for i in d.items('.link:gt(0) a'):
+  url1 = i.make_links_absolute(baseurl).attr.href
+  links = pq(url1)('.link a')
+  if links:
+    for j in links.items():
+      url2 = j.make_links_absolute(url1).attr.href
+      print_command(url2)
+  else:
+    print_command(url1)
+f.close()
+sys.stderr.write('\r\033[K')
+sys.stderr.flush()
