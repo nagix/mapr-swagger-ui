@@ -306,7 +306,7 @@ paths:
       summary: "Sets the cluster-wide MapReduce mode."
       description: ""
       parameters:
-        - name: Mode
+        - name: mode
           in: query
           description: "The MapReduce mode of the cluster. Enter one of the                               following: classic : Use JobTracker and TaskTracker to run                                  MapReduce Jobs. yarn : Use Resource Manager and Node Manager to run                                  MapReduce jobs or applications."
           type: string
@@ -804,7 +804,7 @@ paths:
       summary: "Returns the address of the master CLDB node."
       description: "The node cldbmaster API returns the server ID and hostname of the node serving as the CLDB master node."
       parameters:
-        - name: cluster name
+        - name: cluster
           in: query
           description: "The name of the cluster for which to return the CLDB master node information."
           type: string
@@ -816,7 +816,7 @@ paths:
       summary: "Fails over master containers and VIPs to another node."
       description: "When this command runs, all master and intermediate containers are moved off the node          and VIPs are re-assigned."
       parameters:
-        - name: -nodes
+        - name: nodes
           in: query
           description: "The hostname of the node going down."
           type: string
@@ -839,10 +839,6 @@ paths:
         - name: view
           in: query
           description: "Name of the heatmap view to show: status = Node status (the default view): 0 = Healthy 1 = Needs attention 2 = Degraded 3 = Maintenance 4 = Critical cpu = CPU utilization, as a percent from 0-100. memory = Memory utilization, as a percent from 0-100. diskspace = MapR-FS disk space utilization, as a percent from 0-100. NODE_* = Status of various alarms: 0 if clear, 1 if raised. For example: NODE_ALARM_DISK_FAILURE or NODE_ALARM_SERVICE_CLDB_DOWN . You can return a complete list of supported alarm parameters by running: maprcli node heatmap -view See the lists of parameters below this table."
-          type: string
-        - name: -json | -long
-          in: query
-          description: 'This command returns multiple levels of data. You must specify either JSON format or "long" format to see the full output.'
           type: string
       responses:
         200:
@@ -896,11 +892,11 @@ paths:
       summary: "Returns the hostnames of the nodes in the cluster that are running the CLDB service."
       description: ""
       parameters:
-        - name: cluster name
+        - name: cluster
           in: query
           description: "The name of the cluster for which to return the list of CLDB node hostnames."
           type: string
-        - name: cldb hostname|ip:port
+        - name: cldb
           in: query
           description: "The hostname or IP address and port number of a CLDB node."
           type: string
@@ -912,11 +908,11 @@ paths:
       summary: "Returns the hostnames of the nodes in the cluster that are running the CLDB service       and the IP addresses and port numbers for the nodes in the cluster that are running the       ZooKeeper service."
       description: ""
       parameters:
-        - name: cluster name
+        - name: cluster
           in: query
           description: "The name of the cluster for which to return the CLDB and ZooKeeper information."
           type: string
-        - name: cldb hostname|ip:port
+        - name: cldb
           in: query
           description: "The hostname or IP address and port number of a CLDB node."
           type: string
@@ -928,11 +924,11 @@ paths:
       summary: "Returns the hostnames of the nodes in the cluster that are running the zookeeper       service."
       description: ""
       parameters:
-        - name: cluster name
+        - name: cluster
           in: query
           description: "The name of the cluster for which to return the list of zookeeper node hostnames."
           type: string
-        - name: cldb hostname|ip:port
+        - name: cldb
           in: query
           description: "The hostname or IP address and port number of a valid CLDB node. The other CLDB nodes and zookeeper nodes can be discovered from this node."
           type: string
@@ -1102,7 +1098,7 @@ paths:
           in: query
           description: "The type of resource to get the usage limit for. Currently only the value disk is supported."
           type: string
-        - name: cluster name
+        - name: cluster
           in: query
           description: "The name of the cluster whose usage limit is being queried."
           type: string
@@ -1118,7 +1114,7 @@ paths:
           in: query
           description: "The type of resource to set the usage limit for. Currently only the value disk is supported."
           type: string
-        - name: cluster name
+        - name: cluster
           in: query
           description: "The name of the cluster whose usage limit is being set."
           type: string
@@ -2050,14 +2046,6 @@ paths:
           in: query
           description: "The path to the table. For a path on the local cluster, start the path at the volume mount                               point. For example, for a table named test under                               volume1 which has a mount point at /volume1, specify the following                               path: /volume1/test For a path on a remote cluster, you must also specify the cluster                               name in the path. For example, for a table named customer under volume1 in the sanfrancisco                               cluster, specify the following                                  path: /mapr/sanfrancisco/volume1/customer"
           type: string
-        - name: json
-          in: query
-          description: 'This command returns multiple levels of data. You must                         specify to display the output either in JSON or the "long" format to see the                         full set of information.'
-          type: string
-        - name: long
-          in: query
-          description: ""
-          type: string
       responses:
         200:
           description: OK
@@ -2231,7 +2219,7 @@ paths:
       summary: "Reassigns a virtual IP or a range of virtual IP addresses to a specified Media Access       Control (MAC) address."
       description: ""
       parameters:
-        - name: cluster name
+        - name: cluster
           in: query
           description: "The name of the cluster where the virtual IP addresses are being moved."
           type: string
@@ -2239,7 +2227,7 @@ paths:
           in: query
           description: "A virtual IP address. If you provide a value for -virtualipend , this virtual IP address defines the beginning of the range."
           type: string
-        - name: virtualip end range
+        - name: virtualip
           in: query
           description: "A virtual IP address that defines the end of a virtual IP address range."
           type: string
@@ -2682,7 +2670,7 @@ paths:
           in: query
           description: "If type = mirror, the volume is converted from a rw volume to a mirror volume. If type = rw, the volume is converted from a mirror volume to a rw volume."
           type: string
-        - name: -writeAce
+        - name: writeAce
           in: query
           description: "Specifies Access Control Expressions (ACEs) that grants permission at                            the volume level to write to files and tables in the volume. The default                            value is p , which grants access to all users. Note: An ACE (up to 2KB in length) is a combination of users, groups,                            and/or roles for whom access is defined using boolean expressions and                            subexpressions within single quotes. When you pass in an access type that                            has already been set, the new value will replace the existing value for                            that access type. There will be no change to access types that are not                            passed in with the command, whether or not they were set."
           type: string
@@ -2789,11 +2777,11 @@ paths:
       summary: "Returns a list of mount points for the specified volume."
       description: ""
       parameters:
-        - name: cluster name
+        - name: cluster
           in: query
           description: "The name of the cluster hosting the volume."
           type: string
-        - name: volume name
+        - name: volume
           in: query
           description: "The name of the volume to return a list of mount points for."
           type: string
