@@ -2227,7 +2227,7 @@ paths:
           in: query
           description: "A virtual IP address. If you provide a value for -virtualipend , this virtual IP address defines the beginning of the range."
           type: string
-        - name: virtualip
+        - name: virtualipend
           in: query
           description: "A virtual IP address that defines the end of a virtual IP address range."
           type: string

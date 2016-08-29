@@ -69,10 +69,17 @@ def print_command(url):
   if d('h2:contains("Parameters") ~ * tbody'):
     f.write('      parameters:\n')
     for i in d.items('h2:contains("Parameters") ~ * tbody tr'):
-      name = re.search(r'\w+', i('td:eq(0)').text()).group()
+      name = i('td:eq(0)').text().replace('\n',' ')
+
+      # Handle MapR doc bug
+      if name == 'virtualip end range':
+        name = 'virtualipend'
+      else:
+        name = re.search(r'\w+', name).group()
       if name == 'json' or name == 'long':
         continue
       name = name[0].lower() + name[1:]
+
       description = i('td:eq(1)').text().replace('\n',' ')
       required = i('td:eq(0) strong')
       f.write('        - name: ' + name + '\n')
