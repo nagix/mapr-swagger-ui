@@ -1767,7 +1767,18 @@ See the lists of parameters below this table."
       tags:
         - node
       summary: "Lists nodes in the cluster."
-      description: ""
+      description: "You can specify a set of nodes for which to retrieve information in several ways:
+
+
+ 
+ 
+* To list only nodes with raised alarms, set `alarmednodes` to 1.
+ 
+* To list only NFS nodes, set `nfsnodes` to 1.
+ 
+* To window the list, use the `start` and `limit` options to select only a portion of the results.
+ 
+* To list nodes that match certain criteria, pass a filter to the `filter` parameter. See the Fields table on the [node](http://maprdocs.mapr.com/home/ReferenceGuide/node.html) page for the fields available to filter. See the [maprcli and REST API Syntax](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) page for information on filters."
       parameters:
         - name: alarmednodes
           in: query
@@ -4748,8 +4759,8 @@ Example: `/home/abc/.rw`"
     get:
       tags:
         - volume
-      summary: ""
-      description: ""
+      summary: "Lists information about volumes specified by name, path, or filter."
+      description: "See the Fields table on the [volume](http://maprdocs.mapr.com/home/ReferenceGuide/volume.html#volume) page for the fields available to filter. See the [Filters](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) for more information."
       parameters:
         - name: alarmedvolumes
           in: query

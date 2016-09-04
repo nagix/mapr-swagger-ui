@@ -65,7 +65,7 @@ def gfm(elements):
     replace_tags(d, 'p,div', '\n\n\n', '\n\n\n')
     replace_tags(d, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n')
     replace_tags(d, 'span', '', '')
-    d('*').removeAttr('class')
+    d('*').remove_attr('class')
     gfm.append((d.html() or '').strip())
   return '\n\n\n'.join(gfm)
 
@@ -99,7 +99,7 @@ def print_headers(d):
 def print_command(d, tag):
 
   # Get command path
-  syntax = d('*:contains("Syntax") ~ *').text().replace('\n',' ')
+  syntax = d('h2,p').filter('*:contains("Syntax") ~ *').text().replace('\n',' ')
   match = re.search('(?<=rest)/[a-z/<>]+', syntax)
   if not match:
     return
@@ -119,13 +119,15 @@ def print_command(d, tag):
   sys.stderr.write('\r\033[KProcessing ' + path + '...')
 
   # Print summary and description
-  summary = d('.shortdesc').text().replace('\n',' ')
+  current = d('.shortdesc') or d('p:first')
+  summary = current.text().replace('\n',' ')
   elements = []
-  current = d('.shortdesc ~ *')
-  if d('.shortdesc + * p:contains("Syntax")'):
-    current = d('.shortdesc + * > *')
+  if current.next('* p:contains("Syntax")'):
+    current = current.next().children()
+  else:
+    current = current.next_all()
   for i in current.items():
-    if i('*:contains("Syntax")'):
+    if i('h2,p').filter('*:contains("Syntax")'):
       break
     elements.append(i)
   description = gfm(elements)
@@ -137,9 +139,10 @@ def print_command(d, tag):
   f.write('      description: "' + description + '"\n')
 
   # Print parameters
-  if d('*:contains("Parameters") ~ * tbody'):
+  parameters = d('h2,p').filter('*:contains("Parameters") ~ * tbody')
+  if parameters:
     f.write('      parameters:\n')
-    for i in d.items('*:contains("Parameters") ~ * tbody tr'):
+    for i in parameters.items('tr'):
       name = i('td:eq(0)').text().replace('\n',' ')
 
       # Handle MapR doc bug
