@@ -25,7 +25,7 @@ Go to `https://<MCS node>:8443/swagger-ui/`
 
 ## How to update the Swagger definition file
 
-Run the following commands (requires the `python-pyquery` rpm package)
+Run the following commands (requires the `python-pyquery` rpm/deb package)
 
     cd /opt/mapr/adminuiapp/webapp/swagger-ui
     ./update_yaml
