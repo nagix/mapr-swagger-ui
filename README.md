@@ -6,7 +6,7 @@ Download and unzip the swagger-ui zip file and copy the dist diectory to the MCS
     
     wget https://github.com/swagger-api/swagger-ui/archive/v2.2.3.zip
     unzip v2.2.3.zip
-    cd swagger-ui-2.2.2
+    cd swagger-ui-2.2.3
     cp -r dist /opt/mapr/adminuiapp/webapp/swagger-ui
 
 Download and unzip the mapr-swagger-ui zip file and copy `update_yaml`, `mapr.yaml` and `css/mapr.css` to the MCS webapp directory
