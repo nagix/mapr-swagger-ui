@@ -16,6 +16,8 @@ security:
 paths:
   /acl/edit:
     get:
+      tags:
+        - acl
       summary: "Modifies a specific user's access to a cluster or volume."
       description: "The `acl edit` command grants one or more specific volume or cluster permissions to a user. To use the `acl edit` command, you must have administrative (a) permissions on the volume and cluster for which you are running the command. The permissions are specified as a comma-separated list of permission codes. See [acl](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html). You must specify either a `user` or a `group`. When the `type` is `volume`, a volume name must be specified using the `name` parameter."
       parameters:
@@ -45,6 +47,8 @@ paths:
           description: OK
   /acl/set:
     get:
+      tags:
+        - acl
       summary: "Modifies the ACL for a cluster or volume."
       description: "The `acl set` command specifies the entire ACL for a cluster or volume. Any previous permissions are overwritten by the new values, and any permissions omitted are removed. To use the `acl set` command, you must have administrative (a) permissions on the volume and cluster for which you are running the command. The permissions are specified as a comma-separated list of permission codes. See [acl](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html). You must specify either a `user` or a `group`. When the `type` is `volume`, a volume name must be specified using the `name` parameter.
 
@@ -80,6 +84,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /acl/show:
     get:
+      tags:
+        - acl
       summary: "Displays the ACL associated with an object (cluster or a volume)."
       description: ""
       parameters:
@@ -126,6 +132,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /alarm/clear:
     get:
+      tags:
+        - alarm
       summary: "Clears one or more alarms. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -147,6 +155,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /alarm/clearall:
     get:
+      tags:
+        - alarm
       summary: "Clears all alarms. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -159,6 +169,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /alarm/config/load:
     get:
+      tags:
+        - alarm
       summary: "Displays the configuration of alarm notifications. Permission       required: login"
       description: ""
       parameters:
@@ -175,6 +187,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /alarm/config/save:
     get:
+      tags:
+        - alarm
       summary: "Sets notification preferences for alarms. Permissions required: fc or a ."
       description: "Alarm notifications can be sent to the default email address and a specific email address for each named alarm. If `individual` is set to `1` for a specific alarm, then notifications for that alarm are sent to the default email address for the alarm type. If a custom email address is provided, notifications are sent there regardless of whether they are also sent to the default email address."
       parameters:
@@ -192,6 +206,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /alarm/list:
     get:
+      tags:
+        - alarm
       summary: "Lists alarms in the system. Permissions required: login ."
       description: "You can list all alarms, alarms by type (Cluster, Node or Volume), or alarms on a particular node or volume. To retrieve a count of all alarm types, pass `1` in the `summary` parameter. You can specify the alarms to return by filtering on type and entity. Use `start` and `limit` to retrieve only a specified window of data."
       parameters:
@@ -250,6 +266,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /alarm/names:
     get:
+      tags:
+        - alarm
       summary: "Displays a list of alarm names. Permissions required: login"
       description: ""
       responses:
@@ -257,6 +275,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /alarm/raise:
     get:
+      tags:
+        - alarm
       summary: "Raises a specified alarm or alarms. Permissions       required: fc or a ."
       description: ""
       parameters:
@@ -282,6 +302,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: OK
   /audit/cluster:
     get:
+      tags:
+        - audit
       summary: "Enables and disables auditing of operations that are related to       the administration of a MapR cluster."
       description: "Only the `mapr` user for the cluster can run this command. For more information about the mapr user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62).
 
@@ -300,6 +322,8 @@ For information about auditing cluster-administration operations, see [Auditing 
           description: OK
   /audit/data:
     get:
+      tags:
+        - audit
       summary: "Enables and disables auditing of filesystem and table operations."
       description: "For a list of these operations, see [Auditing of Filesystem Operations and Table Operations](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-FilesystemTableOperations.html#AuditingofFilesystemOperationsandTableOperations).
 
@@ -352,13 +376,233 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /audit/info:
     get:
+      tags:
+        - audit
       summary: "Displays whether auditing of cluster-management operations and auditing data-access       operations are enabled. Also, displays the maxSize and retention values for these two levels       of auditing."
       description: "Only the `mapr` user for the cluster can run this command. For more information about the `mapr` user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62)."
       responses:
         200:
           description: OK
+  /cluster/gateway/delete:
+    get:
+      tags:
+        - cluster
+      summary: "Deletes the list of MapR gateways from a source MapR cluster."
+      description: "Source MapR clusters can use such lists to locate the gateways that enable replication of table data to a particular MapR cluster or indexing of table data in a particular Elasticsearch cluster. You create lists of gateways by running the `maprcli cluster gateway set` command.
+
+
+There are three methods of specifying the location of gateways to a MapR cluster that is a source for table replication or indexing in Elasticsearch. If a source MapR cluster relies on DNS records to find out where gateways are located, or the cluster relies on the `mapr-clusters.conf` file to locate gateways, there is no list for the cluster gateway delete command to delete.
+
+
+Note: Deleting a list of gateways with the `maprcli cluster gateway delete` command does not uninstall the listed gateways from the MapR cluster where they are located."
+      parameters:
+        - name: dstcluster
+          in: query
+          description: "The name of the cluster on which the gateways are located.
+
+
+ 
+
+
+If you are replicating table data to another MapR cluster, specify the name of that destination cluster. This destination cluster could be the source cluster if you are performing intracluster replication.
+
+
+ 
+
+
+If you are indexing table data in an Elasticsearch cluster, specify the name of the source MapR cluster because that is where the gateways are located."
+          type: string
+        - name: cluster
+          in: query
+          description: "If you are not on the source cluster, provide the name of the source cluster that this command should be run on,"
+          type: string
+      responses:
+        200:
+          description: OK
+  /cluster/gateway/get:
+    get:
+      tags:
+        - cluster
+      summary: "Lists the MapR gateways that a source MapR cluster is using."
+      description: "The source MapR cluster could be using the MapR gateways either for replication of table data to a destination MapR cluster or for the indexing of data in an Elasticsearch cluster.
+
+
+ 
+
+
+This list of gateways is created by the `maprcli cluster gateway set` command."
+      parameters:
+        - name: dstcluster
+          in: query
+          description: "The name of the cluster on which the gateways are located.
+
+
+ 
+
+
+If you are replicating table data to another MapR cluster, specify the name of that destination cluster. This destination cluster could be the source cluster if you are performing intracluster replication.
+
+
+ 
+
+
+If you are indexing table data in an Elasticsearch cluster, specify the name of the source MapR cluster because that is where the gateways are located."
+          type: string
+        - name: cluster
+          in: query
+          description: "If you are not on the source cluster, provide the name of the source cluster that this command should be run on."
+          type: string
+      responses:
+        200:
+          description: OK
+  /cluster/gateway/list:
+    get:
+      tags:
+        - cluster
+      summary: "Lists all of the gateways that a source MapR cluster is using."
+      description: "The source MapR cluster is using gateways either for replication of table data to destination MapR clusters or for the indexing of table data in Elasticsearch clusters.
+
+
+ 
+
+
+This list is created by the `maprcli cluster gateway set` command."
+      parameters:
+        - name: cluster
+          in: query
+          description: "If you are not on the source cluster, provide the name of the source cluster that this command should be run on."
+          type: string
+      responses:
+        200:
+          description: OK
+  /cluster/gateway/local:
+    get:
+      tags:
+        - cluster
+      summary: "Lists the gateways that are configured on the MapR cluster where this command is run."
+      description: ""
+      parameters:
+        - name: format
+          in: query
+          description: "The output format. Value types: `dns` or `text`. Default: `text`. 
+
+
+Note: 
+ 
+* If the output is formatted as DNS, you can copy and paste the output into a DNS record in the zone file for your domain. The source MapR cluster can then locate the gateways by doing a DNS lookup.
+ 
+* If the output is formatted as text, you can copy and paste that text into the `-gateways` parameter of the `maprcli cluster gateway set` command. Running this command is an alternative way of specifying the location of these gateways to the source MapR cluster."
+          type: string
+        - name: cluster
+          in: query
+          description: "If you are not on a MapR cluster where one or more gateways are configured, provide the name of the cluster. 
+ 
+* When replicating MapR-DB table data to one or more replicas on this cluster, then the cluster is a destination MapR cluster.
+ 
+* When indexing MapR-DB table data in one or more Elasticsearch cluster, then the current cluster is a source MapR cluster where the tables being indexed are located."
+          type: string
+      responses:
+        200:
+          description: OK
+  /cluster/gateway/resolve:
+    get:
+      tags:
+        - cluster
+      summary: "Lists the gateways configured on MapR cluster that are up and running at the time that       the command is issued."
+      description: "Execute this command on a source MapR cluster to find out how many gateways are available for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch cluster.
+
+
+This command uses the following criteria to get the list:
+
+
+*  
+
+
+If the locations of the gateways were specified with the `marpcli cluster gateway set` command, the maprcli cluster gateway resolve command returns the list of the gateways.
+
+
+ 
+ 
+*  
+
+
+If the locations of the gateways were specified with a DNS record only, this command performs a DNS lookup for gateways on the specified MapR cluster and returns the list that it finds.
+
+
+ 
+ 
+*  
+
+
+If neither of the previous methods was used to specify the locations of the gateways, this command assumes that gateways are located on the CLDB nodes configured in the `mapr-clusters.conf` file on the MapR cluster where the command is executed.
+
+
+Note: Unresponsive gateways are not included in the list.
+
+
+For more information about gateways, see [ MapR Gateways](http://maprdocs.mapr.com/home/Gateways/MapRGateways.html)."
+      parameters:
+        - name: dstcluster
+          in: query
+          description: "The name of the cluster for which you want to list the available gateways.
+
+
+ 
+
+
+If you are replicating table data to another MapR cluster, specify the name of that destination cluster. This destination cluster could be the source cluster if you are performing intracluster replication.
+
+
+ 
+
+
+If you are indexing table data in an Elasticsearch cluster, specify the name of the source MapR cluster because that is where the gateways are located."
+          type: string
+        - name: cluster
+          in: query
+          description: "If you are not on the source MapR cluster, provide the name of the source cluster that this command should be run on."
+          type: string
+      responses:
+        200:
+          description: OK
+  /cluster/gateway/set:
+    get:
+      tags:
+        - cluster
+      summary: "Specifies the locations of the MapR gateways that a source MapR cluster can use for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch       cluster."
+      description: "In addition to this method, there are two other methods that you can use to specify the locations of gateways that a source MapR cluster can use when replicating to a particular MapR cluster or when indexing in an Elasticsearch cluster. See [Configuring MapR Gateways for Binary-Table Replication, Stream Replication, or Indexing](http://maprdocs.mapr.com/home/Gateways/ConfiguringMapRGatewaysForTRAndI.html) for details about them."
+      parameters:
+        - name: dstcluster
+          in: query
+          description: "The name of the MapR cluster in which the gateways are located.
+
+
+ 
+
+
+If you are replicating table data to another MapR cluster, specify the name of that destination cluster. This destination cluster could be the source cluster if you are performing intracluster replication.
+
+
+ 
+
+
+If you are indexing table data in an Elasticsearch cluster, specify the name of the source MapR cluster because that is where the gateways are located."
+          type: string
+        - name: gateways
+          in: query
+          description: 'A space-delimited list of gateway hostnames or IP addresses. Place double quotation marks around the list of gateways, as in this example: `-gateways "gateway1 gateway2"`'
+          type: string
+        - name: cluster
+          in: query
+          description: "If you are not on the source MapR cluster, provide the name of that cluster."
+          type: string
+      responses:
+        200:
+          description: OK
   /cluster/mapreduce/get:
     get:
+      tags:
+        - cluster
       summary: "Displays the cluster-wide default for the MapReduce mode."
       description: ""
       responses:
@@ -366,6 +610,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /cluster/mapreduce/set:
     get:
+      tags:
+        - cluster
       summary: "Sets the cluster-wide MapReduce mode."
       description: ""
       parameters:
@@ -385,6 +631,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /config/load:
     get:
+      tags:
+        - config
       summary: "Displays information about the cluster configuration."
       description: ""
       parameters:
@@ -402,6 +650,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /config/save:
     get:
+      tags:
+        - config
       summary: "Saves configuration information, specified as key/value pairs.       Permissions required: fc or a ."
       description: "See the [Configuration Fields](http://maprdocs.mapr.com/home/ReferenceGuide/config.html) table."
       parameters:
@@ -416,8 +666,42 @@ You can set this interval on individual volumes. The default value is 60 minutes
       responses:
         200:
           description: OK
+  /dashboard/info:
+    get:
+      tags:
+        - dashboard info
+      summary: "Displays a summary of information about the cluster."
+      description: ""
+      parameters:
+        - name: cluster
+          in: query
+          description: "The cluster on which to run the command."
+          type: string
+        - name: multi_cluster_info
+          in: query
+          description: "Specifies whether to display cluster information from multiple clusters. 
+
+
+ 
+
+
+Values: true/false. Default: false"
+          type: string
+        - name: version
+          in: query
+          description: "Specifies whether to display the version. Values: true/false. Default: false"
+          type: string
+        - name: zkconnect
+          in: query
+          description: "[ZooKeeper Connect String](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-CommonParameters.html#concept_ymb_yxz_5t)"
+          type: string
+      responses:
+        200:
+          description: OK
   /dialhome/ackdial:
     get:
+      tags:
+        - dialhome
       summary: "Acknowledges the most recent Dial Home on the cluster. Permissions       required: login"
       description: ""
       parameters:
@@ -430,6 +714,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /dialhome/enable:
     get:
+      tags:
+        - dialhome
       summary: "Enables Dial Home on the cluster. Permissions required: fc or a"
       description: ""
       parameters:
@@ -449,6 +735,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /dialhome/lastdialed:
     get:
+      tags:
+        - dialhome
       summary: "Displays the date of the last successful Dial Home call. Permissions required: fc or a ."
       description: ""
       responses:
@@ -456,6 +744,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /dialhome/metrics:
     get:
+      tags:
+        - dialhome
       summary: "Returns a compressed metrics object. Permissions required:       login."
       description: ""
       parameters:
@@ -468,6 +758,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /dialhome/status:
     get:
+      tags:
+        - dialhome
       summary: "Displays the Dial Home status. Permissions required: login."
       description: ""
       responses:
@@ -475,6 +767,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /disk/add:
     get:
+      tags:
+        - disk
       summary: "Adds one or more disks to the specified node. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -510,6 +804,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /disk/list:
     get:
+      tags:
+        - disk
       summary: "Lists the disks on a node."
       description: ""
       parameters:
@@ -540,6 +836,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /disk/listall:
     get:
+      tags:
+        - disk
       summary: "Lists all disks."
       description: ""
       parameters:
@@ -564,6 +862,8 @@ You can set this interval on individual volumes. The default value is 60 minutes
           description: OK
   /disk/remove:
     get:
+      tags:
+        - disk
       summary: "Removes a disk from MapR-FS. Permissions required: fc or a ."
       description: "The `disk remove` command does not remove a disk containing unreplicated data unless forced. To force disk removal, specify `-force` with the value `1`.
 
@@ -617,6 +917,8 @@ Note:
           description: OK
   /entity/info:
     get:
+      tags:
+        - entity
       summary: "Displays information about an entity."
       description: ""
       parameters:
@@ -643,6 +945,8 @@ Note:
           description: OK
   /entity/list:
     get:
+      tags:
+        - entity
       summary: "Lists and displays       information about entities."
       description: ""
       parameters:
@@ -679,6 +983,8 @@ Note:
           description: OK
   /entity/modify:
     get:
+      tags:
+        - entity
       summary: "Modifies a user or       group quota or email address. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -724,6 +1030,8 @@ Note:
           description: OK
   /entity/remove:
     get:
+      tags:
+        - entity
       summary: "Removes an entity (specified by name and type)."
       description: "Note: Entity can be removed only when there are no resources associated with the entity."
       parameters:
@@ -746,6 +1054,8 @@ Note:
           description: OK
   /job/changepriority:
     get:
+      tags:
+        - job
       summary: "Changes the priority of the specified job."
       description: ""
       parameters:
@@ -766,6 +1076,8 @@ Note:
           description: OK
   /job/kill:
     get:
+      tags:
+        - job
       summary: "Kills a specified job."
       description: ""
       parameters:
@@ -783,6 +1095,8 @@ Note:
           description: OK
   /job/linklogs:
     get:
+      tags:
+        - job
       summary: "Creates symbolic links to all the logs relating to the       activity of a specific job."
       description: "The `maprcli job linklogs` command works with the [Centralized Logging](http://maprdocs.mapr.com/home/AdministratorGuide/Centralized-Logging.html#Centralized-Logging-MapRsCentralizedLog-d3e72) to provide a job-centric view or an application-centric view of all log files generated during job or application execution.
 
@@ -811,8 +1125,416 @@ Note:
       responses:
         200:
           description: OK
+  /job/table:
+    get:
+      tags:
+        - job
+      summary: "Retrieves       detailed information about the jobs running on the cluster        including histograms and line charts for job metrics."
+      description: "A Hadoop job sets the rules that the JobTracker service uses to break an input data set into discrete tasks and assign those tasks to individual nodes. Use the `job table` command to retrieve [job metrics](http://maprdocs.mapr.com/home/AdministratorGuide/JobMetrics-Analyzing.html#Analyzing-Job-Metrics-TheMapRMetricsservic-d3e72) about the jobs running on your cluster. The job metric data includes the number of task attempts for jobs on the cluster, job duration, job computing resource use (CPU and memory), and job data throughput (both records and bytes per second). The metrics data can be formatted for histogram display or line chart display. In order to issue the `job table` command, the mapr-metrics package must be installed on all the nodes where webserver and jobtracker are configured to run."
+      parameters:
+        - name: filter
+          in: query
+          description: "Filters results to match the value of a specified string."
+          type: string
+        - name: chart
+          in: query
+          description: "Chart type to use: `line` for a line chart, `bar` for a histogram."
+          type: string
+        - name: columns
+          in: query
+          description: "Comma-separated list of column names to return."
+          type: string
+        - name: bincount
+          in: query
+          description: "Number of histogram bins."
+          type: string
+        - name: scale
+          in: query
+          description: "Scale to use for the histogram. Specify `linear` for a linear scale and `log` for a logarithmic scale."
+          type: string
+        - name: jmadavg
+          in: query
+          description: "Job Average Map Attempt Duration"
+          type: string
+        - name: jradavg
+          in: query
+          description: "Job Average Reduce Attempt Duration"
+          type: string
+        - name: jtadavg
+          in: query
+          description: "Job Average Task Duration"
+          type: string
+        - name: jcmtct
+          in: query
+          description: "Job Complete Map Task Count"
+          type: string
+        - name: jcrtct
+          in: query
+          description: "Job Complete Reduce Task Count"
+          type: string
+        - name: jctct
+          in: query
+          description: "Job Complete Task Count"
+          type: string
+        - name: jccpu
+          in: query
+          description: "Job Cumulative CPU"
+          type: string
+        - name: jcmem
+          in: query
+          description: "Job Cumulative Physical Memory"
+          type: string
+        - name: jcpu
+          in: query
+          description: "Job Current CPU"
+          type: string
+        - name: jmem
+          in: query
+          description: "Job Current Memory"
+          type: string
+        - name: jfmtact
+          in: query
+          description: "Job Failed Map Task Attempt Count"
+          type: string
+        - name: jfmtct
+          in: query
+          description: "Job Failed Map Task Count"
+          type: string
+        - name: jfrtact
+          in: query
+          description: "Job Failed Reduce Task Attempt Count"
+          type: string
+        - name: jfrtct
+          in: query
+          description: "Job Failed Reduce Task Count"
+          type: string
+        - name: jftact
+          in: query
+          description: "Job Failed Task Attempt Count"
+          type: string
+        - name: jftct
+          in: query
+          description: "Job Failed Task Count"
+          type: string
+        - name: jmibps
+          in: query
+          description: "Job Map Input Bytes Rate"
+          type: string
+        - name: jmirps
+          in: query
+          description: "Job Map Input Records Rate"
+          type: string
+        - name: jmobps
+          in: query
+          description: "Job Map Output Bytes Rate"
+          type: string
+        - name: jmorps
+          in: query
+          description: "Job Map Output Records Rate"
+          type: string
+        - name: jmtact
+          in: query
+          description: "Job Mask Task Attempt Count"
+          type: string
+        - name: jmtct
+          in: query
+          description: "Job Map Task Count"
+          type: string
+        - name: jmadmax
+          in: query
+          description: "Job Maximum Map Attempt Duration"
+          type: string
+        - name: jradmax
+          in: query
+          description: "Job Maximum Reduce Attempt Duration"
+          type: string
+        - name: jtadmax
+          in: query
+          description: "Job Maximum Task Duration"
+          type: string
+        - name: jribps
+          in: query
+          description: "Job Reduce Input Bytes Rate"
+          type: string
+        - name: jrirps
+          in: query
+          description: "Job Reduce Input Records Rate"
+          type: string
+        - name: jrobps
+          in: query
+          description: "Job Reduce Output Bytes Rate"
+          type: string
+        - name: jrorps
+          in: query
+          description: "Job Reduce Output Records Rate"
+          type: string
+        - name: jrsbps
+          in: query
+          description: "Job Reduce Shuffle Bytes Rate"
+          type: string
+        - name: jrtact
+          in: query
+          description: "Job Reduce Task Attempt Count"
+          type: string
+        - name: jrtct
+          in: query
+          description: "Job Reduce Task Count"
+          type: string
+        - name: jrumtct
+          in: query
+          description: "Job Running Map Task Count"
+          type: string
+        - name: jrurtct
+          in: query
+          description: "Job Running Reduce Task Count"
+          type: string
+        - name: jrutct
+          in: query
+          description: "Job Running Task Count"
+          type: string
+        - name: jtact
+          in: query
+          description: "Job Task Attempt Count"
+          type: string
+        - name: jtct
+          in: query
+          description: "Job Total Task Count"
+          type: string
+        - name: jd
+          in: query
+          description: "Job Duration"
+          type: string
+        - name: jid
+          in: query
+          description: "Job ID"
+          type: string
+        - name: jn
+          in: query
+          description: "Job Name"
+          type: string
+        - name: ju
+          in: query
+          description: "Job User"
+          type: string
+        - name: js
+          in: query
+          description: "Job Status"
+          type: string
+        - name: jmcmem
+          in: query
+          description: "Job Map Cumulative Memory Bytes"
+          type: string
+        - name: jrcmem
+          in: query
+          description: "Job Reduce Cumulative Memory Bytes"
+          type: string
+        - name: jpri
+          in: query
+          description: "Job Priority"
+          type: string
+        - name: jmpro
+          in: query
+          description: "Job Map Progress"
+          type: string
+        - name: jrpro
+          in: query
+          description: "Job Reduce Progress"
+          type: string
+        - name: jmtst
+          in: query
+          description: "Map Tasks Start Time"
+          type: string
+        - name: jmtft
+          in: query
+          description: "Map Tasks Finish Time"
+          type: string
+        - name: jrtst
+          in: query
+          description: "Reduce Tasks Start Time"
+          type: string
+        - name: jrtft
+          in: query
+          description: "Reduce Tasks Finish Time"
+          type: string
+        - name: jsbt
+          in: query
+          description: "Job Submit Time"
+          type: string
+        - name: jst
+          in: query
+          description: "Job Start Time"
+          type: string
+        - name: jft
+          in: query
+          description: "Job Finish Time"
+          type: string
+        - name: jrrsw
+          in: query
+          description: "Job Reduce Reserve Slot Wait"
+          type: string
+        - name: jmrsw
+          in: query
+          description: "Job Map Reserve Slot Wait"
+          type: string
+        - name: jdlmt
+          in: query
+          description: "Job Data-local Map Tasks"
+          type: string
+        - name: jolmt
+          in: query
+          description: "Job Non-local Map Tasks"
+          type: string
+        - name: jrlmt
+          in: query
+          description: "Job Rack-local Map Tasks"
+          type: string
+        - name: jrtd
+          in: query
+          description: "Job Reduce Tasks Duration"
+          type: string
+        - name: jmtd
+          in: query
+          description: "Job Map Tasks Duration"
+          type: string
+        - name: jmmbr
+          in: query
+          description: "Job MapR-FS Map Bytes Read"
+          type: string
+        - name: jrmbr
+          in: query
+          description: "Job MapR-FS Reduce Bytes Read"
+          type: string
+        - name: jtmbr
+          in: query
+          description: "Job MapR-FS Total Bytes Read"
+          type: string
+        - name: jmmbw
+          in: query
+          description: "Job MapR-FS Map Bytes Written"
+          type: string
+        - name: jrmbw
+          in: query
+          description: "Job MapR-FS Reduce Bytes Written"
+          type: string
+        - name: jtmbw
+          in: query
+          description: "Job MapR-FS Total Bytes Written"
+          type: string
+        - name: jmfbw
+          in: query
+          description: "Job Map File Bytes Written"
+          type: string
+        - name: jrfbw
+          in: query
+          description: "Job Reduce File Bytes Written"
+          type: string
+        - name: jtfbw
+          in: query
+          description: "Job Total File Bytes Written"
+          type: string
+        - name: jmir
+          in: query
+          description: "Cumulative Job Map Input Records"
+          type: string
+        - name: jrir
+          in: query
+          description: "Cumulative Job Reduce Input Records"
+          type: string
+        - name: jcir
+          in: query
+          description: "Cumulative Job Combine Input Records"
+          type: string
+        - name: jmor
+          in: query
+          description: "Cumulative Job Map Output Records"
+          type: string
+        - name: jror
+          in: query
+          description: "Cumulative Job Reduce Output Records"
+          type: string
+        - name: jcor
+          in: query
+          description: "Job Combine Output Records"
+          type: string
+        - name: jrsb
+          in: query
+          description: "Cumulative Job Reduce Shuffle Bytes"
+          type: string
+        - name: jmsr
+          in: query
+          description: "Job Map Spilled Records"
+          type: string
+        - name: jrsr
+          in: query
+          description: "Job Reduce Spilled Records"
+          type: string
+        - name: jtsr
+          in: query
+          description: "Job Total Spilled Records"
+          type: string
+        - name: jmob
+          in: query
+          description: "Cumulative Job Map Output Bytes"
+          type: string
+        - name: jmib
+          in: query
+          description: "Cumulative Job Map Input Bytes"
+          type: string
+        - name: jmcpu
+          in: query
+          description: "Job Map CPU"
+          type: string
+        - name: jrcpu
+          in: query
+          description: "Job Reduce CPU"
+          type: string
+        - name: jmsrb
+          in: query
+          description: "Job Map Split Raw Bytes"
+          type: string
+        - name: jrsrb
+          in: query
+          description: "Job Reduce Split Raw Bytes"
+          type: string
+        - name: jsrb
+          in: query
+          description: "Job Split Raw Bytes"
+          type: string
+        - name: jrig
+          in: query
+          description: "Job Reduce Input Groups"
+          type: string
+        - name: jvmb
+          in: query
+          description: "Virtual Memory Bytes"
+          type: string
+        - name: jmvmb
+          in: query
+          description: "Job Map Virtual Memory Bytes"
+          type: string
+        - name: jrvmb
+          in: query
+          description: "Job Reduce Virtual Memory Bytes"
+          type: string
+        - name: jgct
+          in: query
+          description: "Job Total GC Time"
+          type: string
+        - name: jmgct
+          in: query
+          description: "Job Map GC Time"
+          type: string
+        - name: jrgct
+          in: query
+          description: "Job Reduce GC Time"
+          type: string
+      responses:
+        200:
+          description: OK
   /license/add:
     get:
+      tags:
+        - license
       summary: "Adds a license. Permissions required: fc or a ."
       description: "The license can be specified either by passing the license string itself to `license add`, or by specifying a file containing the license string."
       parameters:
@@ -834,6 +1556,8 @@ Note:
           description: OK
   /license/addcrl:
     get:
+      tags:
+        - license
       summary: "Adds a certificate revocation list (CRL). Permissions required: fc or a ."
       description: ""
       parameters:
@@ -855,6 +1579,8 @@ Note:
           description: OK
   /license/apps:
     get:
+      tags:
+        - license
       summary: "Displays the features authorized for the current license.       Permissions required: login"
       description: ""
       parameters:
@@ -867,6 +1593,8 @@ Note:
           description: OK
   /license/list:
     get:
+      tags:
+        - license
       summary: "Lists licenses on the cluster. Permissions required: login. For       best results, use the -json option when running the       command."
       description: ""
       parameters:
@@ -879,6 +1607,8 @@ Note:
           description: OK
   /license/listcrl:
     get:
+      tags:
+        - license
       summary: "Lists certificate revocation lists (CRLs) on the cluster.       Permissions required: login ."
       description: ""
       parameters:
@@ -891,6 +1621,8 @@ Note:
           description: OK
   /license/remove:
     get:
+      tags:
+        - license
       summary: "Removes a license. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -908,6 +1640,8 @@ Note:
           description: OK
   /license/showid:
     get:
+      tags:
+        - license
       summary: "Displays the cluster ID for use when creating a new license.       Permissions required: login ."
       description: ""
       parameters:
@@ -920,6 +1654,8 @@ Note:
           description: OK
   /nagios/generate:
     get:
+      tags:
+        - nagios generate
       summary: "Generates a Nagios Object Definition file that describes the       cluster nodes and the services running on each."
       description: ""
       parameters:
@@ -932,6 +1668,8 @@ Note:
           description: OK
   /node/allow:
     get:
+      tags:
+        - node
       summary: "Allows host IDs to join the cluster after duplicates have been       resolved."
       description: "When the CLDB detects duplicate nodes with the same host ID, all nodes with that host ID are removed from the cluster and prevented from joining it again. After making sure that all nodes have unique host IDs, you can use the `node allow-into-cluster` command to un-ban the host ID that was previously duplicated among several nodes."
       parameters:
@@ -944,6 +1682,8 @@ Note:
           description: OK
   /node/cldbmaster:
     get:
+      tags:
+        - node
       summary: "Returns the address of the master CLDB node."
       description: "The `node cldbmaster` API returns the server ID and hostname of the node serving as the CLDB master node."
       parameters:
@@ -956,6 +1696,8 @@ Note:
           description: OK
   /node/failover:
     get:
+      tags:
+        - node
       summary: "Fails over master containers and VIPs to another node."
       description: "When this command runs, all master and intermediate containers are moved off the node and VIPs are re-assigned."
       parameters:
@@ -968,6 +1710,8 @@ Note:
           description: OK
   /node/heatmap:
     get:
+      tags:
+        - node
       summary: "Displays a heatmap for the       specified nodes."
       description: ""
       parameters:
@@ -1020,19 +1764,10 @@ See the lists of parameters below this table."
           description: OK
   /node/list:
     get:
+      tags:
+        - node
       summary: "Lists nodes in the cluster."
-      description: "You can specify a set of nodes for which to retrieve information in several ways:
-
-
- 
- 
-* To list only nodes with raised alarms, set `alarmednodes` to 1.
- 
-* To list only NFS nodes, set `nfsnodes` to 1.
- 
-* To window the list, use the `start` and `limit` options to select only a portion of the results.
- 
-* To list nodes that match certain criteria, pass a filter to the `filter` parameter. See the Fields table on the [node](http://maprdocs.mapr.com/home/ReferenceGuide/node.html) page for the fields available to filter. See the [maprcli and REST API Syntax](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) page for information on filters."
+      description: ""
       parameters:
         - name: alarmednodes
           in: query
@@ -1075,6 +1810,8 @@ See the lists of parameters below this table."
           description: OK
   /node/listcldbs:
     get:
+      tags:
+        - node
       summary: "Returns the hostnames of the nodes in the cluster that are running the CLDB service."
       description: ""
       parameters:
@@ -1091,6 +1828,8 @@ See the lists of parameters below this table."
           description: OK
   /node/listcldbzks:
     get:
+      tags:
+        - node
       summary: "Returns the hostnames of the nodes in the cluster that are running the CLDB service       and the IP addresses and port numbers for the nodes in the cluster that are running the       ZooKeeper service."
       description: ""
       parameters:
@@ -1107,6 +1846,8 @@ See the lists of parameters below this table."
           description: OK
   /node/listzookeepers:
     get:
+      tags:
+        - node
       summary: "Returns the hostnames of the nodes in the cluster that are running the zookeeper       service."
       description: ""
       parameters:
@@ -1123,6 +1864,8 @@ See the lists of parameters below this table."
           description: OK
   /node/maintenance:
     get:
+      tags:
+        - node
       summary: "Places a node into a maintenance mode for a specified timeout duration."
       description: "For the duration of the timeout, the cluster's CLDB does not consider this node's data as lost and does not trigger a resync of the data on this node. See [Managing Nodes](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-nodes.html) for more information."
       parameters:
@@ -1147,6 +1890,8 @@ See the lists of parameters below this table."
           description: OK
   /node/move:
     get:
+      tags:
+        - node
       summary: "Moves one or more nodes to a different topology. Permissions       required: fc or a ."
       description: ""
       parameters:
@@ -1169,6 +1914,8 @@ See the lists of parameters below this table."
           description: OK
   /node/remove:
     get:
+      tags:
+        - node
       summary: "Removes one or more server nodes from the system. Permissions required: fc or a ."
       description: "After issuing the `node remove` command, wait several minutes to ensure that the node has been properly and completely removed."
       parameters:
@@ -1197,6 +1944,8 @@ See the lists of parameters below this table."
           description: OK
   /node/services:
     get:
+      tags:
+        - node
       summary: "Starts, stops, or restarts services on one or more server nodes. Permissions       required: ss , fc or a ."
       description: "To start or stop services, you must specify the service name, the action (start, stop, or restart), and the nodes on which to perform the action. You can specify the nodes in either of two ways:
 
@@ -1268,6 +2017,8 @@ See the lists of parameters below this table."
           description: OK
   /node/topo:
     get:
+      tags:
+        - node
       summary: "Lists cluster topology information."
       description: "Lists internal nodes only (switches/racks/etc) and not leaf nodes (server nodes)."
       parameters:
@@ -1284,6 +2035,8 @@ See the lists of parameters below this table."
           description: OK
   /rlimit/get:
     get:
+      tags:
+        - rlimit
       summary: "Returns the resource usage limit for the cluster's disk resource."
       description: ""
       parameters:
@@ -1300,6 +2053,8 @@ See the lists of parameters below this table."
           description: OK
   /rlimit/set:
     get:
+      tags:
+        - rlimit
       summary: "Sets the resource usage limit for the cluster's disk resource."
       description: ""
       parameters:
@@ -1320,6 +2075,8 @@ See the lists of parameters below this table."
           description: OK
   /schedule/create:
     get:
+      tags:
+        - schedule
       summary: "Creates a schedule. Permissions required: fc or a ."
       description: "A schedule can be associated with a volume to automate mirror syncing and snapshot creation. See [volume create](http://maprdocs.mapr.com/home/ReferenceGuide/volume-create.html) and [volume modify](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html)."
       parameters:
@@ -1337,6 +2094,8 @@ See the lists of parameters below this table."
           description: OK
   /schedule/list:
     get:
+      tags:
+        - schedule
       summary: "Lists the schedules on the cluster."
       description: ""
       parameters:
@@ -1353,6 +2112,8 @@ See the lists of parameters below this table."
           description: OK
   /schedule/modify:
     get:
+      tags:
+        - schedule
       summary: "Modifies an existing schedule, specified by ID. Permissions       required: fc or a ."
       description: "To find a schedule's ID:
 
@@ -1387,6 +2148,8 @@ See the lists of parameters below this table."
           description: OK
   /schedule/remove:
     get:
+      tags:
+        - schedule
       summary: "Removes a schedule."
       description: "A schedule can only be removed if it is not associated with any volumes. See [volume modify](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html)."
       parameters:
@@ -1404,6 +2167,8 @@ See the lists of parameters below this table."
           description: OK
   /service/list:
     get:
+      tags:
+        - service list
       summary: "Lists all services on the specified node, the memory allocated for each service, the       state of each service, and log path for each service."
       description: ""
       parameters:
@@ -1417,6 +2182,8 @@ See the lists of parameters below this table."
           description: OK
   /setloglevel/cldb:
     get:
+      tags:
+        - setloglevel
       summary: "Sets the log level on the CLDB service. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -1459,6 +2226,8 @@ See the lists of parameters below this table."
           description: OK
   /setloglevel/fileserver:
     get:
+      tags:
+        - setloglevel
       summary: "Sets the log level on the FileServer service. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -1501,6 +2270,8 @@ See the lists of parameters below this table."
           description: OK
   /setloglevel/hbmaster:
     get:
+      tags:
+        - setloglevel
       summary: "Sets the log level on the HBase Master service. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -1543,6 +2314,8 @@ See the lists of parameters below this table."
           description: OK
   /setloglevel/hbregionserver:
     get:
+      tags:
+        - setloglevel
       summary: "Sets the log level on the HBase RegionServer service. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -1585,6 +2358,8 @@ See the lists of parameters below this table."
           description: OK
   /setloglevel/jobtracker:
     get:
+      tags:
+        - setloglevel
       summary: "Sets the log level on the JobTracker service. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -1627,6 +2402,8 @@ See the lists of parameters below this table."
           description: OK
   /setloglevel/nfs:
     get:
+      tags:
+        - setloglevel
       summary: "Sets the log level on the NFS service. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -1673,6 +2450,8 @@ See the lists of parameters below this table."
           description: OK
   /setloglevel/tasktracker:
     get:
+      tags:
+        - setloglevel
       summary: "Sets the log level on the TaskTracker service. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -1715,6 +2494,8 @@ See the lists of parameters below this table."
           description: OK
   /stream/assign/list:
     get:
+      tags:
+        - stream
       summary: "For the given stream, lists consumers and the topics and partitions that the consumers     are reading messages from."
       description: "## Permissions Required
 
@@ -1756,6 +2537,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/create:
     get:
+      tags:
+        - stream
       summary: "Creates a new stream."
       description: "After you create a stream, you can edit the values of its parameters with the command `maprcli stream edit`.
 
@@ -1870,6 +2653,8 @@ This permission includes the `topicperm` permission."
           description: OK
   /stream/cursor/delete:
     get:
+      tags:
+        - stream
       summary: "Deletes committed cursors that are in the partitions in a stream."
       description: "Note: Deleting the committed cursors for active consumers has no effect on the consumers. Consumers use read cursors to keep track of where they currently are in partitions. 
 
@@ -1913,6 +2698,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/cursor/list:
     get:
+      tags:
+        - stream
       summary: "Lists the cursors for the consumers of a stream."
       description: "## Permissions Required
 
@@ -1950,6 +2737,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/delete:
     get:
+      tags:
+        - stream
       summary: "Deletes the specified stream. Deleted streams cannot be recovered unless they were     previously replicated."
       description: "Producers are no longer able to publish messages to topics in the stream, and consumers are no longer able to read messages from topics in the stream.
 
@@ -1976,6 +2765,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/edit:
     get:
+      tags:
+        - stream
       summary: "Edits the values of parameters for the specified stream."
       description: "## Permissions Required
 
@@ -2067,6 +2858,8 @@ This permission includes the `topicperm` permission."
           description: OK
   /stream/info:
     get:
+      tags:
+        - stream
       summary: "Displays the values of the parameters of the specified stream."
       description: "## Permissions Required
 
@@ -2092,6 +2885,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/purge:
     get:
+      tags:
+        - stream
       summary: "Runs the purge process, removing messages that are marked for deletion and reclaiming     disk space."
       description: "For information about the purge process, see [Setting the Time-to-Live for Messages](http://maprdocs.mapr.com/home/MapR_Streams/time_to_live_for_messages.html#time_to_live_for_messages__title).
 
@@ -2123,6 +2918,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/replica/add:
     get:
+      tags:
+        - stream
       summary: "Registers an existing stream as a replica of the specified stream."
       description: "## Permissions Required at the Source Cluster
 
@@ -2191,6 +2988,8 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
           description: OK
   /stream/replica/autosetup:
     get:
+      tags:
+        - stream
       summary: "Sets up and starts replication between a source stream and replica stream."
       description: "The `maprcli stream replica autosetup` command performs the following steps to set up replication:
  
@@ -2218,7 +3017,16 @@ To run this command, your user ID must have the following permissions:
  
 
 
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
+
+
+## Permissions Required at the Target Cluster
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path"
       parameters:
         - name: path
           in: query
@@ -2260,6 +3068,8 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
           description: OK
   /stream/replica/edit:
     get:
+      tags:
+        - stream
       summary: "Modifies the way in which messages are replicated from one stream to     another."
       description: "## Permissions Required at the Source Cluster
 
@@ -2325,6 +3135,8 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
           description: OK
   /stream/replica/list:
     get:
+      tags:
+        - stream
       summary: "Lists the replicas of a given stream."
       description: "## Permissions Required on the Source Cluster
 
@@ -2354,6 +3166,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/replica/pause:
     get:
+      tags:
+        - stream
       summary: "Pauses replication from a source stream to a replica stream."
       description: "## Permissions Required on the Source Cluster
 
@@ -2383,6 +3197,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/replica/remove:
     get:
+      tags:
+        - stream
       summary: "Unregisters a stream as the replica of another stream."
       description: "## Permissions Required on the Source Cluster
 
@@ -2412,6 +3228,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/replica/resume:
     get:
+      tags:
+        - stream
       summary: "Resumes replication from one stream to another stream."
       description: "## Permissions Required on the Source Cluster
 
@@ -2441,6 +3259,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/upstream/add:
     get:
+      tags:
+        - stream
       summary: "Registers a stream as an upstream source for a given stream. For example, if you wanted     to replicate messages from Stream_A to Stream_B , Stream_A would be the upstream source for Stream_B ."
       description: "## Permissions Required on the Target Cluster
 
@@ -2470,6 +3290,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/upstream/list:
     get:
+      tags:
+        - stream
       summary: "Lists all of the streams that are replicating to a given stream."
       description: "## Permissions Required on the Target Cluster
 
@@ -2495,6 +3317,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/upstream/remove:
     get:
+      tags:
+        - stream
       summary: "Unregisters a stream as an upstream source for a given stream."
       description: "## Permissions Required on the Target Cluster
 
@@ -2524,6 +3348,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/topic/create:
     get:
+      tags:
+        - stream
       summary: "Creates a topic in the specified stream."
       description: "## Permissions Required
 
@@ -2560,6 +3386,8 @@ A name can include alphanumeric characters and the following characters: `.` , `
           description: OK
   /stream/topic/delete:
     get:
+      tags:
+        - stream
       summary: "Deletes the specified topic from the specified stream."
       description: "Consumers do not have to stop consuming from a topic before the topic is deleted.
 
@@ -2601,6 +3429,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/topic/edit:
     get:
+      tags:
+        - stream
       summary: "Allows you to increase the number of partitions that are in the specified     topic."
       description: "## Permissions Required
 
@@ -2637,6 +3467,8 @@ To find out how many partitions a topic is currently using, run the command `map
           description: OK
   /stream/topic/info:
     get:
+      tags:
+        - stream
       summary: "Lists information about the partitions in the topics that are in a stream."
       description: "## Permissions Required
 
@@ -2666,6 +3498,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /stream/topic/list:
     get:
+      tags:
+        - stream
       summary: "Lists the topics that are in a stream, as well as the number of partitions in each     topic."
       description: "## Permissions Required
 
@@ -2691,6 +3525,8 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
           description: OK
   /table/create:
     get:
+      tags:
+        - table
       summary: "Creates a new MapR-DB binary or JSON table."
       description: "## Permissions Required
 
@@ -2996,6 +3832,8 @@ For more information about this permission as it applies to JSON tables, see [Ac
           description: OK
   /table/delete:
     get:
+      tags:
+        - table
       summary: "Deletes a MapR-DB binary or JSON table ."
       description: "## Permissions Required
 
@@ -3028,6 +3866,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /table/edit:
     get:
+      tags:
+        - table
       summary: "Edits the attributes of a MapR-DB binary or JSON table ."
       description: "## Permissions Required
 
@@ -3048,6 +3888,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /table/info:
     get:
+      tags:
+        - table
       summary: "Displays information about a MapR-DB binary or JSON table ."
       description: "## Permissions Required
 
@@ -3082,6 +3924,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /task/failattempt:
     get:
+      tags:
+        - task
       summary: "Ends the specified task attempt as failed."
       description: ""
       parameters:
@@ -3098,6 +3942,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /task/killattempt:
     get:
+      tags:
+        - task
       summary: "Kills the specified task attempt."
       description: ""
       parameters:
@@ -3112,8 +3958,40 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
       responses:
         200:
           description: OK
+  /task/table:
+    get:
+      tags:
+        - task
+      summary: "Retrieves histograms and       line charts for task metrics."
+      description: "A Hadoop job sets the rules that the JobTracker service uses to break an input data set into discrete tasks and assign those tasks to individual nodes. Use the `task table` to retrieve [task analytics](http://maprdocs.mapr.com/home/AdministratorGuide/JobMetrics-Analyzing.html#Analyzing-Job-Metrics-TheMapRMetricsservic-d3e72) about the jobs running on your cluster. The task metric data includes information about the tasks that make up a specific job, as well as the specific task attempts. The job metric data includes a task attempt's data throughput, measured in number of records per second as well as in bytes per second. The metrics data can be formatted for histogram display or line chart display. In order to issue the `task table` command, the mapr-metrics package must be installed on all the nodes where webserver and jobtracker are configured to run."
+      parameters:
+        - name: filter
+          in: query
+          description: "Filters results to match the value of a specified string."
+          type: string
+        - name: chart
+          in: query
+          description: "Chart type to use: `line` for a line chart, `bar` for a histogram."
+          type: string
+        - name: columns
+          in: query
+          description: "Comma-separated list of column names to return."
+          type: string
+        - name: bincount
+          in: query
+          description: "Number of histogram bins."
+          type: string
+        - name: scale
+          in: query
+          description: "Scale to use for the histogram. Specify `linear` for a linear scale and `log` for a logarithmic scale."
+          type: string
+      responses:
+        200:
+          description: OK
   /urls/{name}:
     get:
+      tags:
+        - urls
       summary: "Displays the status page URL for the specified service."
       description: ""
       parameters:
@@ -3144,6 +4022,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /virtualip/add:
     get:
+      tags:
+        - virtualip
       summary: "Adds a virtual IP       address. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -3182,6 +4062,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /virtualip/edit:
     get:
+      tags:
+        - virtualip
       summary: "Edits a virtual IP (VIP) range. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -3216,6 +4098,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /virtualip/list:
     get:
+      tags:
+        - virtualip
       summary: "Lists the virtual IP addresses in the cluster."
       description: ""
       parameters:
@@ -3256,6 +4140,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /virtualip/move:
     get:
+      tags:
+        - virtualip
       summary: "Reassigns a virtual IP or a range of virtual IP addresses to a specified Media Access       Control (MAC) address."
       description: ""
       parameters:
@@ -3280,6 +4166,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           description: OK
   /virtualip/remove:
     get:
+      tags:
+        - virtualip
       summary: "Removes a virtual IP (VIP) or a VIP range. Permissions required: fc or a ."
       description: ""
       parameters:
@@ -3299,8 +4187,95 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
       responses:
         200:
           description: OK
+  /volume/audit:
+    get:
+      tags:
+        - volume
+      summary: "Enables or disables auditing on the specified volume."
+      description: "You must have the `fc` permission on the cluster to use this command. See [`acl`](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html#acl) for details about this permission.
+
+
+ 
+
+
+To learn how to determine whether auditing is enabled for a volume, see [Checking Whether Auditing is Enabled for a Directory, File, or MapR-DB Table](http://maprdocs.mapr.com/home/SecurityGuide/CheckingWhetherAuditingisEnabled.html#CheckingWhetherAuditingisEnabledforaDirectoryFileorMapR-DBTable)."
+      parameters:
+        - name: cluster
+          in: query
+          description: "The cluster on which the volume is located. This parameter is required if the volume is on a remote cluster. The remote cluster must be listed in the mapr-cluster.conf file for the cluster where you run the command."
+          type: string
+        - name: name
+          in: query
+          description: "The name of the volume."
+          required: true
+          type: string
+        - name: enabled
+          in: query
+          description: "Enables or disables the auditing of operations within the volume. You must use either this parameter, the `-coalesce` parameter, or both.
+
+
+ 
+
+
+See [Enabling Auditing](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-Prerequisites.html#EnablingAuditing) for the steps to enable auditing on directories, files, and tables in a volume.
+
+
+ 
+
+
+When you set the value to false, auditing of operations within the volume ceases. None of the auditing settings are changed on the directories, files, and MapR-DB tables within the volume. If you later run the `maprcli volume audit` command with `-enabled` set to `true`, auditing begins again on the objects that were already enabled for auditing."
+          type: string
+        - name: coalesce
+          in: query
+          description: "The interval of time during which READ, WRITE, or GETATTR operations on one file from one client IP address are logged only once, if auditing is enabled.
+
+
+ 
+
+
+For example, suppose that a client application reads a single file three times in 6 minutes, so that there is one read at 0 minutes, another at 3 minutes, and a final read at 6 minutes. If the coalesce interval is at least 6 minutes, then only the first read operation is logged. However, if the interval is between 4 minutes, then only the first and third read operations are logged. If the interval is 2 minutes, all three read operations are logged.
+
+
+ 
+
+
+The default value is 60 minutes. Setting this field to a larger number helps prevent audit logs from growing quickly."
+          type: string
+        - name: dataauditops
+          in: query
+          description: "The comma separated list of filesystem operations to include (specified with a preceding plus sign (`+`)) and/or exclude (specified with a preceding minus sign (`-`)) from auditing. 
+
+
+ 
+
+
+Note: If the first operation in the list is to be excluded from auditing, it must be preceded by two minus (`--`) signs. Subsequent operations to exclude must be preceded by only a single minus (`-`) sign, whether or not the first operation was included (using a plus (`+`) sign) or excluded (using two minus (`--`) signs). If neither sign is specified, the given operation is included for auditing.
+
+
+ 
+
+
+The operations that can be included (`+`) and/or excluded (`-`) from auditing are listed [here](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-FilesystemTableOperations.html#AuditingofFilesystemOperationsandTableOperations). You can, alternatively, group all the filesystem and table operations using the keyword `all`, which:
+
+
+ 
+ 
+* If included (`+`), cannot be specified with a list of other included operations.
+ 
+* If excluded (`-`), cannot be specified with a list of other excluded operations.
+ 
+ 
+
+
+Note: You can specify a mixed list of included and excluded operations. There are no changes to operations that are not specified with the command."
+          type: string
+      responses:
+        200:
+          description: OK
   /volume/container/move:
     get:
+      tags:
+        - volume
       summary: "Moves a container. Permissions       required: fc or m on the       volume."
       description: "The volume container move command moves a specified container (`cid`) from a source file server (`fromfileserver`) to a destination file server (`tofileserver`). If the `tofileserver` parameter is not specified, a destination file server is chosen by the CLDB. If the `tofileserver` is specified but does not exist, the command fails with an error. If the `fromfileserver` does not exist or is down, the container move occurs once the source file server comes back up."
       parameters:
@@ -3321,8 +4296,34 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
       responses:
         200:
           description: OK
+  /volume/container/switchmaster:
+    get:
+      tags:
+        - volume
+      summary: "Switches the master replica for a specified container to another       replica in the replica chain."
+      description: "This command fails if there is only one up-to-date replica for the container.
+
+
+ 
+
+
+Note: Only the root and the MAPR_USER (user name under which MapR services runs) user have permissions to run this command."
+      parameters:
+        - name: cluster
+          in: query
+          description: "The cluster on which to run the command. If this parameter is omitted, the command is run on the same cluster where it is issued. In multi-cluster contexts, you can use this parameter to specify a different cluster on which to run the command."
+          type: string
+        - name: cid
+          in: query
+          description: "The unique ID number for the container that you want to run the command on."
+          type: string
+      responses:
+        200:
+          description: OK
   /volume/create:
     get:
+      tags:
+        - volume
       summary: "Creates a volume. Permissions required: cv          or fc on the volume."
       description: ""
       parameters:
@@ -3631,6 +4632,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/fixmountpath:
     get:
+      tags:
+        - volume
       summary: "Corrects the mount path of a volume. Permissions required: fc or m on the volume."
       description: "The CLDB maintains information about the mount path of every volume. If a directory in a volume's path is renamed (by a `hadoop fs` command, for example) the information in the CLDB will be out of date. The `volume fixmountpath` command does a reverse path walk from the volume and corrects the mount path information in the CLDB."
       parameters:
@@ -3648,6 +4651,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/info:
     get:
+      tags:
+        - volume
       summary: "Displays information about the specified volume. For best results,       use the -json option when running the command."
       description: ""
       parameters:
@@ -3676,6 +4681,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/link/create:
     get:
+      tags:
+        - volume
       summary: "Creates a link to a volume. Permissions required: fc or m on the volume."
       description: ""
       parameters:
@@ -3709,6 +4716,8 @@ Example: `/home/abc/.rw`"
           description: OK
   /volume/link/remove:
     get:
+      tags:
+        - volume
       summary: "Removes the specified symbolic link. Permissions required: fc or m on the volume."
       description: ""
       parameters:
@@ -3735,8 +4744,52 @@ Example: `/home/abc/.rw`"
       responses:
         200:
           description: OK
+  /volume/list:
+    get:
+      tags:
+        - volume
+      summary: ""
+      description: ""
+      parameters:
+        - name: alarmedvolumes
+          in: query
+          description: "Specifies whether to list alarmed volumes only. Default: false"
+          type: string
+        - name: cluster
+          in: query
+          description: "The cluster name on which to run the command."
+          type: string
+        - name: columns
+          in: query
+          description: "A comma-separated list of fields to return in the query. See the Fields table on the volume page. Note: When issuing `maprcli volume info -columns` and `marcli volume list -columns` commands, the column for the volume name is `volumename`."
+          type: string
+        - name: filter
+          in: query
+          description: "A filter specifying volumes to list. See [Filters](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) for more information. Default: none"
+          type: string
+        - name: limit
+          in: query
+          description: "The number of rows to return, beginning at start. Default: 2147483647"
+          type: string
+        - name: nodes
+          in: query
+          description: "A list of nodes. If specified, `volume list` only lists volumes on the specified nodes."
+          type: string
+        - name: output
+          in: query
+          description: "Specifies whether the output should be `terse` or `verbose`. Default: verbose"
+          type: string
+        - name: start
+          in: query
+          description: "The offset from the starting row according to sort. Default: 0"
+          type: string
+      responses:
+        200:
+          description: OK
   /volume/mirror/start:
     get:
+      tags:
+        - volume
       summary: "Starts mirroring on the specified volume from its source       volume."
       description: "* License required: Enterprise Edition
  
@@ -3777,6 +4830,8 @@ Normally, the mirroring operation transfers only deltas from the last successful
           description: OK
   /volume/mirror/stop:
     get:
+      tags:
+        - volume
       summary: "Stops mirroring on the specified volume."
       description: "* License required: Enterprise Edition
  
@@ -3801,6 +4856,8 @@ Normally, the mirroring operation transfers only deltas from the last successful
           description: OK
   /volume/modify:
     get:
+      tags:
+        - volume
       summary: "Modifies an existing volume. Permissions       required: m or fc on       the volume."
       description: "An error occurs if the name or path refers to a non-existent volume, or cannot be resolved."
       parameters:
@@ -4006,6 +5063,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/mount:
     get:
+      tags:
+        - volume
       summary: "Mounts one or more specified volumes. Permissions required: fc or m on the volume."
       description: ""
       parameters:
@@ -4039,6 +5098,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/move:
     get:
+      tags:
+        - volume
       summary: "Moves the specified volume or mirror to a different topology.       Permissions required: m or fc on the       volume."
       description: ""
       parameters:
@@ -4061,6 +5122,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/remove:
     get:
+      tags:
+        - volume
       summary: "Removes the specified volume or mirror. Permissions required: d or fc on the volume."
       description: ""
       parameters:
@@ -4086,6 +5149,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/rename:
     get:
+      tags:
+        - volume
       summary: "Renames the specified volume or mirror. Permissions required: fc or d on the volume."
       description: ""
       parameters:
@@ -4108,6 +5173,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/showmounts:
     get:
+      tags:
+        - volume
       summary: "Returns a list of mount points for the specified volume."
       description: ""
       parameters:
@@ -4124,6 +5191,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/snapshot/create:
     get:
+      tags:
+        - volume
       summary: "Creates a snapshot of the specified volume, using the specified       snapshot name."
       description: "* License required: Enterprise Edition
  
@@ -4146,6 +5215,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/snapshot/list:
     get:
+      tags:
+        - volume
       summary: "Displays info about a set of snapshots."
       description: "You can specify the snapshots by volumes or paths, or by specifying a filter to select volumes with certain characteristics."
       parameters:
@@ -4186,6 +5257,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/snapshot/preserve:
     get:
+      tags:
+        - volume
       summary: "Preserves one or more snapshots from expiration."
       description: "Specify the snapshots by volumes, paths, filter, or IDs.
 
@@ -4221,6 +5294,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/snapshot/remove:
     get:
+      tags:
+        - volume
       summary: "Removes one or more snapshots."
       description: "* License required: Enterprise Edition
  
@@ -4247,6 +5322,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/unmount:
     get:
+      tags:
+        - volume
       summary: "Unmounts one or more mounted volumes. Permissions required: fc or m on the volume."
       description: ""
       parameters:
@@ -4268,6 +5345,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: OK
   /volume/upgradeformat:
     get:
+      tags:
+        - volume
       summary: "Upgrades and old-type volume to a new-type volume, which can in turn be used as a       promotable mirror volume. Permissions required: m or fc on       the volume."
       description: ""
       parameters:

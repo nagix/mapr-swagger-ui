@@ -9,8 +9,9 @@ filename = 'mapr.yaml'
 baseurl = 'http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax.html'
 
 # Escape HTML text
+# MapR doc bug: u'\u2013' should be '-'
 def escape(text):
-  return text.replace('<', '&lt;').replace('>', '&gt;')
+  return text.replace('<', '&lt;').replace('>', '&gt;').replace(u'\u2013', '-')
 
 # Adjust spaces and line breaks
 def normalize(d):
@@ -28,12 +29,12 @@ def normalize(d):
   return d
 
 # Replace HTML tags with Markdown
-def replace(d, selector, start, end, a_selector=None, a_start=None, a_end=None):
+def replace_tags(d, selector, start, end, a_selector=None, a_start=None, a_end=None):
   elements = d(selector)
   for e in reversed(elements):
     start_tag, end_tag = start, end
     if a_selector:
-      if replace(pq(e), a_selector, a_start, a_end) and a_selector == 'a':
+      if replace_tags(pq(e), a_selector, a_start, a_end) and a_selector == 'a':
         start_tag, end_tag = '', ''
     html = escape(e.text or '')
     children = e.getchildren()
@@ -54,16 +55,16 @@ def gfm(elements):
   for e in elements:
     d = pq(e)
     normalize(d)
-    replace(d, 'h2', '\n\n## ', '\n\n')
-    replace(d, 'strong','**', '**')
-    replace(d, 'code', '`', '`', 'a', '[`', '`]')
-    replace(d, 'a', '[', ']')
-    replace(d, 'ul ul', '', '', 'li', '\n  * ', '\n')
-    replace(d, 'ul', '\n', '\n', 'li', '\n* ', '\n')
-    replace(d, 'ol', '\n', '\n', 'li', '\n1. ', '\n')
-    replace(d, 'p,div', '\n\n\n', '\n\n\n')
-    replace(d, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n')
-    replace(d, 'span', '', '')
+    replace_tags(d, 'h2', '\n\n## ', '\n\n')
+    replace_tags(d, 'strong','**', '**')
+    replace_tags(d, 'code', '`', '`', 'a', '[`', '`]')
+    replace_tags(d, 'a', '[', ']')
+    replace_tags(d, 'ul ul', '', '', 'li', '\n  * ', '\n')
+    replace_tags(d, 'ul', '\n', '\n', 'li', '\n* ', '\n')
+    replace_tags(d, 'ol', '\n', '\n', 'li', '\n1. ', '\n')
+    replace_tags(d, 'p,div', '\n\n\n', '\n\n\n')
+    replace_tags(d, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n')
+    replace_tags(d, 'span', '', '')
     d('*').removeAttr('class')
     gfm.append((d.html() or '').strip())
   return '\n\n\n'.join(gfm)
@@ -95,11 +96,11 @@ def print_headers(d):
   f.write('paths:\n')
 
 # Print command
-def print_command(d):
+def print_command(d, tag):
 
   # Get command path
-  code = d('h2:contains("Syntax") ~ * code').eq(1).text().replace('\n',' ')
-  match = re.search('(?<=rest)/[a-z/<>]+', code)
+  syntax = d('*:contains("Syntax") ~ *').text().replace('\n',' ')
+  match = re.search('(?<=rest)/[a-z/<>]+', syntax)
   if not match:
     return
   path = match.group().replace('<','{').replace('>','}')
@@ -119,22 +120,26 @@ def print_command(d):
 
   # Print summary and description
   summary = d('.shortdesc').text().replace('\n',' ')
-  description = ''
-  current = d('.shortdesc + section')
-  if not current('h2:contains("Syntax")'):
-    description = gfm(current)
-    current = current.next('section')
-    if not current('h2:contains("Syntax")'):
-      description += '\n\n\n' + gfm(current)
+  elements = []
+  current = d('.shortdesc ~ *')
+  if d('.shortdesc + * p:contains("Syntax")'):
+    current = d('.shortdesc + * > *')
+  for i in current.items():
+    if i('*:contains("Syntax")'):
+      break
+    elements.append(i)
+  description = gfm(elements)
   f.write('  ' + path + ':\n')
   f.write('    get:\n')
+  f.write('      tags:\n')
+  f.write('        - ' + tag + '\n')
   f.write('      summary: "' + summary + '"\n')
   f.write('      description: "' + description + '"\n')
 
   # Print parameters
-  if d('h2:contains("Parameters") ~ * tbody'):
+  if d('*:contains("Parameters") ~ * tbody'):
     f.write('      parameters:\n')
-    for i in d.items('h2:contains("Parameters") ~ * tbody tr'):
+    for i in d.items('*:contains("Parameters") ~ * tbody tr'):
       name = i('td:eq(0)').text().replace('\n',' ')
 
       # Handle MapR doc bug
@@ -178,9 +183,9 @@ for i in category_links.items():
   if command_links:
     for j in command_links.items():
       d = pq(j.attr.href).make_links_absolute()
-      print_command(d)
+      print_command(d, i.text())
   else:
-    print_command(d)
+    print_command(d, i.text())
 f.close()
 
 sys.stderr.write('\r\033[K')
