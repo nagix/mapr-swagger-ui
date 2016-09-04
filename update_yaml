@@ -1,11 +1,72 @@
 #!/usr/bin/python
 
+from lxml import etree
 from pyquery import PyQuery as pq
 import re
 import sys
 
 filename = 'mapr.yaml'
 baseurl = 'http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax.html'
+
+# Escape HTML text
+def escape(text):
+  return text.replace('<', '&lt;').replace('>', '&gt;')
+
+# Adjust spaces and line breaks
+def normalize(d):
+  pre_ancestors = d('pre *')
+  for e in d('*'):
+    if e in pre_ancestors:
+      e.text = escape(e.text or '').replace('\n', '\n\n')
+      e.tail = escape(e.tail or '').replace('\n', '\n\n')
+    else:
+      if e.tag == 'pre':
+        e.text = escape(e.text or '').replace('\n', '\n\n')
+      else:
+        e.text = re.sub(r'\s+', ' ', escape(e.text or ''))
+      e.tail = re.sub(r'\s+', ' ', escape(e.tail or ''))
+  return d
+
+# Replace HTML tags with Markdown
+def replace(d, selector, start, end, a_selector=None, a_start=None, a_end=None):
+  elements = d(selector)
+  for e in reversed(elements):
+    start_tag, end_tag = start, end
+    if a_selector:
+      if replace(pq(e), a_selector, a_start, a_end) and a_selector == 'a':
+        start_tag, end_tag = '', ''
+    html = escape(e.text or '')
+    children = e.getchildren()
+    if children:
+      html += unicode('').join([etree.tostring(c) for c in children])
+    href = e.get('href') or ''
+    if href:
+      href = '(' + href + ')'
+    tail = escape(e.tail or '')
+    pq(e).before(start_tag + html + end_tag + href + tail)
+    parent = e.getparent()
+    parent.remove(e)
+  return elements
+
+# Get the GFM representation of sub nodes
+def gfm(elements):
+  gfm = []
+  for e in elements:
+    d = pq(e)
+    normalize(d)
+    replace(d, 'h2', '\n\n## ', '\n\n')
+    replace(d, 'strong','**', '**')
+    replace(d, 'code', '`', '`', 'a', '[`', '`]')
+    replace(d, 'a', '[', ']')
+    replace(d, 'ul ul', '', '', 'li', '\n  * ', '\n')
+    replace(d, 'ul', '\n', '\n', 'li', '\n* ', '\n')
+    replace(d, 'ol', '\n', '\n', 'li', '\n1. ', '\n')
+    replace(d, 'p,div', '\n\n\n', '\n\n\n')
+    replace(d, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n')
+    replace(d, 'span', '', '')
+    d('*').removeAttr('class')
+    gfm.append((d.html() or '').strip())
+  return '\n\n\n'.join(gfm)
 
 # Print headers
 def print_headers(d):
@@ -17,7 +78,7 @@ def print_headers(d):
   f.write('  description: The information about the MapR REST API\n')
 
   # Print version
-  version = d('meta[name=version]').attr('content')
+  version = d('meta[name=version]').attr.content
   f.write('  version: "' + version + '"\n')
 
   # Print other headers
@@ -34,10 +95,9 @@ def print_headers(d):
   f.write('paths:\n')
 
 # Print command
-def print_command(url):
+def print_command(d):
 
   # Get command path
-  d = pq(url)
   code = d('h2:contains("Syntax") ~ * code').eq(1).text().replace('\n',' ')
   match = re.search('(?<=rest)/[a-z/<>]+', code)
   if not match:
@@ -45,13 +105,13 @@ def print_command(url):
   path = match.group().replace('<','{').replace('>','}')
 
   # Handle MapR doc bug
-  if re.search('acl-set', url):
+  if re.search('acl-set', d.base_url):
     path = path.replace('edit', 'set')
-  if re.search('stream_edit', url):
+  if re.search('stream_edit', d.base_url):
     path = path.replace('create', 'edit')
-  if re.search('stream_upstream_remove', url):
+  if re.search('stream_upstream_remove', d.base_url):
     path = path.replace('add', 'remove')
-  if re.search('volume-link-create', url):
+  if re.search('volume-link-create', d.base_url):
     path = path.replace('remove', 'create')
 
   # Print progress
@@ -59,7 +119,13 @@ def print_command(url):
 
   # Print summary and description
   summary = d('.shortdesc').text().replace('\n',' ')
-  description = d('.shortdesc+section:not(.refsyn)').text().replace('\n',' ')
+  description = ''
+  current = d('.shortdesc + section')
+  if not current('h2:contains("Syntax")'):
+    description = gfm(current)
+    current = current.next('section')
+    if not current('h2:contains("Syntax")'):
+      description += '\n\n\n' + gfm(current)
   f.write('  ' + path + ':\n')
   f.write('    get:\n')
   f.write('      summary: "' + summary + '"\n')
@@ -80,10 +146,10 @@ def print_command(url):
         continue
       name = name[0].lower() + name[1:]
 
-      description = i('td:eq(1)').text().replace('\n',' ')
+      description = gfm(i('td:eq(1)'))
       required = i('td:eq(0) strong')
       f.write('        - name: ' + name + '\n')
-      if re.search('urls', url) and name == 'name':
+      if re.search('urls', d.base_url) and name == 'name':
         f.write('          in: path\n')
         required = True
       else:
@@ -103,17 +169,19 @@ def print_command(url):
 
 # Main
 f = open(filename, "w")
-d = pq(baseurl)
+d = pq(baseurl).make_links_absolute()
 print_headers(d)
-for i in d.items('.link:gt(0) a'):
-  url1 = i.make_links_absolute(baseurl).attr.href
-  links = pq(url1)('.link a')
-  if links:
-    for j in links.items():
-      url2 = j.make_links_absolute(url1).attr.href
-      print_command(url2)
+category_links = d('.link:gt(0) a')
+for i in category_links.items():
+  d = pq(i.attr.href).make_links_absolute()
+  command_links = d('.link a')
+  if command_links:
+    for j in command_links.items():
+      d = pq(j.attr.href).make_links_absolute()
+      print_command(d)
   else:
-    print_command(url1)
+    print_command(d)
 f.close()
+
 sys.stderr.write('\r\033[K')
 sys.stderr.flush()
