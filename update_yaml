@@ -66,33 +66,37 @@ def gfm(d):
   s('*').remove_attr('class')
   return (s.html() or '').strip()
 
+# Print to file
+def fout(text):
+  f.write(text + '\n')
+
 # Print headers
 def print_headers(d):
 
   # Print info
-  f.write('swagger: "2.0"\n')
-  f.write('info:\n')
-  f.write('  title: MapR API\n')
-  f.write('  description: The information about the MapR REST API\n')
-  f.write('  contact:\n')
-  f.write('    url: http://maprdocs.mapr.com\n')
+  fout('swagger: "2.0"')
+  fout('info:')
+  fout('  title: MapR API')
+  fout('  description: The information about the MapR REST API')
+  fout('  contact:')
+  fout('    url: http://maprdocs.mapr.com')
 
   # Print version
   version = d('meta[name=version]').attr.content
-  f.write('  version: "' + version + '"\n')
+  fout('  version: "%s"' % version)
 
   # Print other headers
-  f.write('basePath: /rest\n')
-  f.write('schemes:\n')
-  f.write('  - https\n')
-  f.write('produces:\n')
-  f.write('  - application/json\n')
-  f.write('securityDefinitions:\n')
-  f.write('  BasicAuth:\n')
-  f.write('    type: basic\n')
-  f.write('security:\n')
-  f.write('  - BasicAuth: []\n')
-  f.write('paths:\n')
+  fout('basePath: /rest')
+  fout('schemes:')
+  fout('  - https')
+  fout('produces:')
+  fout('  - application/json')
+  fout('securityDefinitions:')
+  fout('  BasicAuth:')
+  fout('    type: basic')
+  fout('security:')
+  fout('  - BasicAuth: []')
+  fout('paths:')
 
 # Print command
 def print_command(d, tag):
@@ -130,19 +134,19 @@ def print_command(d, tag):
       break
     elements.append(e)
   description = gfm(pq(elements))
-  f.write('  ' + path + ':\n')
-  f.write('    get:\n')
-  f.write('      tags:\n')
-  f.write('        - ' + tag + '\n')
-  f.write('      summary: "' + summary + '"\n')
-  f.write('      description: "' + description + '"\n')
-  f.write('      externalDocs:\n')
-  f.write('        url: ' + d.base_url + '\n')
+  fout('  %s:' % path)
+  fout('    get:')
+  fout('      tags:')
+  fout('        - %s' % tag)
+  fout('      summary: "%s"' % summary)
+  fout('      description: "%s"' % description)
+  fout('      externalDocs:')
+  fout('        url: %s' % d.base_url)
 
   # Print parameters
   parameters = d('h2,p')('*:contains("Parameters") ~ * tbody')
   if parameters:
-    f.write('      parameters:\n')
+    fout('      parameters:')
     for parameter in parameters.items('tr'):
       name = parameter('td:eq(0)').text().replace('\n',' ')
 
@@ -163,24 +167,24 @@ def print_command(d, tag):
         in_ = 'path'
         required = True
         enum = [e.text for e in parameter('li')]
-      f.write('        - name: ' + name + '\n')
-      f.write('          in: ' + in_ + '\n')
+      fout('        - name: %s' % name)
+      fout('          in: %s' % in_)
       if re.search('"', description):
-        f.write('          description: \'' + description + '\'\n')
+        fout('          description: \'%s\'' % description)
       else:
-        f.write('          description: "' + description + '"\n')
+        fout('          description: "%s"' % description)
       if required:
-        f.write('          required: true\n')
-      f.write('          type: string\n')
+        fout('          required: true')
+      fout('          type: string')
       if enum:
-        f.write('          enum:\n')
+        fout('          enum:')
         for value in enum:
-          f.write('            - ' + value + '\n')
+          fout('            - %s' % value)
 
   # Print responses
-  f.write('      responses:\n')
-  f.write('        200:\n')
-  f.write('          description: OK\n')
+  fout('      responses:')
+  fout('        200:')
+  fout('          description: OK')
 
 # Main
 f = open(filename, "w")
