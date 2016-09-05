@@ -15,9 +15,9 @@ def escape(text):
 
 # Adjust spaces and line breaks
 def normalize(d):
-  pre_ancestors = d('pre *')
+  pre_descendant = d('pre *')
   for e in d('*'):
-    if e in pre_ancestors:
+    if e in pre_descendant:
       e.text = escape(e.text or '').replace('\n', '\n\n')
       e.tail = escape(e.tail or '').replace('\n', '\n\n')
     else:
@@ -30,7 +30,7 @@ def normalize(d):
 
 # Replace HTML tags with Markdown
 def replace_tags(d, selector, start, end, a_selector=None, a_start=None, a_end=None):
-  elements = d(selector)
+  elements = d.find(selector)
   for e in reversed(elements):
     start_tag, end_tag = start, end
     if a_selector:
@@ -50,24 +50,21 @@ def replace_tags(d, selector, start, end, a_selector=None, a_start=None, a_end=N
   return elements
 
 # Get the GFM representation of sub nodes
-def gfm(elements):
-  gfm = []
-  for e in elements.clone():
-    d = pq(e)
-    normalize(d)
-    replace_tags(d, 'h2', '\n\n## ', '\n\n')
-    replace_tags(d, 'strong','**', '**')
-    replace_tags(d, 'code', '`', '`', 'a', '[`', '`]')
-    replace_tags(d, 'a', '[', ']')
-    replace_tags(d, 'ul ul', '', '', 'li', '\n  * ', '\n')
-    replace_tags(d, 'ul', '\n', '\n', 'li', '\n* ', '\n')
-    replace_tags(d, 'ol', '\n', '\n', 'li', '\n1. ', '\n')
-    replace_tags(d, 'p,div', '\n\n\n', '\n\n\n')
-    replace_tags(d, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n')
-    replace_tags(d, 'span', '', '')
-    d('*').remove_attr('class')
-    gfm.append((d.html() or '').strip())
-  return '\n\n\n'.join(gfm)
+def gfm(d):
+  s = d.wrap_all('<section></section>')
+  normalize(s)
+  replace_tags(s, 'h2', '\n\n## ', '\n\n')
+  replace_tags(s, 'strong','**', '**')
+  replace_tags(s, 'code', '`', '`', 'a', '[`', '`]')
+  replace_tags(s, 'a', '[', ']')
+  replace_tags(s, 'ul ul', '', '', 'li', '\n  * ', '\n')
+  replace_tags(s, 'ul', '\n', '\n', 'li', '\n* ', '\n')
+  replace_tags(s, 'ol', '\n', '\n', 'li', '\n1. ', '\n')
+  replace_tags(s, 'section,td,p,div', '\n\n\n', '\n\n\n')
+  replace_tags(s, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n')
+  replace_tags(s, 'span', '', '')
+  s('*').remove_attr('class')
+  return (s.html() or '').strip()
 
 # Print headers
 def print_headers(d):
@@ -101,7 +98,7 @@ def print_headers(d):
 def print_command(d, tag):
 
   # Get command path
-  syntax = d('h2,p').filter('*:contains("Syntax") ~ *').text().replace('\n',' ')
+  syntax = d('h2,p')('*:contains("Syntax") ~ *').text().replace('\n',' ')
   match = re.search('(?<=rest)/[a-z/<>]+', syntax)
   if not match:
     return
@@ -121,17 +118,17 @@ def print_command(d, tag):
   sys.stderr.write('\r\033[KProcessing ' + path + '...')
 
   # Print summary and description
-  current = d('.shortdesc') or d('p:first')
-  summary = current.text().replace('\n',' ')
-  elements = []
-  if current.next('* p:contains("Syntax")'):
-    current = current.next().children()
+  short_desc = d('.shortdesc') or d('p:first')
+  summary = short_desc.text().replace('\n',' ')
+  if short_desc.next().find('p:contains("Syntax")'):
+    content = short_desc.next().children()
   else:
-    current = current.next_all()
-  for i in current.items():
-    if i('h2,p').filter('*:contains("Syntax")'):
+    content = short_desc.next_all()
+  elements = []
+  for e in content:
+    if pq(e)('h2,p')('*:contains("Syntax")'):
       break
-    elements.append(i)
+    elements.append(e)
   description = gfm(pq(elements))
   f.write('  ' + path + ':\n')
   f.write('    get:\n')
@@ -143,11 +140,11 @@ def print_command(d, tag):
   f.write('        url: ' + d.base_url + '\n')
 
   # Print parameters
-  parameters = d('h2,p').filter('*:contains("Parameters") ~ * tbody')
+  parameters = d('h2,p')('*:contains("Parameters") ~ * tbody')
   if parameters:
     f.write('      parameters:\n')
-    for i in parameters.items('tr'):
-      name = i('td:eq(0)').text().replace('\n',' ')
+    for parameter in parameters.items('tr'):
+      name = parameter('td:eq(0)').text().replace('\n',' ')
 
       # Handle MapR doc bug
       if name == 'virtualip end range':
@@ -158,14 +155,14 @@ def print_command(d, tag):
         continue
       name = name[0].lower() + name[1:]
 
-      description = gfm(i('td:eq(1)'))
-      required = i('td:eq(0) strong')
+      description = gfm(parameter('td:eq(1)'))
+      required = parameter('td:eq(0) strong')
       in_ = 'query'
       enum = []
       if re.search('urls', d.base_url) and name == 'name':
         in_ = 'path'
         required = True
-        enum = [e.text for e in i('li')]
+        enum = [e.text for e in parameter('li')]
       f.write('        - name: ' + name + '\n')
       f.write('          in: ' + in_ + '\n')
       if re.search('"', description):
