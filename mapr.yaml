@@ -2,10 +2,12 @@ swagger: "2.0"
 info:
   title: MapR API
   description: The information about the MapR REST API
+  contact:
+    url: http://maprdocs.mapr.com
   version: "5.2"
+basePath: /rest
 schemes:
   - https
-basePath: /rest
 produces:
   - application/json
 securityDefinitions:
@@ -19,7 +21,9 @@ paths:
       tags:
         - acl
       summary: "Modifies a specific user's access to a cluster or volume."
-      description: "The `acl edit` command grants one or more specific volume or cluster permissions to a user. To use the `acl edit` command, you must have administrative (a) permissions on the volume and cluster for which you are running the command. The permissions are specified as a comma-separated list of permission codes. See [acl](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html). You must specify either a `user` or a `group`. When the `type` is `volume`, a volume name must be specified using the `name` parameter."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/acl-edit.html
       parameters:
         - name: cluster
           in: query
@@ -50,13 +54,9 @@ paths:
       tags:
         - acl
       summary: "Modifies the ACL for a cluster or volume."
-      description: "The `acl set` command specifies the entire ACL for a cluster or volume. Any previous permissions are overwritten by the new values, and any permissions omitted are removed. To use the `acl set` command, you must have administrative (a) permissions on the volume and cluster for which you are running the command. The permissions are specified as a comma-separated list of permission codes. See [acl](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html). You must specify either a `user` or a `group`. When the `type` is `volume`, a volume name must be specified using the `name` parameter.
-
-
- 
-
-
-Note: The `acl set` command removes any previous ACL values. If you wish to preserve some of the permissions, you should either use the  [`acl edit`](http://maprdocs.mapr.com/home/ReferenceGuide/acl-edit.html)  command instead of `acl set`, or use  [`acl show`](http://maprdocs.mapr.com/home/ReferenceGuide/acl-show.html)  to list the values before overwriting them."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/acl-set.html
       parameters:
         - name: cluster
           in: query
@@ -88,6 +88,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
         - acl
       summary: "Displays the ACL associated with an object (cluster or a volume)."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/acl-show.html
       parameters:
         - name: cluster
           in: query
@@ -136,6 +138,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
         - alarm
       summary: "Clears one or more alarms. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-clear.html
       parameters:
         - name: alarm
           in: query
@@ -159,6 +163,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
         - alarm
       summary: "Clears all alarms. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-clearall.html
       parameters:
         - name: cluster
           in: query
@@ -173,6 +179,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
         - alarm
       summary: "Displays the configuration of alarm notifications. Permission       required: login"
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-config-load.html
       parameters:
         - name: cluster
           in: query
@@ -190,7 +198,9 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
       tags:
         - alarm
       summary: "Sets notification preferences for alarms. Permissions required: fc or a ."
-      description: "Alarm notifications can be sent to the default email address and a specific email address for each named alarm. If `individual` is set to `1` for a specific alarm, then notifications for that alarm are sent to the default email address for the alarm type. If a custom email address is provided, notifications are sent there regardless of whether they are also sent to the default email address."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-config-save.html
       parameters:
         - name: cluster
           in: query
@@ -209,7 +219,9 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
       tags:
         - alarm
       summary: "Lists alarms in the system. Permissions required: login ."
-      description: "You can list all alarms, alarms by type (Cluster, Node or Volume), or alarms on a particular node or volume. To retrieve a count of all alarm types, pass `1` in the `summary` parameter. You can specify the alarms to return by filtering on type and entity. Use `start` and `limit` to retrieve only a specified window of data."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-list.html
       parameters:
         - name: alarm
           in: query
@@ -270,6 +282,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
         - alarm
       summary: "Displays a list of alarm names. Permissions required: login"
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-names.html
       responses:
         200:
           description: OK
@@ -279,6 +293,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
         - alarm
       summary: "Raises a specified alarm or alarms. Permissions       required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-raise.html
       parameters:
         - name: alarm
           in: query
@@ -305,13 +321,9 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
       tags:
         - audit
       summary: "Enables and disables auditing of operations that are related to       the administration of a MapR cluster."
-      description: "Only the `mapr` user for the cluster can run this command. For more information about the mapr user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62).
-
-
- 
-
-
-For information about auditing cluster-administration operations, see [Auditing of Activity Related to Cluster Administration](http://maprdocs.mapr.com/home/SecurityGuide/AuditingClusterAdminActivity.html#AuditingofActivityRelatedtoClusterAdministration)."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/audit-cluster.html
       parameters:
         - name: enabled
           in: query
@@ -325,13 +337,9 @@ For information about auditing cluster-administration operations, see [Auditing 
       tags:
         - audit
       summary: "Enables and disables auditing of filesystem and table operations."
-      description: "For a list of these operations, see [Auditing of Filesystem Operations and Table Operations](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-FilesystemTableOperations.html#AuditingofFilesystemOperationsandTableOperations).
-
-
- 
-
-
-Only the `mapr` user for the cluster can run this command. For more information about the mapr user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html)."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/audit-data.html
       parameters:
         - name: cluster
           in: query
@@ -379,7 +387,9 @@ You can set this interval on individual volumes. The default value is 60 minutes
       tags:
         - audit
       summary: "Displays whether auditing of cluster-management operations and auditing data-access       operations are enabled. Also, displays the maxSize and retention values for these two levels       of auditing."
-      description: "Only the `mapr` user for the cluster can run this command. For more information about the `mapr` user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62)."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/audit-info.html
       responses:
         200:
           description: OK
@@ -388,13 +398,15 @@ You can set this interval on individual volumes. The default value is 60 minutes
       tags:
         - cluster
       summary: "Deletes the list of MapR gateways from a source MapR cluster."
-      description: "Source MapR clusters can use such lists to locate the gateways that enable replication of table data to a particular MapR cluster or indexing of table data in a particular Elasticsearch cluster. You create lists of gateways by running the `maprcli cluster gateway set` command.
+      description: "
 
 
-There are three methods of specifying the location of gateways to a MapR cluster that is a source for table replication or indexing in Elasticsearch. If a source MapR cluster relies on DNS records to find out where gateways are located, or the cluster relies on the `mapr-clusters.conf` file to locate gateways, there is no list for the cluster gateway delete command to delete.
 
 
-Note: Deleting a list of gateways with the `maprcli cluster gateway delete` command does not uninstall the listed gateways from the MapR cluster where they are located."
+
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-delete_29656076.html
       parameters:
         - name: dstcluster
           in: query
@@ -424,13 +436,9 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
       tags:
         - cluster
       summary: "Lists the MapR gateways that a source MapR cluster is using."
-      description: "The source MapR cluster could be using the MapR gateways either for replication of table data to a destination MapR cluster or for the indexing of data in an Elasticsearch cluster.
-
-
- 
-
-
-This list of gateways is created by the `maprcli cluster gateway set` command."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-get_29656094.html
       parameters:
         - name: dstcluster
           in: query
@@ -460,13 +468,9 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
       tags:
         - cluster
       summary: "Lists all of the gateways that a source MapR cluster is using."
-      description: "The source MapR cluster is using gateways either for replication of table data to destination MapR clusters or for the indexing of table data in Elasticsearch clusters.
-
-
- 
-
-
-This list is created by the `maprcli cluster gateway set` command."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-list_29656099.html
       parameters:
         - name: cluster
           in: query
@@ -481,6 +485,8 @@ This list is created by the `maprcli cluster gateway set` command."
         - cluster
       summary: "Lists the gateways that are configured on the MapR cluster where this command is run."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-local_29656115.html
       parameters:
         - name: format
           in: query
@@ -509,38 +515,21 @@ Note:
       tags:
         - cluster
       summary: "Lists the gateways configured on MapR cluster that are up and running at the time that       the command is issued."
-      description: "Execute this command on a source MapR cluster to find out how many gateways are available for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch cluster.
+      description: "
 
 
-This command uses the following criteria to get the list:
 
 
-*  
 
 
-If the locations of the gateways were specified with the `marpcli cluster gateway set` command, the maprcli cluster gateway resolve command returns the list of the gateways.
 
 
- 
- 
-*  
 
 
-If the locations of the gateways were specified with a DNS record only, this command performs a DNS lookup for gateways on the specified MapR cluster and returns the list that it finds.
 
-
- 
- 
-*  
-
-
-If neither of the previous methods was used to specify the locations of the gateways, this command assumes that gateways are located on the CLDB nodes configured in the `mapr-clusters.conf` file on the MapR cluster where the command is executed.
-
-
-Note: Unresponsive gateways are not included in the list.
-
-
-For more information about gateways, see [ MapR Gateways](http://maprdocs.mapr.com/home/Gateways/MapRGateways.html)."
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-resolve_29656125.html
       parameters:
         - name: dstcluster
           in: query
@@ -570,7 +559,9 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
       tags:
         - cluster
       summary: "Specifies the locations of the MapR gateways that a source MapR cluster can use for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch       cluster."
-      description: "In addition to this method, there are two other methods that you can use to specify the locations of gateways that a source MapR cluster can use when replicating to a particular MapR cluster or when indexing in an Elasticsearch cluster. See [Configuring MapR Gateways for Binary-Table Replication, Stream Replication, or Indexing](http://maprdocs.mapr.com/home/Gateways/ConfiguringMapRGatewaysForTRAndI.html) for details about them."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-set_29656146.html
       parameters:
         - name: dstcluster
           in: query
@@ -605,6 +596,8 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
         - cluster
       summary: "Displays the cluster-wide default for the MapReduce mode."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-mapreduce-get.html
       responses:
         200:
           description: OK
@@ -614,6 +607,8 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
         - cluster
       summary: "Sets the cluster-wide MapReduce mode."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-mapreduce-set.html
       parameters:
         - name: mode
           in: query
@@ -635,6 +630,8 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
         - config
       summary: "Displays information about the cluster configuration."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/config-load.html
       parameters:
         - name: cluster
           in: query
@@ -653,7 +650,9 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
       tags:
         - config
       summary: "Saves configuration information, specified as key/value pairs.       Permissions required: fc or a ."
-      description: "See the [Configuration Fields](http://maprdocs.mapr.com/home/ReferenceGuide/config.html) table."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/config-save.html
       parameters:
         - name: cluster
           in: query
@@ -672,6 +671,8 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
         - dashboard info
       summary: "Displays a summary of information about the cluster."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/dashboard-info.html
       parameters:
         - name: cluster
           in: query
@@ -704,6 +705,8 @@ Values: true/false. Default: false"
         - dialhome
       summary: "Acknowledges the most recent Dial Home on the cluster. Permissions       required: login"
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/dialhome-ackdial.html
       parameters:
         - name: forDay
           in: query
@@ -718,6 +721,8 @@ Values: true/false. Default: false"
         - dialhome
       summary: "Enables Dial Home on the cluster. Permissions required: fc or a"
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/dialhome-enable.html
       parameters:
         - name: enable
           in: query
@@ -739,6 +744,8 @@ Values: true/false. Default: false"
         - dialhome
       summary: "Displays the date of the last successful Dial Home call. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/dialhome-lastdialed.html
       responses:
         200:
           description: OK
@@ -748,6 +755,8 @@ Values: true/false. Default: false"
         - dialhome
       summary: "Returns a compressed metrics object. Permissions required:       login."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/dialhome-metrics.html
       parameters:
         - name: forDay
           in: query
@@ -762,6 +771,8 @@ Values: true/false. Default: false"
         - dialhome
       summary: "Displays the Dial Home status. Permissions required: login."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/dialhome-status.html
       responses:
         200:
           description: OK
@@ -771,6 +782,8 @@ Values: true/false. Default: false"
         - disk
       summary: "Adds one or more disks to the specified node. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/disk-add.html
       parameters:
         - name: cluster
           in: query
@@ -808,6 +821,8 @@ Values: true/false. Default: false"
         - disk
       summary: "Lists the disks on a node."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/disk-list.html
       parameters:
         - name: host
           in: query
@@ -840,6 +855,8 @@ Values: true/false. Default: false"
         - disk
       summary: "Lists all disks."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/disk-listall.html
       parameters:
         - name: cluster
           in: query
@@ -865,17 +882,9 @@ Values: true/false. Default: false"
       tags:
         - disk
       summary: "Removes a disk from MapR-FS. Permissions required: fc or a ."
-      description: "The `disk remove` command does not remove a disk containing unreplicated data unless forced. To force disk removal, specify `-force` with the value `1`.
-
-
- 
-
-
-Note: 
- 
-* Only use the `-force 1` option if you are sure that you do not need the data on the disk. This option removes the disk without regard to replication factor or other data protection mechanisms, and may result in permanent data loss.
- 
-* Removing a disk in the storage pool that contains Container ID 1 will stop your cluster. Container ID 1 contains CLDB data for the master CLDB. Run `disk remove` without the `-force 1` option first and examine the warning messages to make sure you aren't removing the disk with Container ID 1. To safely remove such a disk, perform a [CLDB Failover](http://maprdocs.mapr.com/home/AdministratorGuide/CLDB-Failover.html#CLDB-Failover-TheCLDBserviceautoma-d3e78) to make one of the other CLDB nodes the primary CLDB, then remove the disk as normal."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/disk-remove.html
       parameters:
         - name: cluster
           in: query
@@ -921,6 +930,8 @@ Note:
         - entity
       summary: "Displays information about an entity."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/entity-info.html
       parameters:
         - name: cluster
           in: query
@@ -949,6 +960,8 @@ Note:
         - entity
       summary: "Lists and displays       information about entities."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/entity-list.html
       parameters:
         - name: alarmedentities
           in: query
@@ -987,6 +1000,8 @@ Note:
         - entity
       summary: "Modifies a user or       group quota or email address. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/entity-modify.html
       parameters:
         - name: advisoryquota
           in: query
@@ -1033,7 +1048,9 @@ Note:
       tags:
         - entity
       summary: "Removes an entity (specified by name and type)."
-      description: "Note: Entity can be removed only when there are no resources associated with the entity."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/entity-remove.html
       parameters:
         - name: name
           in: query
@@ -1058,6 +1075,8 @@ Note:
         - job
       summary: "Changes the priority of the specified job."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/job-changepriority.html
       parameters:
         - name: cluster
           in: query
@@ -1080,6 +1099,8 @@ Note:
         - job
       summary: "Kills a specified job."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/job-kill.html
       parameters:
         - name: cluster
           in: query
@@ -1098,13 +1119,9 @@ Note:
       tags:
         - job
       summary: "Creates symbolic links to all the logs relating to the       activity of a specific job."
-      description: "The `maprcli job linklogs` command works with the [Centralized Logging](http://maprdocs.mapr.com/home/AdministratorGuide/Centralized-Logging.html#Centralized-Logging-MapRsCentralizedLog-d3e72) to provide a job-centric view or an application-centric view of all log files generated during job or application execution.
-
-
- 
-
-
- The output of `job linklogs` is a directory populated with symbolic links to all log files related to the specified job(s) or to the application. The command can be performed during or after a job or application is processed."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/job-linklogs.html
       parameters:
         - name: jobid
           in: query
@@ -1130,7 +1147,9 @@ Note:
       tags:
         - job
       summary: "Retrieves       detailed information about the jobs running on the cluster        including histograms and line charts for job metrics."
-      description: "A Hadoop job sets the rules that the JobTracker service uses to break an input data set into discrete tasks and assign those tasks to individual nodes. Use the `job table` command to retrieve [job metrics](http://maprdocs.mapr.com/home/AdministratorGuide/JobMetrics-Analyzing.html#Analyzing-Job-Metrics-TheMapRMetricsservic-d3e72) about the jobs running on your cluster. The job metric data includes the number of task attempts for jobs on the cluster, job duration, job computing resource use (CPU and memory), and job data throughput (both records and bytes per second). The metrics data can be formatted for histogram display or line chart display. In order to issue the `job table` command, the mapr-metrics package must be installed on all the nodes where webserver and jobtracker are configured to run."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/job-table.html
       parameters:
         - name: filter
           in: query
@@ -1536,7 +1555,9 @@ Note:
       tags:
         - license
       summary: "Adds a license. Permissions required: fc or a ."
-      description: "The license can be specified either by passing the license string itself to `license add`, or by specifying a file containing the license string."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/license-add.html
       parameters:
         - name: cluster
           in: query
@@ -1560,6 +1581,8 @@ Note:
         - license
       summary: "Adds a certificate revocation list (CRL). Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/license-addcrl.html
       parameters:
         - name: cluster
           in: query
@@ -1583,6 +1606,8 @@ Note:
         - license
       summary: "Displays the features authorized for the current license.       Permissions required: login"
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/license-apps.html
       parameters:
         - name: cluster
           in: query
@@ -1597,6 +1622,8 @@ Note:
         - license
       summary: "Lists licenses on the cluster. Permissions required: login. For       best results, use the -json option when running the       command."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/license-list.html
       parameters:
         - name: cluster
           in: query
@@ -1611,6 +1638,8 @@ Note:
         - license
       summary: "Lists certificate revocation lists (CRLs) on the cluster.       Permissions required: login ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/license-listcrl.html
       parameters:
         - name: cluster
           in: query
@@ -1625,6 +1654,8 @@ Note:
         - license
       summary: "Removes a license. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/license-remove.html
       parameters:
         - name: cluster
           in: query
@@ -1644,6 +1675,8 @@ Note:
         - license
       summary: "Displays the cluster ID for use when creating a new license.       Permissions required: login ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/license-showid.html
       parameters:
         - name: cluster
           in: query
@@ -1658,6 +1691,8 @@ Note:
         - nagios generate
       summary: "Generates a Nagios Object Definition file that describes the       cluster nodes and the services running on each."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/nagios-generate.html
       parameters:
         - name: cluster
           in: query
@@ -1671,7 +1706,9 @@ Note:
       tags:
         - node
       summary: "Allows host IDs to join the cluster after duplicates have been       resolved."
-      description: "When the CLDB detects duplicate nodes with the same host ID, all nodes with that host ID are removed from the cluster and prevented from joining it again. After making sure that all nodes have unique host IDs, you can use the `node allow-into-cluster` command to un-ban the host ID that was previously duplicated among several nodes."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-allow-into-cluster.html
       parameters:
         - name: hostids
           in: query
@@ -1685,7 +1722,9 @@ Note:
       tags:
         - node
       summary: "Returns the address of the master CLDB node."
-      description: "The `node cldbmaster` API returns the server ID and hostname of the node serving as the CLDB master node."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-cldbmaster.html
       parameters:
         - name: cluster
           in: query
@@ -1699,7 +1738,9 @@ Note:
       tags:
         - node
       summary: "Fails over master containers and VIPs to another node."
-      description: "When this command runs, all master and intermediate containers are moved off the node and VIPs are re-assigned."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-failover.html
       parameters:
         - name: nodes
           in: query
@@ -1714,6 +1755,8 @@ Note:
         - node
       summary: "Displays a heatmap for the       specified nodes."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-heatmap.html
       parameters:
         - name: cluster
           in: query
@@ -1767,18 +1810,9 @@ See the lists of parameters below this table."
       tags:
         - node
       summary: "Lists nodes in the cluster."
-      description: "You can specify a set of nodes for which to retrieve information in several ways:
-
-
- 
- 
-* To list only nodes with raised alarms, set `alarmednodes` to 1.
- 
-* To list only NFS nodes, set `nfsnodes` to 1.
- 
-* To window the list, use the `start` and `limit` options to select only a portion of the results.
- 
-* To list nodes that match certain criteria, pass a filter to the `filter` parameter. See the Fields table on the [node](http://maprdocs.mapr.com/home/ReferenceGuide/node.html) page for the fields available to filter. See the [maprcli and REST API Syntax](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) page for information on filters."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-list.html
       parameters:
         - name: alarmednodes
           in: query
@@ -1825,6 +1859,8 @@ See the lists of parameters below this table."
         - node
       summary: "Returns the hostnames of the nodes in the cluster that are running the CLDB service."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-listcldbs.html
       parameters:
         - name: cluster
           in: query
@@ -1843,6 +1879,8 @@ See the lists of parameters below this table."
         - node
       summary: "Returns the hostnames of the nodes in the cluster that are running the CLDB service       and the IP addresses and port numbers for the nodes in the cluster that are running the       ZooKeeper service."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-listcldbzks.html
       parameters:
         - name: cluster
           in: query
@@ -1861,6 +1899,8 @@ See the lists of parameters below this table."
         - node
       summary: "Returns the hostnames of the nodes in the cluster that are running the zookeeper       service."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-listzookeepers.html
       parameters:
         - name: cluster
           in: query
@@ -1878,7 +1918,9 @@ See the lists of parameters below this table."
       tags:
         - node
       summary: "Places a node into a maintenance mode for a specified timeout duration."
-      description: "For the duration of the timeout, the cluster's CLDB does not consider this node's data as lost and does not trigger a resync of the data on this node. See [Managing Nodes](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-nodes.html) for more information."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-maintenance.html
       parameters:
         - name: cluster
           in: query
@@ -1905,6 +1947,8 @@ See the lists of parameters below this table."
         - node
       summary: "Moves one or more nodes to a different topology. Permissions       required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-move.html
       parameters:
         - name: cluster
           in: query
@@ -1928,7 +1972,9 @@ See the lists of parameters below this table."
       tags:
         - node
       summary: "Removes one or more server nodes from the system. Permissions required: fc or a ."
-      description: "After issuing the `node remove` command, wait several minutes to ensure that the node has been properly and completely removed."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-remove.html
       parameters:
         - name: filter
           in: query
@@ -1958,14 +2004,9 @@ See the lists of parameters below this table."
       tags:
         - node
       summary: "Starts, stops, or restarts services on one or more server nodes. Permissions       required: ss , fc or a ."
-      description: "To start or stop services, you must specify the service name, the action (start, stop, or restart), and the nodes on which to perform the action. You can specify the nodes in either of two ways:
-
-
- 
- 
-* Use the `nodes` parameter to specify a space-delimited list of node names.
- 
-* Use the `filter` parameter to specify all nodes that match a certain pattern. See [Filters](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html) for more information."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-services.html
       parameters:
         - name: action
           in: query
@@ -2031,7 +2072,9 @@ See the lists of parameters below this table."
       tags:
         - node
       summary: "Lists cluster topology information."
-      description: "Lists internal nodes only (switches/racks/etc) and not leaf nodes (server nodes)."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/node-topo.html
       parameters:
         - name: cluster
           in: query
@@ -2050,6 +2093,8 @@ See the lists of parameters below this table."
         - rlimit
       summary: "Returns the resource usage limit for the cluster's disk resource."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/rlimit-get.html
       parameters:
         - name: resource
           in: query
@@ -2068,6 +2113,8 @@ See the lists of parameters below this table."
         - rlimit
       summary: "Sets the resource usage limit for the cluster's disk resource."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/rlimit-set.html
       parameters:
         - name: resource
           in: query
@@ -2089,7 +2136,9 @@ See the lists of parameters below this table."
       tags:
         - schedule
       summary: "Creates a schedule. Permissions required: fc or a ."
-      description: "A schedule can be associated with a volume to automate mirror syncing and snapshot creation. See [volume create](http://maprdocs.mapr.com/home/ReferenceGuide/volume-create.html) and [volume modify](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html)."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/schedule-create.html
       parameters:
         - name: cluster
           in: query
@@ -2109,6 +2158,8 @@ See the lists of parameters below this table."
         - schedule
       summary: "Lists the schedules on the cluster."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/schedule-list.html
       parameters:
         - name: cluster
           in: query
@@ -2126,16 +2177,9 @@ See the lists of parameters below this table."
       tags:
         - schedule
       summary: "Modifies an existing schedule, specified by ID. Permissions       required: fc or a ."
-      description: "To find a schedule's ID:
-
-
- 
- 
-1. Use the [schedule list](http://maprdocs.mapr.com/home/ReferenceGuide/schedule-list.html) command to list the schedules.
- 
-1. Select the schedule to modify.
- 
-1. Pass the selected schedule's ID in the -id parameter to the `schedule modify` command."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/schedule-modify.html
       parameters:
         - name: cluster
           in: query
@@ -2162,7 +2206,9 @@ See the lists of parameters below this table."
       tags:
         - schedule
       summary: "Removes a schedule."
-      description: "A schedule can only be removed if it is not associated with any volumes. See [volume modify](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html)."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/schedule-remove.html
       parameters:
         - name: cluster
           in: query
@@ -2182,6 +2228,8 @@ See the lists of parameters below this table."
         - service list
       summary: "Lists all services on the specified node, the memory allocated for each service, the       state of each service, and log path for each service."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/service-list.html
       parameters:
         - name: node
           in: query
@@ -2197,6 +2245,8 @@ See the lists of parameters below this table."
         - setloglevel
       summary: "Sets the log level on the CLDB service. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/setloglevel-cldb.html
       parameters:
         - name: classname
           in: query
@@ -2241,6 +2291,8 @@ See the lists of parameters below this table."
         - setloglevel
       summary: "Sets the log level on the FileServer service. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/setloglevel-fileserver.html
       parameters:
         - name: classname
           in: query
@@ -2285,6 +2337,8 @@ See the lists of parameters below this table."
         - setloglevel
       summary: "Sets the log level on the HBase Master service. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/setloglevel-hbmaster.html
       parameters:
         - name: classname
           in: query
@@ -2329,6 +2383,8 @@ See the lists of parameters below this table."
         - setloglevel
       summary: "Sets the log level on the HBase RegionServer service. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/setloglevel-hbregionserver.html
       parameters:
         - name: classname
           in: query
@@ -2373,6 +2429,8 @@ See the lists of parameters below this table."
         - setloglevel
       summary: "Sets the log level on the JobTracker service. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/setloglevel-jobtracker.html
       parameters:
         - name: classname
           in: query
@@ -2417,6 +2475,8 @@ See the lists of parameters below this table."
         - setloglevel
       summary: "Sets the log level on the NFS service. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/setloglevel-nfs.html
       parameters:
         - name: classname
           in: query
@@ -2465,6 +2525,8 @@ See the lists of parameters below this table."
         - setloglevel
       summary: "Sets the log level on the TaskTracker service. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/setloglevel-tasktracker.html
       parameters:
         - name: classname
           in: query
@@ -2508,20 +2570,9 @@ See the lists of parameters below this table."
       tags:
         - stream
       summary: "For the given stream, lists consumers and the topics and partitions that the consumers     are reading messages from."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_assign_list.html
       parameters:
         - name: path
           in: query
@@ -2551,30 +2602,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Creates a new stream."
-      description: "After you create a stream, you can edit the values of its parameters with the command `maprcli stream edit`.
+      description: "
 
 
-To see the value of a stream's parameters, use the command `maprcli stream info`.
-
-
- 
-
-
-To run this command, your user ID must have write permission on the directory in which you want to create a stream.
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_create.html
       parameters:
         - name: path
           in: query
@@ -2667,26 +2700,12 @@ This permission includes the `topicperm` permission."
       tags:
         - stream
       summary: "Deletes committed cursors that are in the partitions in a stream."
-      description: "Note: Deleting the committed cursors for active consumers has no effect on the consumers. Consumers use read cursors to keep track of where they currently are in partitions. 
+      description: "
 
 
-For example, the consumer `consumer1` continues reading the messages in a partition from the position of the consumer's read cursor even after the consumer's committed cursor is deleted. However, if `consumer1` goes offline and the partition is reassigned to another consumer (`consumer2`) in the same consumer group before `consumer1` creates another committed cursor, `consumer2` starts reading the partition at the most recent message.
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` or `consumeperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_cursor_delete.html
       parameters:
         - name: path
           in: query
@@ -2712,20 +2731,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Lists the cursors for the consumers of a stream."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_cursor_list.html
       parameters:
         - name: path
           in: query
@@ -2751,21 +2759,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Deletes the specified stream. Deleted streams cannot be recovered unless they were     previously replicated."
-      description: "Producers are no longer able to publish messages to topics in the stream, and consumers are no longer able to read messages from topics in the stream.
+      description: "
 
 
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_delete.html
       parameters:
         - name: path
           in: query
@@ -2779,20 +2778,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Edits the values of parameters for the specified stream."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_edit.html
       parameters:
         - name: path
           in: query
@@ -2872,20 +2860,9 @@ This permission includes the `topicperm` permission."
       tags:
         - stream
       summary: "Displays the values of the parameters of the specified stream."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-*  <dl> <dt>`adminperm`</dt> <dd>When a user with this permission runs the command, the output includes the access-control expressions for the `adminperm` and `topicperm` permissions.</dd> <dt>`produceperm`, `consumeperm`, or `topicperm`</dt> <dd>When a user with one of these permissions runs the command, the output does not include any access-control expressions.</dd> </dl> 
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_info.html
       parameters:
         - name: path
           in: query
@@ -2899,26 +2876,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Runs the purge process, removing messages that are marked for deletion and reclaiming     disk space."
-      description: "For information about the purge process, see [Setting the Time-to-Live for Messages](http://maprdocs.mapr.com/home/MapR_Streams/time_to_live_for_messages.html#time_to_live_for_messages__title).
+      description: "
 
 
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_purge.html
       parameters:
         - name: path
           in: query
@@ -2932,29 +2895,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Registers an existing stream as a replica of the specified stream."
-      description: "## Permissions Required at the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` and `copyperm` permissions on the source stream
- 
- 
+      description: "
 
 
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
-
-
-## Permissions Required at the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path"
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_add.html
       parameters:
         - name: path
           in: query
@@ -3002,42 +2948,15 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
       tags:
         - stream
       summary: "Sets up and starts replication between a source stream and replica stream."
-      description: "The `maprcli stream replica autosetup` command performs the following steps to set up replication:
- 
-1. Creates a stream in the destination cluster.
- 
-1. Declares the new stream to be a replica of the source stream and ensures that replication does not begin immediately after the next step.
- 
-1. Declares the source stream as the original of the replica stream.
- 
-1. Runs the `mapr copystream` utility to load a copy of the source data into the replica.
- 
-1. Clears the paused replication state to start replication.
+      description: "
 
 
-## Permissions Required at the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` and `copyperm` permissions on the source stream
- 
- 
 
 
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
 
-
-## Permissions Required at the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path"
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_autosetup.html
       parameters:
         - name: path
           in: query
@@ -3082,29 +3001,12 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
       tags:
         - stream
       summary: "Modifies the way in which messages are replicated from one stream to     another."
-      description: "## Permissions Required at the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
- 
+      description: "
 
 
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions.
-
-
-## Permissions Required at the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path"
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_edit.html
       parameters:
         - name: path
           in: query
@@ -3149,20 +3051,9 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
       tags:
         - stream
       summary: "Lists the replicas of a given stream."
-      description: "## Permissions Required on the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_list.html
       parameters:
         - name: path
           in: query
@@ -3180,20 +3071,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Pauses replication from a source stream to a replica stream."
-      description: "## Permissions Required on the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_pause.html
       parameters:
         - name: path
           in: query
@@ -3211,20 +3091,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Unregisters a stream as the replica of another stream."
-      description: "## Permissions Required on the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_remove.html
       parameters:
         - name: path
           in: query
@@ -3242,20 +3111,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Resumes replication from one stream to another stream."
-      description: "## Permissions Required on the Source Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_resume.html
       parameters:
         - name: path
           in: query
@@ -3273,20 +3131,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Registers a stream as an upstream source for a given stream. For example, if you wanted     to replicate messages from Stream_A to Stream_B , Stream_A would be the upstream source for Stream_B ."
-      description: "## Permissions Required on the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_upstream_add.html
       parameters:
         - name: path
           in: query
@@ -3304,20 +3151,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Lists all of the streams that are replicating to a given stream."
-      description: "## Permissions Required on the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_upstream_list.html
       parameters:
         - name: path
           in: query
@@ -3331,20 +3167,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Unregisters a stream as an upstream source for a given stream."
-      description: "## Permissions Required on the Target Cluster
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_upstream_remove.html
       parameters:
         - name: path
           in: query
@@ -3362,20 +3187,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Creates a topic in the specified stream."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `topicperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_topic_create.html
       parameters:
         - name: path
           in: query
@@ -3400,32 +3214,12 @@ A name can include alphanumeric characters and the following characters: `.` , `
       tags:
         - stream
       summary: "Deletes the specified topic from the specified stream."
-      description: "Consumers do not have to stop consuming from a topic before the topic is deleted.
+      description: "
 
 
-The deletion of the topic and the messages is immediate. However, the command also starts a background process for the purging the topic and messages to reclaim disk space. 
-
-
- 
-
-
-If the parameter `-autocreate` for the stream is set to `true`, a topic with the same name is created if a producer writes a message to a topic of the same name. For example, if you delete the topic `Topic_A` and then a producer writes a message to the topic `Topic_A`, MapR Streams creates a topic that is named `Topic_A`. Aside from the name, the new topic `Topic_A` shares nothing with the deleted topic `Topic_A`.
-
-
-## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `topicperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+"
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_topic_delete.html
       parameters:
         - name: path
           in: query
@@ -3443,20 +3237,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Allows you to increase the number of partitions that are in the specified     topic."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `topicperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_topic_edit.html
       parameters:
         - name: path
           in: query
@@ -3481,20 +3264,9 @@ To find out how many partitions a topic is currently using, run the command `map
       tags:
         - stream
       summary: "Lists information about the partitions in the topics that are in a stream."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_topic_info.html
       parameters:
         - name: path
           in: query
@@ -3512,20 +3284,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - stream
       summary: "Lists the topics that are in a stream, as well as the number of partitions in each     topic."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_topic_list.html
       parameters:
         - name: path
           in: query
@@ -3539,18 +3300,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
       tags:
         - table
       summary: "Creates a new MapR-DB binary or JSON table."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-create_29657354.html
       parameters:
         - name: path
           in: query
@@ -3846,20 +3598,9 @@ For more information about this permission as it applies to JSON tables, see [Ac
       tags:
         - table
       summary: "Deletes a MapR-DB binary or JSON table ."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-delete_28214397.html
       parameters:
         - name: path
           in: query
@@ -3880,20 +3621,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
       tags:
         - table
       summary: "Edits the attributes of a MapR-DB binary or JSON table ."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-edit_29657362.html
       responses:
         200:
           description: OK
@@ -3902,20 +3632,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
       tags:
         - table
       summary: "Displays information about a MapR-DB binary or JSON table ."
-      description: "## Permissions Required
-
-To run this command, your user ID must have the following permissions:
- 
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
- 
-
-
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-info_28217868.html
       parameters:
         - name: path
           in: query
@@ -3939,6 +3658,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - task
       summary: "Ends the specified task attempt as failed."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/task-failattempt.html
       parameters:
         - name: cluster
           in: query
@@ -3957,6 +3678,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - task
       summary: "Kills the specified task attempt."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/task-killattempt.html
       parameters:
         - name: cluster
           in: query
@@ -3974,7 +3697,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
       tags:
         - task
       summary: "Retrieves histograms and       line charts for task metrics."
-      description: "A Hadoop job sets the rules that the JobTracker service uses to break an input data set into discrete tasks and assign those tasks to individual nodes. Use the `task table` to retrieve [task analytics](http://maprdocs.mapr.com/home/AdministratorGuide/JobMetrics-Analyzing.html#Analyzing-Job-Metrics-TheMapRMetricsservic-d3e72) about the jobs running on your cluster. The task metric data includes information about the tasks that make up a specific job, as well as the specific task attempts. The job metric data includes a task attempt's data throughput, measured in number of records per second as well as in bytes per second. The metrics data can be formatted for histogram display or line chart display. In order to issue the `task table` command, the mapr-metrics package must be installed on all the nodes where webserver and jobtracker are configured to run."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/task-table.html
       parameters:
         - name: filter
           in: query
@@ -4005,6 +3730,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - urls
       summary: "Displays the status page URL for the specified service."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/urls.html
       parameters:
         - name: cluster
           in: query
@@ -4024,6 +3751,10 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 * tasktracker"
           required: true
           type: string
+          enum:
+            - cldb
+            - jobtracker
+            - tasktracker
         - name: zkconnect
           in: query
           description: "[ZooKeeper Connect String](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-CommonParameters.html#concept_ymb_yxz_5t)"
@@ -4037,6 +3768,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - virtualip
       summary: "Adds a virtual IP       address. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/virtualip-add.html
       parameters:
         - name: cluster
           in: query
@@ -4077,6 +3810,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - virtualip
       summary: "Edits a virtual IP (VIP) range. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/virtualip-edit.html
       parameters:
         - name: cluster
           in: query
@@ -4113,6 +3848,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - virtualip
       summary: "Lists the virtual IP addresses in the cluster."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/virtualip-list.html
       parameters:
         - name: cluster
           in: query
@@ -4155,6 +3892,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - virtualip
       summary: "Reassigns a virtual IP or a range of virtual IP addresses to a specified Media Access       Control (MAC) address."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/virtualip-move.html
       parameters:
         - name: cluster
           in: query
@@ -4181,6 +3920,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - virtualip
       summary: "Removes a virtual IP (VIP) or a VIP range. Permissions required: fc or a ."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/virtualip-remove.html
       parameters:
         - name: cluster
           in: query
@@ -4203,13 +3944,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
       tags:
         - volume
       summary: "Enables or disables auditing on the specified volume."
-      description: "You must have the `fc` permission on the cluster to use this command. See [`acl`](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html#acl) for details about this permission.
-
-
- 
-
-
-To learn how to determine whether auditing is enabled for a volume, see [Checking Whether Auditing is Enabled for a Directory, File, or MapR-DB Table](http://maprdocs.mapr.com/home/SecurityGuide/CheckingWhetherAuditingisEnabled.html#CheckingWhetherAuditingisEnabledforaDirectoryFileorMapR-DBTable)."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-audit.html
       parameters:
         - name: cluster
           in: query
@@ -4288,7 +4025,9 @@ Note: You can specify a mixed list of included and excluded operations. There ar
       tags:
         - volume
       summary: "Moves a container. Permissions       required: fc or m on the       volume."
-      description: "The volume container move command moves a specified container (`cid`) from a source file server (`fromfileserver`) to a destination file server (`tofileserver`). If the `tofileserver` parameter is not specified, a destination file server is chosen by the CLDB. If the `tofileserver` is specified but does not exist, the command fails with an error. If the `fromfileserver` does not exist or is down, the container move occurs once the source file server comes back up."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-container-move.html
       parameters:
         - name: cid
           in: query
@@ -4312,13 +4051,9 @@ Note: You can specify a mixed list of included and excluded operations. There ar
       tags:
         - volume
       summary: "Switches the master replica for a specified container to another       replica in the replica chain."
-      description: "This command fails if there is only one up-to-date replica for the container.
-
-
- 
-
-
-Note: Only the root and the MAPR_USER (user name under which MapR services runs) user have permissions to run this command."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-container-switchmaster.html
       parameters:
         - name: cluster
           in: query
@@ -4337,6 +4072,8 @@ Note: Only the root and the MAPR_USER (user name under which MapR services runs)
         - volume
       summary: "Creates a volume. Permissions required: cv          or fc on the volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-create.html
       parameters:
         - name: advisoryquota
           in: query
@@ -4646,7 +4383,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
       tags:
         - volume
       summary: "Corrects the mount path of a volume. Permissions required: fc or m on the volume."
-      description: "The CLDB maintains information about the mount path of every volume. If a directory in a volume's path is renamed (by a `hadoop fs` command, for example) the information in the CLDB will be out of date. The `volume fixmountpath` command does a reverse path walk from the volume and corrects the mount path information in the CLDB."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-fixmountpath.html
       parameters:
         - name: name
           in: query
@@ -4666,6 +4405,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Displays information about the specified volume. For best results,       use the -json option when running the command."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-info.html
       parameters:
         - name: cluster
           in: query
@@ -4696,6 +4437,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Creates a link to a volume. Permissions required: fc or m on the volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-link-create.html
       parameters:
         - name: path
           in: query
@@ -4731,6 +4474,8 @@ Example: `/home/abc/.rw`"
         - volume
       summary: "Removes the specified symbolic link. Permissions required: fc or m on the volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-link-remove.html
       parameters:
         - name: path
           in: query
@@ -4760,7 +4505,9 @@ Example: `/home/abc/.rw`"
       tags:
         - volume
       summary: "Lists information about volumes specified by name, path, or filter."
-      description: "See the Fields table on the [volume](http://maprdocs.mapr.com/home/ReferenceGuide/volume.html#volume) page for the fields available to filter. See the [Filters](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) for more information."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-list.html
       parameters:
         - name: alarmedvolumes
           in: query
@@ -4802,26 +4549,9 @@ Example: `/home/abc/.rw`"
       tags:
         - volume
       summary: "Starts mirroring on the specified volume from its source       volume."
-      description: "* License required: Enterprise Edition
- 
-* Permissions required: `fc` or `restore` on the volume
- 
- 
-
-
- When a mirror is started, the mirror volume is synchronized from a hidden internal snapshot so that the mirroring process is not affected by any concurrent changes to the source volume. The `volume mirror start` command does not wait for mirror completion, but returns immediately. The changes to the mirror volume occur atomically at the end of the mirroring process; deltas transmitted from the source volume do not appear until mirroring is complete.
-
-
- 
-
-
-To provide rollback capability for the mirror volume, the mirroring process creates a snapshot of the mirror volume before starting the mirror, with the following naming format: `<volume>.mirrorsnap.<date>.<time>`.
-
-
- 
-
-
-Normally, the mirroring operation transfers only deltas from the last successful mirror. Under certain conditions (mirroring a volume repaired by `fsck`, for example), the source and mirror volumes can become out of sync. In such cases, it is impossible to transfer deltas, because the state is not the same for both volumes. Use the `-full` option to force the mirroring operation to transfer all data to bring the volumes back in sync."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-mirror-start.html
       parameters:
         - name: cluster
           in: query
@@ -4844,14 +4574,9 @@ Normally, the mirroring operation transfers only deltas from the last successful
       tags:
         - volume
       summary: "Stops mirroring on the specified volume."
-      description: "* License required: Enterprise Edition
- 
-* Permissions required: `fc` or `restore` on the volume
- 
- 
-
-
- The `volume mirror stop` command lets you stop mirroring (for example, during a network outage). You can use the `volume mirror start` command to resume mirroring."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-mirror-stop.html
       parameters:
         - name: cluster
           in: query
@@ -4870,7 +4595,9 @@ Normally, the mirroring operation transfers only deltas from the last successful
       tags:
         - volume
       summary: "Modifies an existing volume. Permissions       required: m or fc on       the volume."
-      description: "An error occurs if the name or path refers to a non-existent volume, or cannot be resolved."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html
       parameters:
         - name: advisoryquota
           in: query
@@ -5078,6 +4805,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Mounts one or more specified volumes. Permissions required: fc or m on the volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-mount.html
       parameters:
         - name: cluster
           in: query
@@ -5113,6 +4842,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Moves the specified volume or mirror to a different topology.       Permissions required: m or fc on the       volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-move.html
       parameters:
         - name: cluster
           in: query
@@ -5137,6 +4868,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Removes the specified volume or mirror. Permissions required: d or fc on the volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-remove.html
       parameters:
         - name: cluster
           in: query
@@ -5164,6 +4897,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Renames the specified volume or mirror. Permissions required: fc or d on the volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-rename.html
       parameters:
         - name: cluster
           in: query
@@ -5188,6 +4923,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Returns a list of mount points for the specified volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-showmounts.html
       parameters:
         - name: cluster
           in: query
@@ -5205,9 +4942,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
       tags:
         - volume
       summary: "Creates a snapshot of the specified volume, using the specified       snapshot name."
-      description: "* License required: Enterprise Edition
- 
-* Permissions required: `fc` or `m` on the volume"
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-snapshot-create.html
       parameters:
         - name: cluster
           in: query
@@ -5229,7 +4966,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
       tags:
         - volume
       summary: "Displays info about a set of snapshots."
-      description: "You can specify the snapshots by volumes or paths, or by specifying a filter to select volumes with certain characteristics."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-snapshot-list.html
       parameters:
         - name: cluster
           in: query
@@ -5271,14 +5010,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
       tags:
         - volume
       summary: "Preserves one or more snapshots from expiration."
-      description: "Specify the snapshots by volumes, paths, filter, or IDs.
-
-
- 
- 
-* License required: Enterprise Edition
- 
-* Permissions required: `fc `or `m` on the volume"
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-snapshot-preserve.html
       parameters:
         - name: cluster
           in: query
@@ -5308,9 +5042,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
       tags:
         - volume
       summary: "Removes one or more snapshots."
-      description: "* License required: Enterprise Edition
- 
-* Permissions required: `fc` or `m` on the volume"
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-snapshot-remove.html
       parameters:
         - name: cluster
           in: query
@@ -5337,6 +5071,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Unmounts one or more mounted volumes. Permissions required: fc or m on the volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-unmount.html
       parameters:
         - name: cluster
           in: query
@@ -5360,6 +5096,8 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
         - volume
       summary: "Upgrades and old-type volume to a new-type volume, which can in turn be used as a       promotable mirror volume. Permissions required: m or fc on       the volume."
       description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-upgradeformat.html
       parameters:
         - name: cluster
           in: query

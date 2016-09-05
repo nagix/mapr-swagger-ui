@@ -52,7 +52,7 @@ def replace_tags(d, selector, start, end, a_selector=None, a_start=None, a_end=N
 # Get the GFM representation of sub nodes
 def gfm(elements):
   gfm = []
-  for e in elements:
+  for e in elements.clone():
     d = pq(e)
     normalize(d)
     replace_tags(d, 'h2', '\n\n## ', '\n\n')
@@ -77,15 +77,17 @@ def print_headers(d):
   f.write('info:\n')
   f.write('  title: MapR API\n')
   f.write('  description: The information about the MapR REST API\n')
+  f.write('  contact:\n')
+  f.write('    url: http://maprdocs.mapr.com\n')
 
   # Print version
   version = d('meta[name=version]').attr.content
   f.write('  version: "' + version + '"\n')
 
   # Print other headers
+  f.write('basePath: /rest\n')
   f.write('schemes:\n')
   f.write('  - https\n')
-  f.write('basePath: /rest\n')
   f.write('produces:\n')
   f.write('  - application/json\n')
   f.write('securityDefinitions:\n')
@@ -130,13 +132,15 @@ def print_command(d, tag):
     if i('h2,p').filter('*:contains("Syntax")'):
       break
     elements.append(i)
-  description = gfm(elements)
+  description = gfm(pq(elements))
   f.write('  ' + path + ':\n')
   f.write('    get:\n')
   f.write('      tags:\n')
   f.write('        - ' + tag + '\n')
   f.write('      summary: "' + summary + '"\n')
   f.write('      description: "' + description + '"\n')
+  f.write('      externalDocs:\n')
+  f.write('        url: ' + d.base_url + '\n')
 
   # Print parameters
   parameters = d('h2,p').filter('*:contains("Parameters") ~ * tbody')
@@ -156,12 +160,14 @@ def print_command(d, tag):
 
       description = gfm(i('td:eq(1)'))
       required = i('td:eq(0) strong')
-      f.write('        - name: ' + name + '\n')
+      in_ = 'query'
+      enum = []
       if re.search('urls', d.base_url) and name == 'name':
-        f.write('          in: path\n')
+        in_ = 'path'
         required = True
-      else:
-        f.write('          in: query\n')
+        enum = [e.text for e in i('li')]
+      f.write('        - name: ' + name + '\n')
+      f.write('          in: ' + in_ + '\n')
       if re.search('"', description):
         f.write('          description: \'' + description + '\'\n')
       else:
@@ -169,6 +175,10 @@ def print_command(d, tag):
       if required:
         f.write('          required: true\n')
       f.write('          type: string\n')
+      if enum:
+        f.write('          enum:\n')
+        for value in enum:
+          f.write('            - ' + value + '\n')
 
   # Print responses
   f.write('      responses:\n')
