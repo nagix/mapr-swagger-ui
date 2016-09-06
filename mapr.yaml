@@ -183,7 +183,7 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
     get:
       tags:
         - alarm
-      summary: "Displays the configuration of alarm notifications. Permission       required: login"
+      summary: "Displays the configuration of alarm notifications. Permission required: login"
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-config-load.html
@@ -302,7 +302,7 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
     get:
       tags:
         - alarm
-      summary: "Raises a specified alarm or alarms. Permissions       required: fc or a ."
+      summary: "Raises a specified alarm or alarms. Permissions required: fc or a ."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/alarm-raise.html
@@ -331,7 +331,7 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
     get:
       tags:
         - audit
-      summary: "Enables and disables auditing of operations that are related to       the administration of a MapR cluster."
+      summary: "Enables and disables auditing of operations that are related to the administration of a MapR cluster."
       description: "Only the `mapr` user for the cluster can run this command. For more information about the mapr user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62).
 
 
@@ -409,7 +409,7 @@ You can set this interval on individual volumes. The default value is 60 minutes
     get:
       tags:
         - audit
-      summary: "Displays whether auditing of cluster-management operations and auditing data-access       operations are enabled. Also, displays the maxSize and retention values for these two levels       of auditing."
+      summary: "Displays whether auditing of cluster-management operations and auditing data-access operations are enabled. Also, displays the maxSize and retention values for these two levels of auditing."
       description: "Only the `mapr` user for the cluster can run this command. For more information about the `mapr` user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62)."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/audit-info.html
@@ -555,7 +555,7 @@ Note:
     get:
       tags:
         - cluster
-      summary: "Lists the gateways configured on MapR cluster that are up and running at the time that       the command is issued."
+      summary: "Lists the gateways configured on MapR cluster that are up and running at the time that the command is issued."
       description: "Execute this command on a source MapR cluster to find out how many gateways are available for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch cluster.
 
 
@@ -631,7 +631,7 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
     get:
       tags:
         - cluster
-      summary: "Specifies the locations of the MapR gateways that a source MapR cluster can use for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch       cluster."
+      summary: "Specifies the locations of the MapR gateways that a source MapR cluster can use for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch cluster."
       description: "In addition to this method, there are two other methods that you can use to specify the locations of gateways that a source MapR cluster can use when replicating to a particular MapR cluster or when indexing in an Elasticsearch cluster. See [Configuring MapR Gateways for Binary-Table Replication, Stream Replication, or Indexing](http://maprdocs.mapr.com/home/Gateways/ConfiguringMapRGatewaysForTRAndI.html) for details about them."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-set_29656146.html
@@ -722,7 +722,7 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
     get:
       tags:
         - config
-      summary: "Saves configuration information, specified as key/value pairs.       Permissions required: fc or a ."
+      summary: "Saves configuration information, specified as key/value pairs. Permissions required: fc or a ."
       description: "See the [Configuration Fields](http://maprdocs.mapr.com/home/ReferenceGuide/config.html) table."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/config-save.html
@@ -776,7 +776,7 @@ Values: true/false. Default: false"
     get:
       tags:
         - dialhome
-      summary: "Acknowledges the most recent Dial Home on the cluster. Permissions       required: login"
+      summary: "Acknowledges the most recent Dial Home on the cluster. Permissions required: login"
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/dialhome-ackdial.html
@@ -826,7 +826,7 @@ Values: true/false. Default: false"
     get:
       tags:
         - dialhome
-      summary: "Returns a compressed metrics object. Permissions required:       login."
+      summary: "Returns a compressed metrics object. Permissions required: login."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/dialhome-metrics.html
@@ -1041,7 +1041,7 @@ Note:
     get:
       tags:
         - entity
-      summary: "Lists and displays       information about entities."
+      summary: "Lists and displays information about entities."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/entity-list.html
@@ -1081,7 +1081,7 @@ Note:
     get:
       tags:
         - entity
-      summary: "Modifies a user or       group quota or email address. Permissions required: fc or a ."
+      summary: "Modifies a user or group quota or email address. Permissions required: fc or a ."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/entity-modify.html
@@ -1207,7 +1207,7 @@ Note:
     get:
       tags:
         - job
-      summary: "Creates symbolic links to all the logs relating to the       activity of a specific job."
+      summary: "Creates symbolic links to all the logs relating to the activity of a specific job."
       description: "The `maprcli job linklogs` command works with the [Centralized Logging](http://maprdocs.mapr.com/home/AdministratorGuide/Centralized-Logging.html#Centralized-Logging-MapRsCentralizedLog-d3e72) to provide a job-centric view or an application-centric view of all log files generated during job or application execution.
 
 
@@ -1241,7 +1241,7 @@ Note:
     get:
       tags:
         - job
-      summary: "Retrieves       detailed information about the jobs running on the cluster        including histograms and line charts for job metrics."
+      summary: "Retrieves detailed information about the jobs running on the cluster including histograms and line charts for job metrics."
       description: "A Hadoop job sets the rules that the JobTracker service uses to break an input data set into discrete tasks and assign those tasks to individual nodes. Use the `job table` command to retrieve [job metrics](http://maprdocs.mapr.com/home/AdministratorGuide/JobMetrics-Analyzing.html#Analyzing-Job-Metrics-TheMapRMetricsservic-d3e72) about the jobs running on your cluster. The job metric data includes the number of task attempts for jobs on the cluster, job duration, job computing resource use (CPU and memory), and job data throughput (both records and bytes per second). The metrics data can be formatted for histogram display or line chart display. In order to issue the `job table` command, the mapr-metrics package must be installed on all the nodes where webserver and jobtracker are configured to run."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/job-table.html
@@ -1699,7 +1699,7 @@ Note:
     get:
       tags:
         - license
-      summary: "Displays the features authorized for the current license.       Permissions required: login"
+      summary: "Displays the features authorized for the current license. Permissions required: login"
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/license-apps.html
@@ -1715,7 +1715,7 @@ Note:
     get:
       tags:
         - license
-      summary: "Lists licenses on the cluster. Permissions required: login. For       best results, use the -json option when running the       command."
+      summary: "Lists licenses on the cluster. Permissions required: login. For best results, use the -json option when running the command."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/license-list.html
@@ -1731,7 +1731,7 @@ Note:
     get:
       tags:
         - license
-      summary: "Lists certificate revocation lists (CRLs) on the cluster.       Permissions required: login ."
+      summary: "Lists certificate revocation lists (CRLs) on the cluster. Permissions required: login ."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/license-listcrl.html
@@ -1768,7 +1768,7 @@ Note:
     get:
       tags:
         - license
-      summary: "Displays the cluster ID for use when creating a new license.       Permissions required: login ."
+      summary: "Displays the cluster ID for use when creating a new license. Permissions required: login ."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/license-showid.html
@@ -1784,7 +1784,7 @@ Note:
     get:
       tags:
         - nagios generate
-      summary: "Generates a Nagios Object Definition file that describes the       cluster nodes and the services running on each."
+      summary: "Generates a Nagios Object Definition file that describes the cluster nodes and the services running on each."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/nagios-generate.html
@@ -1800,7 +1800,7 @@ Note:
     get:
       tags:
         - node
-      summary: "Allows host IDs to join the cluster after duplicates have been       resolved."
+      summary: "Allows host IDs to join the cluster after duplicates have been resolved."
       description: "When the CLDB detects duplicate nodes with the same host ID, all nodes with that host ID are removed from the cluster and prevented from joining it again. After making sure that all nodes have unique host IDs, you can use the `node allow-into-cluster` command to un-ban the host ID that was previously duplicated among several nodes."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/node-allow-into-cluster.html
@@ -1848,7 +1848,7 @@ Note:
     get:
       tags:
         - node
-      summary: "Displays a heatmap for the       specified nodes."
+      summary: "Displays a heatmap for the specified nodes."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/node-heatmap.html
@@ -1983,7 +1983,7 @@ See the lists of parameters below this table."
     get:
       tags:
         - node
-      summary: "Returns the hostnames of the nodes in the cluster that are running the CLDB service       and the IP addresses and port numbers for the nodes in the cluster that are running the       ZooKeeper service."
+      summary: "Returns the hostnames of the nodes in the cluster that are running the CLDB service and the IP addresses and port numbers for the nodes in the cluster that are running the ZooKeeper service."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/node-listcldbzks.html
@@ -2003,7 +2003,7 @@ See the lists of parameters below this table."
     get:
       tags:
         - node
-      summary: "Returns the hostnames of the nodes in the cluster that are running the zookeeper       service."
+      summary: "Returns the hostnames of the nodes in the cluster that are running the zookeeper service."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/node-listzookeepers.html
@@ -2051,7 +2051,7 @@ See the lists of parameters below this table."
     get:
       tags:
         - node
-      summary: "Moves one or more nodes to a different topology. Permissions       required: fc or a ."
+      summary: "Moves one or more nodes to a different topology. Permissions required: fc or a ."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/node-move.html
@@ -2109,7 +2109,7 @@ See the lists of parameters below this table."
     get:
       tags:
         - node
-      summary: "Starts, stops, or restarts services on one or more server nodes. Permissions       required: ss , fc or a ."
+      summary: "Starts, stops, or restarts services on one or more server nodes. Permissions required: ss , fc or a ."
       description: "To start or stop services, you must specify the service name, the action (start, stop, or restart), and the nodes on which to perform the action. You can specify the nodes in either of two ways:
 
 
@@ -2289,7 +2289,7 @@ See the lists of parameters below this table."
     get:
       tags:
         - schedule
-      summary: "Modifies an existing schedule, specified by ID. Permissions       required: fc or a ."
+      summary: "Modifies an existing schedule, specified by ID. Permissions required: fc or a ."
       description: "To find a schedule's ID:
 
 
@@ -2348,7 +2348,7 @@ See the lists of parameters below this table."
     get:
       tags:
         - service list
-      summary: "Lists all services on the specified node, the memory allocated for each service, the       state of each service, and log path for each service."
+      summary: "Lists all services on the specified node, the memory allocated for each service, the state of each service, and log path for each service."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/service-list.html
@@ -2691,7 +2691,7 @@ See the lists of parameters below this table."
     get:
       tags:
         - stream
-      summary: "For the given stream, lists consumers and the topics and partitions that the consumers     are reading messages from."
+      summary: "For the given stream, lists consumers and the topics and partitions that the consumers are reading messages from."
       description: "## Permissions Required
 
 To run this command, your user ID must have the following permissions:
@@ -2961,7 +2961,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
     get:
       tags:
         - stream
-      summary: "Deletes the specified stream. Deleted streams cannot be recovered unless they were     previously replicated."
+      summary: "Deletes the specified stream. Deleted streams cannot be recovered unless they were previously replicated."
       description: "Producers are no longer able to publish messages to topics in the stream, and consumers are no longer able to read messages from topics in the stream.
 
 
@@ -3120,7 +3120,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
     get:
       tags:
         - stream
-      summary: "Runs the purge process, removing messages that are marked for deletion and reclaiming     disk space."
+      summary: "Runs the purge process, removing messages that are marked for deletion and reclaiming disk space."
       description: "For information about the purge process, see [Setting the Time-to-Live for Messages](http://maprdocs.mapr.com/home/MapR_Streams/time_to_live_for_messages.html#time_to_live_for_messages__title).
 
 
@@ -3343,7 +3343,7 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
     get:
       tags:
         - stream
-      summary: "Modifies the way in which messages are replicated from one stream to     another."
+      summary: "Modifies the way in which messages are replicated from one stream to another."
       description: "## Permissions Required at the Source Cluster
 
 To run this command, your user ID must have the following permissions:
@@ -3552,7 +3552,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
     get:
       tags:
         - stream
-      summary: "Registers a stream as an upstream source for a given stream. For example, if you wanted     to replicate messages from Stream_A to Stream_B , Stream_A would be the upstream source for Stream_B ."
+      summary: "Registers a stream as an upstream source for a given stream. For example, if you wanted to replicate messages from Stream_A to Stream_B , Stream_A would be the upstream source for Stream_B ."
       description: "## Permissions Required on the Target Cluster
 
 To run this command, your user ID must have the following permissions:
@@ -3740,7 +3740,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
     get:
       tags:
         - stream
-      summary: "Allows you to increase the number of partitions that are in the specified     topic."
+      summary: "Allows you to increase the number of partitions that are in the specified topic."
       description: "## Permissions Required
 
 To run this command, your user ID must have the following permissions:
@@ -3813,7 +3813,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
     get:
       tags:
         - stream
-      summary: "Lists the topics that are in a stream, as well as the number of partitions in each     topic."
+      summary: "Lists the topics that are in a stream, as well as the number of partitions in each topic."
       description: "## Permissions Required
 
 To run this command, your user ID must have the following permissions:
@@ -4295,7 +4295,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
     get:
       tags:
         - task
-      summary: "Retrieves histograms and       line charts for task metrics."
+      summary: "Retrieves histograms and line charts for task metrics."
       description: "A Hadoop job sets the rules that the JobTracker service uses to break an input data set into discrete tasks and assign those tasks to individual nodes. Use the `task table` to retrieve [task analytics](http://maprdocs.mapr.com/home/AdministratorGuide/JobMetrics-Analyzing.html#Analyzing-Job-Metrics-TheMapRMetricsservic-d3e72) about the jobs running on your cluster. The task metric data includes information about the tasks that make up a specific job, as well as the specific task attempts. The job metric data includes a task attempt's data throughput, measured in number of records per second as well as in bytes per second. The metrics data can be formatted for histogram display or line chart display. In order to issue the `task table` command, the mapr-metrics package must be installed on all the nodes where webserver and jobtracker are configured to run."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/task-table.html
@@ -4365,7 +4365,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
     get:
       tags:
         - virtualip
-      summary: "Adds a virtual IP       address. Permissions required: fc or a ."
+      summary: "Adds a virtual IP address. Permissions required: fc or a ."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/virtualip-add.html
@@ -4489,7 +4489,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
     get:
       tags:
         - virtualip
-      summary: "Reassigns a virtual IP or a range of virtual IP addresses to a specified Media Access       Control (MAC) address."
+      summary: "Reassigns a virtual IP or a range of virtual IP addresses to a specified Media Access Control (MAC) address."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/virtualip-move.html
@@ -4629,7 +4629,7 @@ Note: You can specify a mixed list of included and excluded operations. There ar
     get:
       tags:
         - volume
-      summary: "Moves a container. Permissions       required: fc or m on the       volume."
+      summary: "Moves a container. Permissions required: fc or m on the volume."
       description: "The volume container move command moves a specified container (`cid`) from a source file server (`fromfileserver`) to a destination file server (`tofileserver`). If the `tofileserver` parameter is not specified, a destination file server is chosen by the CLDB. If the `tofileserver` is specified but does not exist, the command fails with an error. If the `fromfileserver` does not exist or is down, the container move occurs once the source file server comes back up."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-container-move.html
@@ -4655,7 +4655,7 @@ Note: You can specify a mixed list of included and excluded operations. There ar
     get:
       tags:
         - volume
-      summary: "Switches the master replica for a specified container to another       replica in the replica chain."
+      summary: "Switches the master replica for a specified container to another replica in the replica chain."
       description: "This command fails if there is only one up-to-date replica for the container.
 
 
@@ -4681,7 +4681,7 @@ Note: Only the root and the MAPR_USER (user name under which MapR services runs)
     get:
       tags:
         - volume
-      summary: "Creates a volume. Permissions required: cv          or fc on the volume."
+      summary: "Creates a volume. Permissions required: cv or fc on the volume."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-create.html
@@ -5022,7 +5022,7 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
     get:
       tags:
         - volume
-      summary: "Displays information about the specified volume. For best results,       use the -json option when running the command."
+      summary: "Displays information about the specified volume. For best results, use the -json option when running the command."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-info.html
@@ -5167,7 +5167,7 @@ Example: `/home/abc/.rw`"
     get:
       tags:
         - volume
-      summary: "Starts mirroring on the specified volume from its source       volume."
+      summary: "Starts mirroring on the specified volume from its source volume."
       description: "* License required: Enterprise Edition
  
 * Permissions required: `fc` or `restore` on the volume
@@ -5239,7 +5239,7 @@ Normally, the mirroring operation transfers only deltas from the last successful
     get:
       tags:
         - volume
-      summary: "Modifies an existing volume. Permissions       required: m or fc on       the volume."
+      summary: "Modifies an existing volume. Permissions required: m or fc on the volume."
       description: "An error occurs if the name or path refers to a non-existent volume, or cannot be resolved."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html
@@ -5488,7 +5488,7 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
     get:
       tags:
         - volume
-      summary: "Moves the specified volume or mirror to a different topology.       Permissions required: m or fc on the       volume."
+      summary: "Moves the specified volume or mirror to a different topology. Permissions required: m or fc on the volume."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-move.html
@@ -5589,7 +5589,7 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
     get:
       tags:
         - volume
-      summary: "Creates a snapshot of the specified volume, using the specified       snapshot name."
+      summary: "Creates a snapshot of the specified volume, using the specified snapshot name."
       description: "* License required: Enterprise Edition
  
 * Permissions required: `fc` or `m` on the volume"
@@ -5753,7 +5753,7 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
     get:
       tags:
         - volume
-      summary: "Upgrades and old-type volume to a new-type volume, which can in turn be used as a       promotable mirror volume. Permissions required: m or fc on       the volume."
+      summary: "Upgrades and old-type volume to a new-type volume, which can in turn be used as a promotable mirror volume. Permissions required: m or fc on the volume."
       description: ""
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-upgradeformat.html

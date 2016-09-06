@@ -2,6 +2,7 @@
 
 from lxml import etree
 from pyquery import PyQuery as pq
+import os
 import re
 import sys
 
@@ -11,21 +12,25 @@ baseurl = 'http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax.
 # Escape HTML text
 # MapR doc bug: u'\u2013' should be '-'
 def escape(text):
-  return text.replace('<', '&lt;').replace('>', '&gt;').replace(u'\u2013', '-')
+  return (text or '').replace('<', '&lt;').replace('>', '&gt;').replace(u'\u2013', '-')
+
+# Remove unnecessary spaces
+def trim(text):
+  return re.sub(r'\s+', ' ', text)
 
 # Adjust spaces and line breaks
 def normalize(d):
   pre_descendant = d('pre *')
   for e in d('*'):
     if e in pre_descendant:
-      e.text = escape(e.text or '').replace('\n', '\n\n')
-      e.tail = escape(e.tail or '').replace('\n', '\n\n')
+      e.text = escape(e.text).replace('\n', '\n\n')
+      e.tail = escape(e.tail).replace('\n', '\n\n')
     else:
       if e.tag == 'pre':
-        e.text = escape(e.text or '').replace('\n', '\n\n')
+        e.text = escape(e.text).replace('\n', '\n\n')
       else:
-        e.text = re.sub(r'\s+', ' ', escape(e.text or ''))
-      e.tail = re.sub(r'\s+', ' ', escape(e.tail or ''))
+        e.text = trim(escape(e.text))
+      e.tail = trim(escape(e.tail))
   return d
 
 # Replace HTML tags with Markdown
@@ -36,14 +41,14 @@ def replace_tags(d, selector, start, end, a_selector=None, a_start=None, a_end=N
     if a_selector:
       if replace_tags(pq(e), a_selector, a_start, a_end) and a_selector == 'a':
         start_tag, end_tag = '', ''
-    html = escape(e.text or '')
+    html = escape(e.text)
     children = e.getchildren()
     if children:
       html += unicode('').join([etree.tostring(c) for c in children])
     href = e.get('href') or ''
     if href:
-      href = '(' + href + ')'
-    tail = escape(e.tail or '')
+      href = '(%s)' % href
+    tail = escape(e.tail)
     pq(e).before(start_tag + html + end_tag + href + tail)
     parent = e.getparent()
     parent.remove(e)
@@ -76,43 +81,39 @@ def parse_enum(d):
         enum.append(value)
   return enum
 
-# Print to file
-def fout(text):
-  f.write(text + '\n')
-
 # Print headers
 def print_headers(d):
 
   # Print info
-  fout('swagger: "2.0"')
-  fout('info:')
-  fout('  title: MapR API')
-  fout('  description: The information about the MapR REST API')
-  fout('  contact:')
-  fout('    url: http://maprdocs.mapr.com')
+  print('swagger: "2.0"')
+  print('info:')
+  print('  title: MapR API')
+  print('  description: The information about the MapR REST API')
+  print('  contact:')
+  print('    url: http://maprdocs.mapr.com')
 
   # Print version
   version = d('meta[name=version]').attr.content
-  fout('  version: "%s"' % version)
+  print('  version: "%s"' % version)
 
   # Print other headers
-  fout('basePath: /rest')
-  fout('schemes:')
-  fout('  - https')
-  fout('produces:')
-  fout('  - application/json')
-  fout('securityDefinitions:')
-  fout('  BasicAuth:')
-  fout('    type: basic')
-  fout('security:')
-  fout('  - BasicAuth: []')
-  fout('paths:')
+  print('basePath: /rest')
+  print('schemes:')
+  print('  - https')
+  print('produces:')
+  print('  - application/json')
+  print('securityDefinitions:')
+  print('  BasicAuth:')
+  print('    type: basic')
+  print('security:')
+  print('  - BasicAuth: []')
+  print('paths:')
 
 # Print command
 def print_command(d, tag):
 
   # Get command path
-  syntax = d('h2,p')('*:contains("Syntax") ~ *').text().replace('\n',' ')
+  syntax = d('h2,p')('*:contains("Syntax") ~ *').text()
   match = re.search('(?<=rest)/[a-z/<>]+', syntax)
   if not match:
     return
@@ -129,11 +130,11 @@ def print_command(d, tag):
     path = path.replace('remove', 'create')
 
   # Print progress
-  sys.stderr.write('\r\033[KProcessing ' + path + '...')
+  sys.stderr.write('\r\033[KProcessing %s...' % path)
 
   # Print summary and description
   short_desc = d('.shortdesc') or d('p:first')
-  summary = short_desc.text().replace('\n',' ')
+  summary = trim(short_desc.text())
   if short_desc.next().find('p:contains("Syntax")'):
     content = short_desc.next().children()
   else:
@@ -144,21 +145,21 @@ def print_command(d, tag):
       break
     elements.append(e)
   description = gfm(pq(elements))
-  fout('  %s:' % path)
-  fout('    get:')
-  fout('      tags:')
-  fout('        - %s' % tag)
-  fout('      summary: "%s"' % summary)
-  fout('      description: "%s"' % description)
-  fout('      externalDocs:')
-  fout('        url: %s' % d.base_url)
+  print('  %s:' % path)
+  print('    get:')
+  print('      tags:')
+  print('        - %s' % tag)
+  print('      summary: "%s"' % summary)
+  print('      description: "%s"' % description)
+  print('      externalDocs:')
+  print('        url: %s' % d.base_url)
 
   # Print parameters
   parameters = d('h2,p')('*:contains("Parameters") ~ * tbody')
   if parameters:
-    fout('      parameters:')
+    print('      parameters:')
     for parameter in parameters('tr').items():
-      name = parameter('td:eq(0)').text().replace('\n',' ')
+      name = trim(parameter('td:eq(0)').text())
 
       # Handle MapR doc bug
       if name == 'virtualip end range':
@@ -179,40 +180,39 @@ def print_command(d, tag):
         enum = parse_enum(parameter)
       elif name.endswith('type'):
         enum = parse_enum(parameter)
-      fout('        - name: %s' % name)
-      fout('          in: %s' % in_)
+      print('        - name: %s' % name)
+      print('          in: %s' % in_)
       if '"' in description:
-        fout('          description: \'%s\'' % description)
+        print('          description: \'%s\'' % description)
       else:
-        fout('          description: "%s"' % description)
+        print('          description: "%s"' % description)
       if required:
-        fout('          required: true')
-      fout('          type: string')
+        print('          required: true')
+      print('          type: string')
       if enum:
-        fout('          enum:')
+        print('          enum:')
         for value in enum:
-          fout('            - %s' % value)
+          print('            - %s' % value)
 
   # Print responses
-  fout('      responses:')
-  fout('        200:')
-  fout('          description: OK')
+  print('      responses:')
+  print('        200:')
+  print('          description: OK')
 
 # Main
-f = open(filename, "w")
-d = pq(baseurl).make_links_absolute()
-print_headers(d)
-category_links = d('.link:gt(0) a')
-for i in category_links.items():
-  d = pq(i.attr.href).make_links_absolute()
-  command_links = d('.link a')
-  if command_links:
-    for j in command_links.items():
-      d = pq(j.attr.href).make_links_absolute()
+with open(os.path.join(os.path.dirname(__file__), filename), "w") as sys.stdout:
+  d = pq(baseurl).make_links_absolute()
+  print_headers(d)
+  category_links = d('.link:gt(0) a')
+  for i in category_links.items():
+    d = pq(i.attr.href).make_links_absolute()
+    command_links = d('.link a')
+    if command_links:
+      for j in command_links.items():
+        d = pq(j.attr.href).make_links_absolute()
+        print_command(d, i.text())
+    else:
       print_command(d, i.text())
-  else:
-    print_command(d, i.text())
-f.close()
 
 sys.stderr.write('\r\033[K')
 sys.stderr.flush()
