@@ -279,6 +279,11 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
  
 *  `ae`"
           type: string
+          enum:
+            - cluster
+            - node
+            - volume
+            - ae
       responses:
         200:
           description: OK
@@ -1118,6 +1123,9 @@ Note:
 * 1-group"
           required: true
           type: string
+          enum:
+            - 0
+            - 1
       responses:
         200:
           description: OK
@@ -1144,6 +1152,9 @@ Note:
  
  If necessary, obtain the entity type by running the `maprcli entity list` command."
           type: string
+          enum:
+            - 0
+            - 1
       responses:
         200:
           description: OK
@@ -3886,6 +3897,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 *  `attrs`. Copy table attributes."
           type: string
+          enum:
+            - all
+            - cfs
+            - aces
+            - splits
+            - attrs
         - name: regionsizemb
           in: query
           description: "The average size of the regions into which MapR-DB tries to split the table as the table grows. The default is 4096 MB. This value is ignored if `autosplit` is set to `false`.
@@ -4688,6 +4705,9 @@ Note: Only the root and the MAPR_USER (user name under which MapR services runs)
  
 *  `1`=`group`"
           type: string
+          enum:
+            - 0
+            - 1
         - name: allowgrant
           in: query
           description: "Specifies whether a parent volume grants permission for a child volume to inherit its properties. True or false.
@@ -4955,6 +4975,11 @@ For 4.0.1 and earlier releases, these values are accepted:
  
 * 1 - standard mirror (read-only) volume (this volume is non-convertible)"
           type: string
+          enum:
+            - mirror
+            - rw
+            - 0
+            - 1
         - name: user
           in: query
           description: "Space-separated list of `user:permission` pairs."
@@ -5238,6 +5263,9 @@ Normally, the mirroring operation transfers only deltas from the last successful
  
 *  `1`=`group`"
           type: string
+          enum:
+            - 0
+            - 1
         - name: allowgrant
           in: query
           description: "Specifies whether the volume as a parent grants permission for a child volume to inherit its properties. True or false. Default: false."

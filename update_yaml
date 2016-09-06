@@ -66,6 +66,16 @@ def gfm(d):
   s('*').remove_attr('class')
   return (s.html() or '').strip()
 
+# Parse enum
+def parse_enum(d):
+  enum = []
+  if d('li'):
+    for i in d('li').items():
+      value = re.search(r'\w+', i.text()).group()
+      if value not in enum:
+        enum.append(value)
+  return enum
+
 # Print to file
 def fout(text):
   f.write(text + '\n')
@@ -109,13 +119,13 @@ def print_command(d, tag):
   path = match.group().replace('<','{').replace('>','}')
 
   # Handle MapR doc bug
-  if re.search('acl-set', d.base_url):
+  if 'acl-set' in d.base_url:
     path = path.replace('edit', 'set')
-  if re.search('stream_edit', d.base_url):
+  if 'stream_edit' in d.base_url:
     path = path.replace('create', 'edit')
-  if re.search('stream_upstream_remove', d.base_url):
+  if 'stream_upstream_remove' in d.base_url:
     path = path.replace('add', 'remove')
-  if re.search('volume-link-create', d.base_url):
+  if 'volume-link-create' in d.base_url:
     path = path.replace('remove', 'create')
 
   # Print progress
@@ -147,7 +157,7 @@ def print_command(d, tag):
   parameters = d('h2,p')('*:contains("Parameters") ~ * tbody')
   if parameters:
     fout('      parameters:')
-    for parameter in parameters.items('tr'):
+    for parameter in parameters('tr').items():
       name = parameter('td:eq(0)').text().replace('\n',' ')
 
       # Handle MapR doc bug
@@ -163,13 +173,15 @@ def print_command(d, tag):
       required = parameter('td:eq(0) strong')
       in_ = 'query'
       enum = []
-      if re.search('urls', d.base_url) and name == 'name':
+      if 'urls' in d.base_url and name == 'name':
         in_ = 'path'
         required = True
-        enum = [e.text for e in parameter('li')]
+        enum = parse_enum(parameter)
+      elif name.endswith('type'):
+        enum = parse_enum(parameter)
       fout('        - name: %s' % name)
       fout('          in: %s' % in_)
-      if re.search('"', description):
+      if '"' in description:
         fout('          description: \'%s\'' % description)
       else:
         fout('          description: "%s"' % description)
