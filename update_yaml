@@ -56,7 +56,7 @@ def replace_tags(d, selector, start, end, a_selector=None, a_start=None, a_end=N
 
 # Get the GFM representation of sub nodes
 def gfm(d):
-  s = d.wrap_all('<section></section>')
+  s = d.clone().wrap_all('<section></section>')
   normalize(s)
   replace_tags(s, 'h2', '\n\n## ', '\n\n')
   replace_tags(s, 'strong','**', '**')
@@ -72,14 +72,48 @@ def gfm(d):
   return (s.html() or '').strip()
 
 # Parse enum
-def parse_enum(d):
-  enum = []
-  if d('li'):
-    for i in d('li').items():
-      value = re.search(r'\w+', i.text()).group()
-      if value not in enum:
-        enum.append(value)
-  return enum
+def parse_enum(name, d, syntax):
+
+  # Parse from syntax
+  match = re.search(r'-%s[^\]\n]+?([\w \|]+\| *\w+)' % name, syntax)
+  if match:
+    enum = []
+    for i in match.group(1).split('|'):
+      if re.search(r'\W', i.strip()):
+        break
+      enum.append(i.strip())
+    else:
+      return enum
+
+  # Parse from a list
+  if d('ul'):
+    enum = []
+    for i in d('ul:first li').items():
+      value = re.search(r'\S(?:[\w\s/]*[\w*])?', i.text(), re.S).group()
+      if re.search(r'\W', value):
+        break
+      enum.append(value)
+    else:
+      return enum
+
+  # Parse from a text
+  match = None
+  if name in ['output', 'replicationtype', 'type']:
+    match = re.search(r'(\w+)(?: \(.+?\))? or (\w+)', d.text(), re.S)
+  elif name in ['tabletype']:
+    match = re.search(r'(\w+) and (\w+)', d.text(), re.S)  
+  if match:
+    return match.groups()
+
+  return []
+
+# Detect type
+def detect_type(name, description, syntax):
+  if re.search(r'-%s[^\]\n]+(true|false)' % name, syntax):
+    return 'boolean'
+  elif re.search(r'default\s+is\s+(true|false)', description):
+    return 'boolean'
+  return 'string'
 
 # Print headers
 def print_headers(d):
@@ -158,8 +192,9 @@ def print_command(d, tag):
   parameters = d('h2,p')('*:contains("Parameters") ~ * tbody')
   if parameters:
     print('      parameters:')
-    for parameter in parameters('tr').items():
-      name = trim(parameter('td:eq(0)').text())
+    for i in parameters('tr').items():
+      parameter = [j for j in i('td').items()]
+      name = trim(parameter[0].text())
 
       # Handle MapR doc bug
       if name == 'virtualip end range':
@@ -170,16 +205,14 @@ def print_command(d, tag):
         continue
       name = name[0].lower() + name[1:]
 
-      description = gfm(parameter('td:eq(1)'))
-      required = parameter('td:eq(0) strong')
       in_ = 'query'
-      enum = []
+      description = gfm(parameter[1])
+      required = parameter[0]('strong')
+      type = detect_type(name, parameter[1].text(), syntax)
+      enum = parse_enum(name, parameter[1], syntax)
       if 'urls' in d.base_url and name == 'name':
         in_ = 'path'
         required = True
-        enum = parse_enum(parameter)
-      elif name.endswith('type'):
-        enum = parse_enum(parameter)
       print('        - name: %s' % name)
       print('          in: %s' % in_)
       if '"' in description:
@@ -188,7 +221,7 @@ def print_command(d, tag):
         print('          description: "%s"' % description)
       if required:
         print('          required: true')
-      print('          type: string')
+      print('          type: %s' % type)
       if enum:
         print('          enum:')
         for value in enum:

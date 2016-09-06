@@ -42,6 +42,9 @@ paths:
           description: "The object type (`cluster` or `volume`)."
           required: true
           type: string
+          enum:
+            - cluster
+            - volume
         - name: user
           in: query
           description: "Users and allowed actions for each user. See [acl](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html). Format: `<user>:<action>[,<action>...][ <user>:<action>[,<action...]]`"
@@ -81,6 +84,9 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: "The object type (`cluster` or `volume`)."
           required: true
           type: string
+          enum:
+            - cluster
+            - volume
         - name: user
           in: query
           description: "Users and allowed actions for each user. See [acl](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html). Format: `<user>:<action>[,<action>...][ <user>:<action>[,<action...]]`"
@@ -122,6 +128,10 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
  
 * terse"
           type: string
+          enum:
+            - long
+            - short
+            - terse
         - name: perm
           in: query
           description: "When this option is specified, `acl show` displays the permissions available for the object type specified in the `type` parameter."
@@ -131,6 +141,9 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           description: "Cluster or volume."
           required: true
           type: string
+          enum:
+            - cluster
+            - volume
         - name: user
           in: query
           description: "The user for which to display permissions"
@@ -196,6 +209,9 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           in: query
           description: "Whether the output should be terse or verbose."
           type: string
+          enum:
+            - terse
+            - verbose
       responses:
         200:
           description: OK
@@ -249,6 +265,9 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           in: query
           description: "Whether the output should be terse or verbose."
           type: string
+          enum:
+            - terse
+            - verbose
         - name: start
           in: query
           description: "The list offset at which to start."
@@ -263,7 +282,10 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
 * 1 = count by alarm type
  
 * 0 = List of alarms"
-          type: string
+          type: boolean
+          enum:
+            - 1
+            - 0
         - name: type
           in: query
           description: "The entity type:
@@ -345,7 +367,10 @@ For information about auditing cluster-administration operations, see [Auditing 
         - name: enabled
           in: query
           description: "The value `true` enables auditing, the value `false` disables it."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
       responses:
         200:
           description: OK
@@ -371,7 +396,10 @@ Only the `mapr` user for the cluster can run this command. For more information 
         - name: enabled
           in: query
           description: "The value `true` enables auditing, the value `false` disables it."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: maxsize
           in: query
           description: "The size in GB at which an alarm is sent to the dashboard in the MapR Control Service. The alarm is to notify the cluster administrator that the audit log is becoming large enough that the administrator might want to take action. For more information about this parameter, the alarm, and possible actions to take, see [Managing Audit Logs for Filesystem and Table Operations](http://maprdocs.mapr.com/home/SecurityGuide/ManagingAuditLogs-FS-DB-Operations.html#ManagingAuditLogsforFilesystemandTableOperations). 
@@ -540,6 +568,9 @@ Note:
  
 * If the output is formatted as text, you can copy and paste that text into the `-gateways` parameter of the `maprcli cluster gateway set` command. Running this command is an alternative way of specifying the location of these gateways to the source MapR cluster."
           type: string
+          enum:
+            - dns
+            - text
         - name: cluster
           in: query
           description: "If you are not on a MapR cluster where one or more gateways are configured, provide the name of the cluster. 
@@ -694,6 +725,9 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
  
 *  `yarn`: Use Resource Manager and Node Manager to run MapReduce jobs or applications."
           type: string
+          enum:
+            - yarn
+            - classic
       responses:
         200:
           description: OK
@@ -760,11 +794,17 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
 
 
 Values: true/false. Default: false"
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: version
           in: query
           description: "Specifies whether to display the version. Values: true/false. Default: false"
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: zkconnect
           in: query
           description: "[ZooKeeper Connect String](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-CommonParameters.html#concept_ymb_yxz_5t)"
@@ -808,6 +848,9 @@ Values: true/false. Default: false"
  
 * 1 - Enable"
           type: string
+          enum:
+            - 0
+            - 1
       responses:
         200:
           description: OK
@@ -906,6 +949,9 @@ Values: true/false. Default: false"
           in: query
           description: "Whether the output should be `terse` or `verbose`. Default is `verbose`."
           type: string
+          enum:
+            - terse
+            - verbose
         - name: system
           in: query
           description: "Show only operating system disks:
@@ -919,6 +965,9 @@ Values: true/false. Default: false"
  
 * Not specified - shows both MapR-FS and operating system disks"
           type: string
+          enum:
+            - 1
+            - 0
       responses:
         200:
           description: OK
@@ -943,6 +992,9 @@ Values: true/false. Default: false"
           in: query
           description: "Always the string `terse`."
           type: string
+          enum:
+            - terse
+            - verbose
         - name: start
           in: query
           description: "The offset from the starting row according to sort. Default: 0"
@@ -999,6 +1051,9 @@ Note:
  
 *  `1` - remove the disk or disks regardless of data loss or other consequences"
           type: string
+          enum:
+            - 0
+            - 1
         - name: host
           in: query
           description: "The hostname or ip address of the node from which to remove the disk."
@@ -1029,6 +1084,9 @@ Note:
           in: query
           description: "Whether to display terse or verbose output."
           type: string
+          enum:
+            - terse
+            - verbose
         - name: type
           in: query
           description: "The entity type. Obtain the entity type by running the `maprcli entity list` command."
@@ -1049,7 +1107,10 @@ Note:
         - name: alarmedentities
           in: query
           description: "Specifies whether to list only entities that have exceeded a quota or advisory quota."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: cluster
           in: query
           description: "The cluster on which to run the command."
@@ -1070,6 +1131,9 @@ Note:
           in: query
           description: "Specifies whether output should be `terse` or `verbose`."
           type: string
+          enum:
+            - terse
+            - verbose
         - name: start
           in: query
           description: "The offset from the starting row according to sort. Default: 0"
@@ -1179,6 +1243,12 @@ Note:
           in: query
           description: "New job priority"
           type: string
+          enum:
+            - NORMAL
+            - LOW
+            - VERY_LOW
+            - HIGH
+            - VERY_HIGH
       responses:
         200:
           description: OK
@@ -1661,7 +1731,10 @@ Note:
         - name: is_file
           in: query
           description: "Specifies whether the `license` specifies a file. If `false`, the `license` parameter contains a long license string."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: license
           in: query
           description: "The license to add to the cluster. If `-is_file` is true, `license` specifies the filename of a license file. Otherwise, `license` contains the license string itself."
@@ -1691,7 +1764,10 @@ Note:
         - name: is_file
           in: query
           description: "Specifies whether the license is contained in a file."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
       responses:
         200:
           description: OK
@@ -1948,6 +2024,9 @@ See the lists of parameters below this table."
           in: query
           description: "Specifies whether the output should be terse or verbose."
           type: string
+          enum:
+            - terse
+            - verbose
         - name: start
           in: query
           description: "The offset from the starting row according to sort. Default: 0"
@@ -2125,10 +2204,18 @@ See the lists of parameters below this table."
           in: query
           description: "An action to perform on a service specified in the `name` parameter: Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: cldb
           in: query
           description: "Starts, stops, or restarts the cldb service. Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: cluster
           in: query
           description: "The cluster on which to run the command."
@@ -2137,6 +2224,10 @@ See the lists of parameters below this table."
           in: query
           description: "Starts, stops, or restarts the fileserver service. Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: filter
           in: query
           description: "A filter specifying nodes on which to start or stop services. For fields to use with the filter, see the Fields table in the [node list](http://maprdocs.mapr.com/home/ReferenceGuide/node-list.html) command. See [ Filters](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html) for more information about filters."
@@ -2145,14 +2236,26 @@ See the lists of parameters below this table."
           in: query
           description: "Starts, stops, or restarts the hbmaster service. Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: hbregionserver
           in: query
           description: "Starts, stops, or restarts the hbregionserver service. Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: jobtracker
           in: query
           description: "Starts, stops, or restarts the jobtracker service. Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: name
           in: query
           description: "A service on which to perform an action specified by the `action` parameter. Any service can be specified with this option, but the following services can be specified only with the `name` option: `collectd`, `elasticsearch`, `fluentd`, `grafana`, `historyserver`, `hivemeta`, `hoststats`, `hs2`, `httpfs`, `hue`, `kibana`, `nodemanager`, `opentsdb`, `oozie`, and `resourcemanager.`"
@@ -2161,6 +2264,10 @@ See the lists of parameters below this table."
           in: query
           description: "Starts, stops, or restarts the nfs service. Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: nodes
           in: query
           description: "A list of node names, separated by spaces."
@@ -2169,10 +2276,18 @@ See the lists of parameters below this table."
           in: query
           description: "Starts, stops, or restarts the tasktracker service. Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: webserver
           in: query
           description: "Starts, stops, or restarts the web server service. Values: start, stop, or restart"
           type: string
+          enum:
+            - start
+            - stop
+            - restart
         - name: zkconnect
           in: query
           description: "[ZooKeeper Connect String](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-CommonParameters.html)"
@@ -2282,6 +2397,9 @@ See the lists of parameters below this table."
           in: query
           description: "Specifies whether the output should be terse or verbose."
           type: string
+          enum:
+            - terse
+            - verbose
       responses:
         200:
           description: OK
@@ -2395,6 +2513,13 @@ See the lists of parameters below this table."
 * WARN"
           required: true
           type: string
+          enum:
+            - DEBUG
+            - ERROR
+            - FATAL
+            - INFO
+            - TRACE
+            - WARN
         - name: node
           in: query
           description: "The node on which to set the log level."
@@ -2441,6 +2566,13 @@ See the lists of parameters below this table."
 * WARN"
           required: true
           type: string
+          enum:
+            - DEBUG
+            - ERROR
+            - FATAL
+            - INFO
+            - TRACE
+            - WARN
         - name: node
           in: query
           description: "The node on which to set the log level."
@@ -2487,6 +2619,13 @@ See the lists of parameters below this table."
 * WARN"
           required: true
           type: string
+          enum:
+            - DEBUG
+            - ERROR
+            - FATAL
+            - INFO
+            - TRACE
+            - WARN
         - name: node
           in: query
           description: "The node on which to set the log level."
@@ -2533,6 +2672,13 @@ See the lists of parameters below this table."
 * WARN"
           required: true
           type: string
+          enum:
+            - DEBUG
+            - ERROR
+            - FATAL
+            - INFO
+            - TRACE
+            - WARN
         - name: node
           in: query
           description: "The node on which to set the log level."
@@ -2579,6 +2725,13 @@ See the lists of parameters below this table."
 * WARN"
           required: true
           type: string
+          enum:
+            - DEBUG
+            - ERROR
+            - FATAL
+            - INFO
+            - TRACE
+            - WARN
         - name: node
           in: query
           description: "The node on which to set the log level."
@@ -2625,6 +2778,13 @@ See the lists of parameters below this table."
 * WARN"
           required: true
           type: string
+          enum:
+            - DEBUG
+            - ERROR
+            - FATAL
+            - INFO
+            - TRACE
+            - WARN
         - name: node
           in: query
           description: "The node on which to set the log level."
@@ -2638,6 +2798,9 @@ See the lists of parameters below this table."
           in: query
           description: "Whether or not is the request is for user mode."
           type: string
+          enum:
+            - TRUE
+            - FALSE
       responses:
         200:
           description: OK
@@ -2675,6 +2838,13 @@ See the lists of parameters below this table."
 * WARN"
           required: true
           type: string
+          enum:
+            - DEBUG
+            - ERROR
+            - FATAL
+            - INFO
+            - TRACE
+            - WARN
         - name: node
           in: query
           description: "The node on which to set the log level."
@@ -2807,7 +2977,7 @@ A value of 0 causes messages to be retained indefinitely."
         - name: autocreate
           in: query
           description: "Specifies whether to create a topic automatically when a producer tries to write the first message to it. Values are `true` and `false`. The default is `true`."
-          type: string
+          type: boolean
         - name: defaultpartitions
           in: query
           description: "Specifies the default number of partitions to allocate to new topics in the stream."
@@ -2828,6 +2998,11 @@ Valid options are `off`, `lzf`, `lz4`, and `zlib`. The default setting is the ty
 
 For more information, see [Compression](http://maprdocs.mapr.com/home/AdministratorGuide/Compression.html#Compression)."
           type: string
+          enum:
+            - off
+            - lz4
+            - lzf
+            - zlib
         - name: produceperm
           in: query
           description: "Specifies the access-control expression that controls who can publish messages to topics in the stream. See [ACE Syntax](http://maprdocs.mapr.com/home/SecurityGuide/SyntaxOfACE.html#SyntaxofAccessControlExpressions)."
@@ -3040,7 +3215,7 @@ A value of 0 causes messages to be retained indefinitely."
         - name: autocreate
           in: query
           description: "Specifies whether to create a topic automatically when a producer tries to write the first message to it. Values are `true` and `false`. The default is `true`."
-          type: string
+          type: boolean
         - name: defaultpartitions
           in: query
           description: "Specifies the default number of partitions to allocate to new topics in the stream."
@@ -3061,6 +3236,11 @@ Valid options are `off`, `lzf`, `lz4`, and `zlib`. The default setting is the ty
 
 For more information, see [Compression](http://maprdocs.mapr.com/home/AdministratorGuide/Compression.html#Compression)."
           type: string
+          enum:
+            - off
+            - lz4
+            - lzf
+            - zlib
         - name: produceperm
           in: query
           description: "Specifies the access-control expression that controls who can publish messages to topics in the stream. See [ACE Syntax](http://maprdocs.mapr.com/home/SecurityGuide/SyntaxOfACE.html#SyntaxofAccessControlExpressions)."
@@ -3212,7 +3392,7 @@ To run this command, your user ID must have the following permissions:
 
 
 Set `-paused` to `true` if you want to run `mapr copystream` to load the replica stream before starting replication. If it is not paused, replication starts immediately after you run the commands `maprcli stream replica add` and `maprcli stream upstream add`, in which case the replica stream starts empty and accumulates messages over time. If you are interested only in the messages that are published to the source stream after replication starts, then you do not need to pause replication initially. However, if you want the full set of messages from the source stream that have not yet been purged or marked for deletion, then pause replication initially."
-          type: string
+          type: boolean
         - name: throttle
           in: query
           description: "A boolean value that specifies whether to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are `true` or `false`. The default is `false`.
@@ -3223,19 +3403,24 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
 * Throttling slows down the rate at which changes to a stream are replicated.
  
 * Throttling slows down the rate at which messages to be replicated are read from disk."
-          type: string
+          type: boolean
         - name: networkencryption
           in: query
           description: "A boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. The default is `false`. If you set the value to `true`, the local cluster and any other cluster that is part of the replication process must be enabled for security."
-          type: string
+          type: boolean
         - name: synchronous
           in: query
           description: "A boolean value that specifies whether replication is synchronous or asynchronous. The values are `true` or `false`. The default is `false` and specifies asynchronous replication."
-          type: string
+          type: boolean
         - name: networkcompression
           in: query
           description: "Specifies the type of compression to use when replicating messages. For more information, see [Compression](http://maprdocs.mapr.com/home/AdministratorGuide/Compression.html#Compression)."
           type: string
+          enum:
+            - off
+            - lz4
+            - lzf
+            - zlib
       responses:
         200:
           description: OK
@@ -3312,11 +3497,11 @@ To run this command, your user ID must have the following permissions:
         - name: synchronous
           in: query
           description: "A boolean value that specifies whether replication is synchronous or asynchronous. The values are `true` or `false`. The default is `false` and specifies asynchronous replication."
-          type: string
+          type: boolean
         - name: multimaster
           in: query
           description: "A boolean value that specifies whether or not to set up a multi-master topology. The values are `true` or `false`. The default is `false` and specifies to use the basic master-slave topology, rather than the multi-master topology."
-          type: string
+          type: boolean
         - name: throttle
           in: query
           description: "A boolean value that specifies whether to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are `true` or `false`. The default is `false`.
@@ -3327,15 +3512,20 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
 * Throttling slows down the rate at which changes to a stream are replicated.
  
 * Throttling slows down the rate at which messages to be replicated are read from disk."
-          type: string
+          type: boolean
         - name: networkencryption
           in: query
           description: "A boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. The default is `false`. If you set the value to `true`, the local cluster and any other cluster that is part of the replication process must be enabled for security."
-          type: string
+          type: boolean
         - name: networkcompression
           in: query
           description: "Specifies the type of compression to use when replicating messages. For more information, see [Compression](http://maprdocs.mapr.com/home/AdministratorGuide/Compression.html#Compression)."
           type: string
+          enum:
+            - off
+            - lz4
+            - lzf
+            - zlib
       responses:
         200:
           description: OK
@@ -3400,19 +3590,24 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
 * Throttling slows down the rate at which changes to a stream are replicated.
  
 * Throttling slows down the rate at which messages to be replicated are read from disk."
-          type: string
+          type: boolean
         - name: networkencryption
           in: query
           description: "A boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. The default is `false`. If you set the value to `true`, the local cluster and any other cluster that is part of the replication process must be enabled for security."
-          type: string
+          type: boolean
         - name: synchronous
           in: query
           description: "A boolean value that specifies whether replication is synchronous or asynchronous. The values are `true` or `false`. The default is `false` and specifies asynchronous replication."
-          type: string
+          type: boolean
         - name: networkcompression
           in: query
           description: "Specifies the type of compression to use when replicating messages. For more information, see [Compression](http://maprdocs.mapr.com/home/AdministratorGuide/Compression.html#Compression)."
           type: string
+          enum:
+            - off
+            - lz4
+            - lzf
+            - zlib
       responses:
         200:
           description: OK
@@ -3445,7 +3640,7 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
         - name: refreshnow
           in: query
           description: "A boolean value that specifies whether to trigger an immediate update of the replica statistics. The values are `true` or `false`. By default, the value is `false` and the command lists the current version of the replica statistics, which could be a maximum of five minutes old."
-          type: string
+          type: boolean
       responses:
         200:
           description: OK
@@ -3934,19 +4129,31 @@ Note: When a table has less than 4 regions, MapR-DB ignores the `regionsizemb` p
 
 
 The default value is `true`. If you set the value to `false`, you can manually split tables into regions by using the `table region split` command."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: bulkload
           in: query
           description: "A Boolean value that specifies whether to allow a full bulk load of the table. The default is `false`. For more information, see [Loading Data into MapR-DB Binary Tables](http://maprdocs.mapr.com/home/MapR-DB/BulkLoadingandMapR-DBTables-binary.html) and [Loading Documents into JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/loading_documents_into_json_tables.html)."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: audit
           in: query
           description: "Specifies whether to turn auditing on for the table. If auditing is also enabled at the cluster level with the `maprcli audit data` command and enabled for the current volume, setting this value to true causes auditing to start for the table."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: tabletype
           in: query
           description: "Specifies whether the table will be a binary table or a JSON table. The values are `binary` and `json`. The default is `binary`."
           type: string
+          enum:
+            - binary
+            - json
         - name: insertionorder
           in: query
           description: '**Applies to JSON tables only:** Specifies whether query results are to list fields in the order in which fields were inserted into column families. Column families are always returned in alphabetical order according to their names. 
@@ -4072,7 +4279,7 @@ If `-insertionorder` is set to `false`, the results are returned in this order:
 
 
 The results are similar to the previous results. This time, however, all the fields are in alphabetical order.'
-          type: string
+          type: boolean
         - name: packperm
           in: query
           description: "The Access Control Expression that controls who can pack table regions. By default, permission is given to the user ID that is used to create the table."
@@ -4474,6 +4681,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           in: query
           description: "Whether the output should be `terse` or `verbose`."
           type: string
+          enum:
+            - terse
+            - verbose
         - name: range
           in: query
           description: "The VIP range."
@@ -4577,7 +4787,10 @@ See [Enabling Auditing](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-Pre
 
 
 When you set the value to false, auditing of operations within the volume ceases. None of the auditing settings are changed on the directories, files, and MapR-DB tables within the volume. If you later run the `maprcli volume audit` command with `-enabled` set to `true`, auditing begins again on the objects that were already enabled for auditing."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: coalesce
           in: query
           description: "The interval of time during which READ, WRITE, or GETATTR operations on one file from one client IP address are logged only once, if auditing is enabled.
@@ -4717,11 +4930,17 @@ Note: Only the root and the MAPR_USER (user name under which MapR services runs)
 
 
 Default: false."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: allowinherit
           in: query
           description: "Specifies whether a new volume inherit sproperties from the parent mount point volume. True or false. Default: true."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: auditenabled
           in: query
           description: "Specifies whether to turn auditing on for the volume. If auditing is also enabled at the cluster level with the `maprcli audit data` command, setting this value to `true` causes auditing to start for any directories, files, or tables that are already enabled for auditing. If none are yet so enabled, subsequently enabling auditing on any of them causes auditing of them to start.
@@ -4731,7 +4950,10 @@ Default: false."
 
 
 You must have the `fc` permission on the cluster to use this parameter. See `acl` for details about this permission."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: cluster
           in: query
           description: "The cluster on which to create the volume."
@@ -4763,6 +4985,9 @@ The default value is 60 minutes. Setting this field to a larger number helps pre
  
 *  `1` = Create a parent directory."
           type: string
+          enum:
+            - 0
+            - 1
         - name: dataauditops
           in: query
           description: "The comma separated list of filesystem operations to include (specified with a preceding plus sign (`+`)) or exclude (specified with a preceding minus sign (`-`)) from auditing. 
@@ -4845,10 +5070,16 @@ Tip: For more information, see [Selective Auditing of Filesystem and Table Opera
           in: query
           description: "Specifies whether throttling should be enabled at create time."
           type: string
+          enum:
+            - 0
+            - 1
         - name: mount
           in: query
           description: "Specifies whether the volume is mounted at creation time."
           type: string
+          enum:
+            - 0
+            - 1
         - name: name
           in: query
           description: "The name of the volume to create."
@@ -4896,6 +5127,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
  
 *  `1` = Volume is read-only."
           type: string
+          enum:
+            - 0
+            - 1
         - name: replication
           in: query
           description: "The desired replication level. Default: 3 When the number of copies falls below the desired replication factor, but remains equal to or above the minimum replication factor, re-replication occurs after the timeout specified in the `cldb.fs.mark.rereplicate.sec` parameter. Note that this timeout is the time given for a down node to come back online. After this timeout period, the CLDB takes action to restore the replication factor."
@@ -4904,6 +5138,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           in: query
           description: "The desired replication type. You can specify `low_latency` (star replication) or `high_throughput` (chain replication). The default setting is `high_throughput`."
           type: string
+          enum:
+            - low_latency
+            - high_throughput
         - name: rereplicationtimeoutsec
           in: query
           description: "Timeout (in seconds) before attempting re-replication of replica containers. This volume property defines the timeout period until CLDB starts re-replicating the containers on the node of the volume when CLDB stops receiving a heartbeat from the node.
@@ -4976,10 +5213,8 @@ For 4.0.1 and earlier releases, these values are accepted:
 * 1 - standard mirror (read-only) volume (this volume is non-convertible)"
           type: string
           enum:
-            - mirror
             - rw
-            - 0
-            - 1
+            - mirror
         - name: user
           in: query
           description: "Space-separated list of `user:permission` pairs."
@@ -5043,6 +5278,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           in: query
           description: "Whether the output should be terse or verbose. Default: verbose"
           type: string
+          enum:
+            - terse
+            - verbose
         - name: path
           in: query
           description: "The mount path of the volume for which to retrieve information."
@@ -5075,6 +5313,9 @@ Example: `/home/abc/.rw`"
           description: "The volume type: `writeable` or `mirror`."
           required: true
           type: string
+          enum:
+            - writeable
+            - mirror
         - name: volume
           in: query
           description: "The volume name."
@@ -5156,6 +5397,9 @@ Example: `/home/abc/.rw`"
           in: query
           description: "Specifies whether the output should be `terse` or `verbose`. Default: verbose"
           type: string
+          enum:
+            - terse
+            - verbose
         - name: start
           in: query
           description: "The offset from the starting row according to sort. Default: 0"
@@ -5198,7 +5442,10 @@ Normally, the mirroring operation transfers only deltas from the last successful
         - name: full
           in: query
           description: "Specifies whether to perform a full copy of all data. If false, only the deltas are copied."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: name
           in: query
           description: "The volume for which to start the mirror."
@@ -5269,7 +5516,10 @@ Normally, the mirroring operation transfers only deltas from the last successful
         - name: allowgrant
           in: query
           description: "Specifies whether the volume as a parent grants permission for a child volume to inherit its properties. True or false. Default: false."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: auditenabled
           in: query
           description: "Specifies whether to turn auditing on for the volume. If auditing is also enabled at the cluster level with the  [`maprcli audit data`](http://maprdocs.mapr.com/home/ReferenceGuide/audit-data.html)  command, setting this value to `true` causes auditing to start for any directories, files, or tables that are already enabled for auditing. If none are yet so enabled, enabling auditing on any of them causes auditing of them to start.
@@ -5279,7 +5529,10 @@ Normally, the mirroring operation transfers only deltas from the last successful
 
 
 You must have the `fc` permission on the cluster to use this parameter. See [ `acl` ](http://maprdocs.mapr.com/home/ReferenceGuide/acl.html) for details about this permission."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: cluster
           in: query
           description: "The cluster on which to run the command."
@@ -5349,7 +5602,10 @@ Tip: For more information, see [Selective Auditing of Filesystem and Table Opera
         - name: mirrorthrottle
           in: query
           description: "Specifies whether mirror throttling is enabled (`true`) or disabled (`false`). The default is `true`. Throttling is set on the source volume and applies to all its mirrors."
-          type: string
+          type: boolean
+          enum:
+            - true
+            - false
         - name: nsminreplication
           in: query
           description: "The minimum replication level for the namespace container. Default: 2 When the replication factor falls below this minimum, re-replication occurs as aggressively as possible to restore the replication level. If any containers in the CLDB volume fall below the minimum replication factor, writes are disabled until aggressive re-replication restores the minimum level of replication. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. Note: This parameter must be the same or larger than the equivalent data replication parameter, `minreplication`."
@@ -5394,6 +5650,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
  
 *  `1` = read-only"
           type: string
+          enum:
+            - 0
+            - 1
         - name: replication
           in: query
           description: "The desired replication level. Default: 0"
@@ -5434,6 +5693,9 @@ When a node is down, CLDB gives the node an hour to come back online before it t
 
 If type = rw, the volume is converted from a mirror volume to a rw volume."
           type: string
+          enum:
+            - rw
+            - mirror
         - name: writeAce
           in: query
           description: "Specifies [Access Control Expressions](http://maprdocs.mapr.com/home/SecurityGuide/SyntaxOfACE.html#SyntaxofAccessControlExpressions) (ACEs) that grants permission at the volume level to write to files and tables in the volume. The default value is `p`, which grants access to all users.
@@ -5481,6 +5743,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
  
 *  `1` = Create a parent volume."
           type: string
+          enum:
+            - 0
+            - 1
       responses:
         200:
           description: OK
@@ -5640,6 +5905,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           in: query
           description: "Specifies whether the output should be `terse` or `verbose`. Default: `verbose`"
           type: string
+          enum:
+            - terse
+            - verbose
         - name: path
           in: query
           description: "A comma-separated list of paths for which to preserve snapshots."
