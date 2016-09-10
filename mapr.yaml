@@ -441,6 +441,7 @@ You can set this interval on individual volumes. The default value is 60 minutes
       description: "Only the `mapr` user for the cluster can run this command. For more information about the `mapr` user, see [Managing Users and Groups](http://maprdocs.mapr.com/home/AdministratorGuide/c-managing-users-and-groups.html#Managing-Users-and-Groups-rootisusedtoinstallM-d3e62)."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/audit-info.html
+      parameters:
       responses:
         200:
           description: OK
@@ -1336,382 +1337,6 @@ Note:
           in: query
           description: "Scale to use for the histogram. Specify `linear` for a linear scale and `log` for a logarithmic scale."
           type: string
-        - name: jmadavg
-          in: query
-          description: "Job Average Map Attempt Duration"
-          type: string
-        - name: jradavg
-          in: query
-          description: "Job Average Reduce Attempt Duration"
-          type: string
-        - name: jtadavg
-          in: query
-          description: "Job Average Task Duration"
-          type: string
-        - name: jcmtct
-          in: query
-          description: "Job Complete Map Task Count"
-          type: string
-        - name: jcrtct
-          in: query
-          description: "Job Complete Reduce Task Count"
-          type: string
-        - name: jctct
-          in: query
-          description: "Job Complete Task Count"
-          type: string
-        - name: jccpu
-          in: query
-          description: "Job Cumulative CPU"
-          type: string
-        - name: jcmem
-          in: query
-          description: "Job Cumulative Physical Memory"
-          type: string
-        - name: jcpu
-          in: query
-          description: "Job Current CPU"
-          type: string
-        - name: jmem
-          in: query
-          description: "Job Current Memory"
-          type: string
-        - name: jfmtact
-          in: query
-          description: "Job Failed Map Task Attempt Count"
-          type: string
-        - name: jfmtct
-          in: query
-          description: "Job Failed Map Task Count"
-          type: string
-        - name: jfrtact
-          in: query
-          description: "Job Failed Reduce Task Attempt Count"
-          type: string
-        - name: jfrtct
-          in: query
-          description: "Job Failed Reduce Task Count"
-          type: string
-        - name: jftact
-          in: query
-          description: "Job Failed Task Attempt Count"
-          type: string
-        - name: jftct
-          in: query
-          description: "Job Failed Task Count"
-          type: string
-        - name: jmibps
-          in: query
-          description: "Job Map Input Bytes Rate"
-          type: string
-        - name: jmirps
-          in: query
-          description: "Job Map Input Records Rate"
-          type: string
-        - name: jmobps
-          in: query
-          description: "Job Map Output Bytes Rate"
-          type: string
-        - name: jmorps
-          in: query
-          description: "Job Map Output Records Rate"
-          type: string
-        - name: jmtact
-          in: query
-          description: "Job Mask Task Attempt Count"
-          type: string
-        - name: jmtct
-          in: query
-          description: "Job Map Task Count"
-          type: string
-        - name: jmadmax
-          in: query
-          description: "Job Maximum Map Attempt Duration"
-          type: string
-        - name: jradmax
-          in: query
-          description: "Job Maximum Reduce Attempt Duration"
-          type: string
-        - name: jtadmax
-          in: query
-          description: "Job Maximum Task Duration"
-          type: string
-        - name: jribps
-          in: query
-          description: "Job Reduce Input Bytes Rate"
-          type: string
-        - name: jrirps
-          in: query
-          description: "Job Reduce Input Records Rate"
-          type: string
-        - name: jrobps
-          in: query
-          description: "Job Reduce Output Bytes Rate"
-          type: string
-        - name: jrorps
-          in: query
-          description: "Job Reduce Output Records Rate"
-          type: string
-        - name: jrsbps
-          in: query
-          description: "Job Reduce Shuffle Bytes Rate"
-          type: string
-        - name: jrtact
-          in: query
-          description: "Job Reduce Task Attempt Count"
-          type: string
-        - name: jrtct
-          in: query
-          description: "Job Reduce Task Count"
-          type: string
-        - name: jrumtct
-          in: query
-          description: "Job Running Map Task Count"
-          type: string
-        - name: jrurtct
-          in: query
-          description: "Job Running Reduce Task Count"
-          type: string
-        - name: jrutct
-          in: query
-          description: "Job Running Task Count"
-          type: string
-        - name: jtact
-          in: query
-          description: "Job Task Attempt Count"
-          type: string
-        - name: jtct
-          in: query
-          description: "Job Total Task Count"
-          type: string
-        - name: jd
-          in: query
-          description: "Job Duration"
-          type: string
-        - name: jid
-          in: query
-          description: "Job ID"
-          type: string
-        - name: jn
-          in: query
-          description: "Job Name"
-          type: string
-        - name: ju
-          in: query
-          description: "Job User"
-          type: string
-        - name: js
-          in: query
-          description: "Job Status"
-          type: string
-        - name: jmcmem
-          in: query
-          description: "Job Map Cumulative Memory Bytes"
-          type: string
-        - name: jrcmem
-          in: query
-          description: "Job Reduce Cumulative Memory Bytes"
-          type: string
-        - name: jpri
-          in: query
-          description: "Job Priority"
-          type: string
-        - name: jmpro
-          in: query
-          description: "Job Map Progress"
-          type: string
-        - name: jrpro
-          in: query
-          description: "Job Reduce Progress"
-          type: string
-        - name: jmtst
-          in: query
-          description: "Map Tasks Start Time"
-          type: string
-        - name: jmtft
-          in: query
-          description: "Map Tasks Finish Time"
-          type: string
-        - name: jrtst
-          in: query
-          description: "Reduce Tasks Start Time"
-          type: string
-        - name: jrtft
-          in: query
-          description: "Reduce Tasks Finish Time"
-          type: string
-        - name: jsbt
-          in: query
-          description: "Job Submit Time"
-          type: string
-        - name: jst
-          in: query
-          description: "Job Start Time"
-          type: string
-        - name: jft
-          in: query
-          description: "Job Finish Time"
-          type: string
-        - name: jrrsw
-          in: query
-          description: "Job Reduce Reserve Slot Wait"
-          type: string
-        - name: jmrsw
-          in: query
-          description: "Job Map Reserve Slot Wait"
-          type: string
-        - name: jdlmt
-          in: query
-          description: "Job Data-local Map Tasks"
-          type: string
-        - name: jolmt
-          in: query
-          description: "Job Non-local Map Tasks"
-          type: string
-        - name: jrlmt
-          in: query
-          description: "Job Rack-local Map Tasks"
-          type: string
-        - name: jrtd
-          in: query
-          description: "Job Reduce Tasks Duration"
-          type: string
-        - name: jmtd
-          in: query
-          description: "Job Map Tasks Duration"
-          type: string
-        - name: jmmbr
-          in: query
-          description: "Job MapR-FS Map Bytes Read"
-          type: string
-        - name: jrmbr
-          in: query
-          description: "Job MapR-FS Reduce Bytes Read"
-          type: string
-        - name: jtmbr
-          in: query
-          description: "Job MapR-FS Total Bytes Read"
-          type: string
-        - name: jmmbw
-          in: query
-          description: "Job MapR-FS Map Bytes Written"
-          type: string
-        - name: jrmbw
-          in: query
-          description: "Job MapR-FS Reduce Bytes Written"
-          type: string
-        - name: jtmbw
-          in: query
-          description: "Job MapR-FS Total Bytes Written"
-          type: string
-        - name: jmfbw
-          in: query
-          description: "Job Map File Bytes Written"
-          type: string
-        - name: jrfbw
-          in: query
-          description: "Job Reduce File Bytes Written"
-          type: string
-        - name: jtfbw
-          in: query
-          description: "Job Total File Bytes Written"
-          type: string
-        - name: jmir
-          in: query
-          description: "Cumulative Job Map Input Records"
-          type: string
-        - name: jrir
-          in: query
-          description: "Cumulative Job Reduce Input Records"
-          type: string
-        - name: jcir
-          in: query
-          description: "Cumulative Job Combine Input Records"
-          type: string
-        - name: jmor
-          in: query
-          description: "Cumulative Job Map Output Records"
-          type: string
-        - name: jror
-          in: query
-          description: "Cumulative Job Reduce Output Records"
-          type: string
-        - name: jcor
-          in: query
-          description: "Job Combine Output Records"
-          type: string
-        - name: jrsb
-          in: query
-          description: "Cumulative Job Reduce Shuffle Bytes"
-          type: string
-        - name: jmsr
-          in: query
-          description: "Job Map Spilled Records"
-          type: string
-        - name: jrsr
-          in: query
-          description: "Job Reduce Spilled Records"
-          type: string
-        - name: jtsr
-          in: query
-          description: "Job Total Spilled Records"
-          type: string
-        - name: jmob
-          in: query
-          description: "Cumulative Job Map Output Bytes"
-          type: string
-        - name: jmib
-          in: query
-          description: "Cumulative Job Map Input Bytes"
-          type: string
-        - name: jmcpu
-          in: query
-          description: "Job Map CPU"
-          type: string
-        - name: jrcpu
-          in: query
-          description: "Job Reduce CPU"
-          type: string
-        - name: jmsrb
-          in: query
-          description: "Job Map Split Raw Bytes"
-          type: string
-        - name: jrsrb
-          in: query
-          description: "Job Reduce Split Raw Bytes"
-          type: string
-        - name: jsrb
-          in: query
-          description: "Job Split Raw Bytes"
-          type: string
-        - name: jrig
-          in: query
-          description: "Job Reduce Input Groups"
-          type: string
-        - name: jvmb
-          in: query
-          description: "Virtual Memory Bytes"
-          type: string
-        - name: jmvmb
-          in: query
-          description: "Job Map Virtual Memory Bytes"
-          type: string
-        - name: jrvmb
-          in: query
-          description: "Job Reduce Virtual Memory Bytes"
-          type: string
-        - name: jgct
-          in: query
-          description: "Job Total GC Time"
-          type: string
-        - name: jmgct
-          in: query
-          description: "Job Map GC Time"
-          type: string
-        - name: jrgct
-          in: query
-          description: "Job Reduce GC Time"
-          type: string
       responses:
         200:
           description: OK
@@ -1872,7 +1497,7 @@ Note:
       responses:
         200:
           description: OK
-  /node/allow:
+  /node/allow-into-cluster:
     get:
       tags:
         - node
@@ -4360,6 +3985,752 @@ For more information about this permission as it applies to JSON tables, see [Ac
       responses:
         200:
           description: OK
+  /table/cf/colperm/get:
+    get:
+      tags:
+        - table
+      summary: "Lists the Access Control Expressions (ACEs) for a specified column."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `adminaccessperm` on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-colperm-get.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: cfname
+          in: query
+          description: "The name of the column family in which the column is located."
+          type: string
+        - name: name
+          in: query
+          description: "The name of the column that you want to list the ACEs for. If you do not specify the column name, the ACEs for all of the columns in the family are listed."
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/cf/colperm/set:
+    get:
+      tags:
+        - table
+      summary: "Sets Access Control Expressions (ACEs) for a specified column."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `adminaccessperm` on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-colperm-set.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          required: true
+          type: string
+        - name: cfname
+          in: query
+          description: "The name of the column family in which the column is located."
+          required: true
+          type: string
+        - name: name
+          in: query
+          description: '**For binary tables: **The name of the column for which you want to set the ACEs.
+
+
+**For JSON tables: **The fieldpath of the field on which you want to set permissions. For example, if you wanted to grant `readperm` to a user on field `b` in the following document. the fieldpath would be `a.b`.
+
+
+```
+
+`{
+
+  "a" : {
+
+          "b" : "value_b"
+
+        }
+
+}`
+
+```'
+          required: true
+          type: string
+        - name: appendperm
+          in: query
+          description: "**Applies to binary tables only: **The Access Control Expression for column appends. Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Column appends require permission both at the column-family level and at the column level."
+          required: true
+          type: string
+        - name: readperm
+          in: query
+          description: "The Access Control Expression for column reads. Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Reads require permission both at the column-family level and at the column level (for binary tables) or field level (for JSON tables). In JSON tables, this permission is inherited by fields within the column family."
+          required: true
+          type: string
+        - name: writeperm
+          in: query
+          description: "The Access Control Expression for column writes (puts and deletes). Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Writes require permission both at the column-family level and at the column level (for binary tables) or field level (for JSON tables). In JSON tables, this permission is inherited by fields within the column family."
+          required: true
+          type: string
+        - name: traverseperm
+          in: query
+          description: '**Applies to JSON tables only:** The Access Control Expressions that specifies who has permission to pass over fields in JSON documents. For example, suppose that a JSON table contains documents of this general structure: 
+
+
+```
+
+`{
+
+     "_id" : "ID",
+
+     "a" :
+
+          {
+
+               "b" : "value",
+
+               "c" : "value"
+
+          }
+
+}`
+
+```
+
+
+Suppose further that the user `sjohnson` has read permission on` a.b`, but not on `a`. For `sjohnson` to read `a.b`, the user needs the traverse permission on `a`. The user can then pass over field `a` to `a.b`. 
+
+
+ 
+
+
+This permission is inherited by fields within the column family. By default, this permission is given to the value of defaulttraverseperm for the JSON table.'
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/cf/colperm/delete:
+    get:
+      tags:
+        - table
+      summary: "Deletes the Access Control Expressions (ACEs) for a specified column. Deletion cannot be undone."
+      description: "Note: When a user, group, or role requests to read data from, write data to, or append data to a column, MapR-DB checks whether that user, group, or role has read or write permission for the column family AND read or write permission for the column. For example, suppose user `i_montoya` tries to write data to columns `col1` and `col2` in column family `cf1`. MapR-DB checks whether `i_montoya` has write permission on `cf1` AND `col1` AND `col2`. If `i_montoya` does not have all three permissions, MapR-DB returns an error that says access for the write is denied.
+
+
+If this user were to try to read from the same two columns, MapR-DB would simply not return the data. If the user tried to read from those two columns and additional columns on which he had read permissions, the results would contain the data for those additional columns but exclude the data for `col1` and `col2`.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `adminaccessperm` on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-colperm-delete.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          required: true
+          type: string
+        - name: cfname
+          in: query
+          description: "The name of the column family in which the column is located."
+          required: true
+          type: string
+        - name: name
+          in: query
+          description: "The name of the column that you want to delete the ACEs for."
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/cf/create:
+    get:
+      tags:
+        - table
+      summary: "Creates a column family for a MapR binary or JSON table."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `createrenamefamilyperm` on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-create_28219157.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: cfname
+          in: query
+          description: "The name of the column family to create."
+          type: string
+        - name: minversions
+          in: query
+          description: "**Applies to binary tables only: **Minimum number of versions of column values to keep. The default is zero."
+          type: string
+        - name: maxversions
+          in: query
+          description: "**Applies to binary tables only: **Maximum number of versions of column values to keep. The default is three."
+          type: string
+        - name: ttl
+          in: query
+          description: "Time to live in seconds. When the age of the data in this column family exceeds the value of the `ttl` parameter, the data is purged. Setting the value of `ttl` to 0 is equivalent to allowing data to remain indefinitely.
+
+
+Note: If the value of `-ttl` for an existing column family in a JSON table is not 0, you cannot add another column family. See [Setting the Time-to-Live for Data in OJAI Documents](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/setting_the_time_to_live.html#setting_the_time_to_live)."
+          type: string
+        - name: inmemory
+          in: query
+          description: "Boolean. Determines whether preference is given to values of this column family for storage with row keys. Because row keys are cached in memory in preference to row data, column-family data that is stored inline with the row keys is also cached in memory.
+
+
+ 
+
+
+For all column families in a table together, up to 200 bytes of row data will be stored inline with each row key. Storing data inline with a row key might speed retrieval of the data from a column family because disk access can often be avoided. For each column family, up to 32 bytes can be stored inline with each row key even if its `inmemory` parameter is set to `false`, but preference will be given to column families where this parameter is set to `true`. A column family can have more than 32 bytes stored inline if its `inmemory` parameter is set to `true`.
+
+
+ 
+
+
+If the total number of bytes for all column families together exceeds 200 for a row, then preference for inclusion within the inline storage for that row is given to column families that have the `inmemory` parameter set to `true`.
+
+
+ 
+
+
+Note: All of the data for a column family will be stored in-line with the row key, or none will be. If the contents in a column family for a particular row are larger than the maximum number of bytes that are allowed to be stored for that column family, no data at all will be stored in-line for that column family.
+
+
+ 
+
+
+The default value for the `inmemory` parameter is `false`."
+          type: boolean
+        - name: compression
+          in: query
+          description: "The compression setting to use for the column family. Valid options are `off`, `lzf`, `lz4`, and `zlib`. The default setting is equal to the compression setting for the directory in which the table is located. To find out whether a directory is compressed and the type of compression, see [Turning Compression On or Off on Directories](http://maprdocs.mapr.com/home/AdministratorGuide/TurningCompressionOnOff.html)."
+          type: string
+          enum:
+            - off
+            - lzf
+            - lz4
+            - zlib
+        - name: versionperm
+          in: query
+          description: "**Applies to binary tables only: **The Access Control Expression for changing the value of the `maxversions` and `minversions` parameters. By default, permission is given to the value of `defaultversionperm` for the table."
+          type: string
+        - name: compressionperm
+          in: query
+          description: "**Applies to binary tables only: **The Access Control Expression for changing the value of the `compression` parameter. By default, permission is given to the value of `defaultcompressionperm` for the table."
+          type: string
+        - name: memoryperm
+          in: query
+          description: "The Access Control Expression for changing the value of the `inmemory` parameter. Use single quotation marks around the ACE. By default, permission is given to the value of `defaultmemoryperm` for the table."
+          type: string
+        - name: readperm
+          in: query
+          description: "The Access Control Expression for column reads. Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Reads require permission both at the column-family level and at the column level (for binary tables) or field level (for JSON tables). In JSON tables, this permission is inherited by fields within the column family.
+
+
+ 
+
+
+By default, permission is given to the value of `defaultreadperm` for the table."
+          type: string
+        - name: writeperm
+          in: query
+          description: "The Access Control Expression for column writes (puts and deletes). Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Writes require permission both at the column-family level and at the column level (for binary tables) or field level (for JSON tables). In JSON tables, this permission is inherited by fields within the column family. 
+
+
+ 
+
+
+By default, permission is given to the value of `defaultwriteperm` for the table."
+          type: string
+        - name: appendperm
+          in: query
+          description: "**Applies to binary tables only: **The Access Control Expression for column appends. Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Column appends require permission both at the column-family level and at the column level. By default, permission is given to the value of `defaultappendperm` for the table."
+          type: string
+        - name: jsonpath
+          in: query
+          description: '**Applies to JSON tables only:** Specifies the path to the column family. The path is in dotted notation. For example, suppose the table contained JSON documents that were of this general structure: 
+
+
+```
+
+`{
+
+     "_id" : "ID",
+
+     "a" :
+
+          {
+
+               "b" : 
+
+                    {
+
+                         "c" : "value",
+
+                    },
+
+               "e" : "value"
+
+          }
+
+}`
+
+```
+
+
+You want to create a column family at the field `d `in the new path `a.b.d` because you plan to store image files in fields in that column family. 
+
+
+Important: Ensure that the field at which you want to create the column family does not yet exist. If the field does exist, it could become inaccessible after the column family is created.'
+          type: string
+        - name: force
+          in: query
+          description: "**Applies to JSON tables only:** By default, every time you try to create a non-default column family in a JSON table, this command fails and returns a warning message that you should ensure there is no existing data at the specified path. Set this parameter to true if you want to override this warning mechanism and create a column family."
+          type: boolean
+        - name: traverseperm
+          in: query
+          description: '**Applies to JSON tables only:** The Access Control Expressions that specifies who has permission to pass over fields in JSON documents. For example, suppose that a JSON table contains documents of this general structure: 
+
+
+```
+
+`{
+
+     "_id" : "ID",
+
+     "a" :
+
+          {
+
+               "b" : "value",
+
+               "c" : "value"
+
+          }
+
+}`
+
+```
+
+
+Suppose further that the user `sjohnson` has read permission on` a.b`, but not on `a`. For `sjohnson` to read `a.b`, the user needs the traverse permission on `a`. The user can then pass over field `a` to `a.b`. 
+
+
+ 
+
+
+This permission is inherited by fields within the column family. By default, this permission is given to the value of defaulttraverseperm for the JSON table.'
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/cf/delete:
+    get:
+      tags:
+        - table
+      summary: "Deletes a column family from a MapR-DB binary table or JSON table . Deletion cannot be undone."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `deletefamilyperm` on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-delete_28219161.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: cfname
+          in: query
+          description: "The name of the column family to delete.
+
+
+ 
+
+
+Note: In JSON tables, it is not possible to delete the default column family."
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/cf/edit:
+    get:
+      tags:
+        - table
+      summary: "Edits a column family in a binary table or JSON table ."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `createrenamefamilyperm` on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-edit_28219164.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: cfname
+          in: query
+          description: "The name of the column family to edit."
+          type: string
+        - name: newcfname
+          in: query
+          description: "The new name to give to the column family."
+          type: string
+        - name: minversions
+          in: query
+          description: "**Applies to binary tables only: **Minimum number of versions of column values to keep. The default is zero."
+          type: string
+        - name: maxversions
+          in: query
+          description: "**Applies to binary tables only: **Maximum number of versions of column values to keep. The default is three."
+          type: string
+        - name: ttl
+          in: query
+          description: "Time to live in seconds. When the age of the data in this column family exceeds the value of the `ttl` parameter, the data is purged. Setting the value of `ttl` to 0 is equivalent to allowing data to remain indefinitely.
+
+
+Note: If the value of `-ttl` for an existing column family in a JSON table is not 0, you cannot add another column family. See [Setting the Time-to-Live for Data in OJAI Documents](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/setting_the_time_to_live.html#setting_the_time_to_live)."
+          type: string
+        - name: inmemory
+          in: query
+          description: "Boolean. Determines whether preference is given to values of this column family for storage with row keys. Because row keys are cached in memory in preference to row data, column-family data that is stored inline with the row keys is also cached in memory.
+
+
+ 
+
+
+For all column families in a table together, up to 200 bytes of row data will be stored inline with each row key. Storing data inline with a row key might speed retrieval of the data from a column family because disk access can often be avoided. For each column family, up to 32 bytes can be stored inline with each row key even if its `inmemory` parameter is set to `false`, but preference will be given to column families where this parameter is set to `true`. A column family can have more than 32 bytes stored inline if its `inmemory` parameter is set to `true`.
+
+
+ 
+
+
+If the total number of bytes for all column families together exceeds 200 for a row, then preference for inclusion within the inline storage for that row is given to column families that have the `inmemory` parameter set to `true`.
+
+
+ 
+
+
+Note: All of the data for a column family will be stored in-line with the row key, or none will be. If the contents in a column family for a particular row are larger than the maximum number of bytes that are allowed to be stored for that column family, no data at all will be stored in-line for that column family.
+
+
+ 
+
+
+The default value for the `inmemory` parameter is `false`."
+          type: string
+        - name: compression
+          in: query
+          description: "The compression setting to use for the column family. Valid options are `off`, `lzf`, `lz4`, and `zlib`. The default setting is equal to the compression setting for the directory in which the table is located. To find out whether a directory is compressed and the type of compression, see [Turning Compression On or Off on Directories](http://maprdocs.mapr.com/home/AdministratorGuide/TurningCompressionOnOff.html#concept_cxv_4k3_f5)."
+          type: string
+          enum:
+            - off
+            - lzf
+            - lz4
+            - zlib
+        - name: versionperm
+          in: query
+          description: "**Applies to binary tables only: **The Access Control Expression for changing the value of the `maxversions` and `minversions` parameters. By default, permission is given to the value of `defaultversionperm` for the table."
+          type: string
+        - name: compressionperm
+          in: query
+          description: "**Applies to binary tables only: **The Access Control Expression for changing the value of the `compression` parameter. By default, permission is given to the value of `defaultcompressionperm` for the table."
+          type: string
+        - name: memoryperm
+          in: query
+          description: "The Access Control Expression for changing the value of the `inmemory` parameter. Use single quotation marks around the ACE. By default, permission is given to the value of `defaultmemoryperm` for the table."
+          type: string
+        - name: readperm
+          in: query
+          description: "The Access Control Expression for column reads. Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Reads require permission both at the column-family level and at the column level (for binary tables) or field level (for JSON tables). In JSON tables, this permission is inherited by fields within the column family.
+
+
+ 
+
+
+By default, permission is given to the value of `defaultreadperm` for the table."
+          type: string
+        - name: writeperm
+          in: query
+          description: "The Access Control Expression for column writes (puts and deletes). Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Writes require permission both at the column-family level and at the column level (for binary tables) or field level (for JSON tables). In JSON tables, this permission is inherited by fields within the column family. 
+
+
+ 
+
+
+By default, permission is given to the value of `defaultwriteperm` for the table."
+          required: true
+          type: string
+        - name: appendperm
+          in: query
+          description: "**Applies to binary tables only: **The Access Control Expression for column appends. Use single quotation marks around the ACE. 
+
+
+ 
+
+
+Column appends require permission both at the column-family level and at the column level. By default, permission is given to the value of `defaultappendperm` for the table."
+          type: string
+        - name: traverseperm
+          in: query
+          description: '**Applies to JSON tables only:** The Access Control Expressions that specifies who has permission to pass over fields in JSON documents. For example, suppose that a JSON table contains documents of this general structure: 
+
+
+```
+
+`{
+
+     "_id" : "ID",
+
+     "a" :
+
+          {
+
+               "b" : "value",
+
+               "c" : "value"
+
+          }
+
+}`
+
+```
+
+
+Suppose further that the user `sjohnson` has read permission on` a.b`, but not on `a`. For `sjohnson` to read `a.b`, the user needs the traverse permission on `a`. The user can then pass over field `a` to `a.b`. 
+
+
+ 
+
+
+This permission is inherited by fields within the column family. By default, this permission is given to the value of defaulttraverseperm for the JSON table.'
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/cf/list:
+    get:
+      tags:
+        - table
+      summary: "Lists a MapR table's column families."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `adminaccessperm` on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-list_28219130.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: cfname
+          in: query
+          description: "The name of the column family to edit."
+          type: string
+      responses:
+        200:
+          description: OK
   /table/delete:
     get:
       tags:
@@ -4454,6 +4825,1612 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/region/list:
+    get:
+      tags:
+        - table
+      summary: "Lists the regions that make up a specified table."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list_28219125.html
+      parameters:
+        - name: path
+          in: query
+          description: "Path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to list regions for a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, if you want to list regions for a table named `test` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          required: true
+          type: string
+        - name: start
+          in: query
+          description: "The offset from the starting region. The default value is 0."
+          type: string
+        - name: limit
+          in: query
+          description: "The number of regions to return, counting from the starting region. The default value is 2147483647."
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/region/merge:
+    get:
+      tags:
+        - table
+      summary: "Merges regions of a table together to reduce the number of regions that a table occupies."
+      description: "This command merges the region that you specify with the region that contains the row keys that immediately follow the row keys of the specified region.
+
+
+ 
+
+
+Note: Consider the table configuration when you decide to merge regions because it is possible that MapR-DB might immediately split the regions after they are merged. If `autosplit` is set to true, MapR-DB splits a region when the size of the region exceeds 150% of the average value (`regionsizemb`). For example, if the average value is 4096 MB, MapR-DB splits a region that is larger than 6144 MB. 
+
+
+ 
+
+
+ 
+
+
+
+
+## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `splitmergeperm` permission on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-merge_28219173.html
+      parameters:
+        - name: fid
+          in: query
+          description: "The FID for the table region that you want to merge. The output of `maprcli` [ `table region list` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list_28219125.html) lists the FIDs for the table."
+          required: true
+          type: string
+        - name: path
+          in: query
+          description: "The path to the table whose regions are being merged.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to merge regions for table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on a remote, you must also specify the cluster name in the path. For example, if you want to merge regions for table named `test` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/region/pack:
+    get:
+      tags:
+        - table
+      summary: "Manually triggers the packing of regions."
+      description: "MapR-DB automatically packs regions; however, you can use this command to reclaim space that is consumed by expired rows or to avoid read amplification.
+
+
+ 
+
+
+ 
+
+
+
+
+## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `packperm` permission on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-pack_28217873.html
+      parameters:
+        - name: path
+          in: query
+          description: "Specifies the path to the table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to pack a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, if you want to pack a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: fid
+          in: query
+          description: "Specifies that you want to pack all table regions or a single table region that you identify with a FID. The output of maprcli [table region list](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list_28219125.html) lists the FIDs for the table."
+          type: string
+          enum:
+            - fid
+            - all
+        - name: nthreads
+          in: query
+          description: "Specifies the number of threads allocated to process the packing of table regions. Default:16"
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/region/split:
+    get:
+      tags:
+        - table
+      summary: "Splits a region in a table."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+* `splitmergeperm` permission on the table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-split_28219240.html
+      parameters:
+        - name: path
+          in: query
+          description: "Path to the table.
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to split regions in a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
+ 
+ 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, if you want to split regions in a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
+          required: true
+          type: string
+        - name: fid
+          in: query
+          description: "The FID of the region to split. The output of `maprcli` [ `table region list` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list_28219125.html) lists the FIDs for the table's regions."
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/replica/add:
+    get:
+      tags:
+        - table
+      summary: "Registers a table as a replica of another MapR-DB binary or JSON table."
+      description: "Note: You do not need to use this command it you use the `table replica autosetup` command. 
+
+
+ 
+
+
+ 
+
+
+
+
+## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
+ 
+* `readperm` and `replperm` permissions on the source table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-add_28217896.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the source table that you want to replicate.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
+ 
+ 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
+          type: string
+        - name: replica
+          in: query
+          description: "The path to the replica.
+
+
+ 
+ 
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
+ 
+ 
+ 
+* For a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst` 
+ 
+ 
+
+
+Note: For replication to a table, the command will fail if the table in the replica path does not exist."
+          type: string
+        - name: columns
+          in: query
+          description: 'By default, all columns in the source table are replicated. 
+
+
+ 
+
+
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaadd__col_dl1"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+
+
+Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
+
+
+ </dd> <dt>For JSON tables</dt> <dd>Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+
+
+**Example**
+
+
+ 
+
+
+Suppose your table contains documents that contain this general structure:
+
+
+ 
+
+
+```
+
+`{
+
+     "_id" : "ID",
+
+     "a" :
+
+          {
+
+               "b" : 
+
+                    {
+
+                         "c" : "value",
+
+                    },
+
+               "e" : "value"
+
+          }
+
+}`
+
+```
+
+
+
+
+
+To replicate fields `a`, `c`, and `e`, you would specify these field paths:
+
+
+ 
+
+
+
+
+
+```
+
+`a,a.b.c,a.e`
+
+```
+
+
+Do not use quotation marks and do not include spaces after commas. 
+
+
+ 
+
+
+Suppose now that `a.b` and `a.e` were custom column families. You want to replicate only the default column family and column family `a.e`. To do so, you would specify field paths like this:
+
+
+ 
+
+
+```
+
+`",a.e"`
+
+```
+
+
+
+
+
+The empty string before the comma indicates the default column family.
+
+
+ </dd> </dl>'
+          type: string
+        - name: paused
+          in: query
+          description: "A Boolean value that specifies whether to pause the replication so that it does not start immediately. The replication can be resumed using the replica resume command at a later time. The values are `true` or false. Not paused (`false`) is the default."
+          type: boolean
+        - name: throttle
+          in: query
+          description: "A Boolean value that specifies whether to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are true or false. No throttle (`false`) is the default."
+          type: boolean
+        - name: networkencryption
+          in: query
+          description: "A Boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. No encryption (false) is the default. If you set this to `true`, the local cluster and any other cluster that is part of the replication process must be enabled for security."
+          type: boolean
+        - name: synchronous
+          in: query
+          description: "A Boolean value that specifies whether replication is synchronous or asynchronous. The values are `true` or `false`. Asynchronous (`false`) is the default."
+          type: boolean
+        - name: networkcompression
+          in: query
+          description: "The type of on-wire compression.
+
+
+ 
+
+
+The types are:
+
+
+ 
+ 
+*  `off` 
+ 
+* on (default)
+ 
+*  `lzf` 
+ 
+*  `lz4` 
+ 
+*  `zlib` 
+ 
+ 
+
+
+lz4 is the default compression which it set by parameter values `on` or `lz4`."
+          type: string
+          enum:
+            - off
+            - on
+            - lzf
+            - lz4
+            - zlib
+      responses:
+        200:
+          description: OK
+  /table/replica/autosetup:
+    get:
+      tags:
+        - table
+      summary: "Sets up and starts replication between a source MapR-DB binary or JSON table to a replica MapR-DB binary or JSON table."
+      description: "The `maprcli table replica autosetup` command performs the following steps to set up replication:
+
+
+ 
+ 
+1. Creates a table with the required column families in the destination cluster.
+ 
+1. Declares the new table to be a replica of the source table and ensures that replication does not begin immediately after the next step.
+ 
+1. Declares the source table as an upstream source for the replica.
+ 
+1. Runs the `CopyTable` utility to load a copy of the source data into the replica.
+ 
+1. Clears the paused replication state to start the replication stream.
+ 
+ 
+
+
+ 
+
+
+
+
+## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
+ 
+* `readperm` and `replperm` permissions on the source table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-autosetup.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the source table that you want to replicate.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
+ 
+ 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
+          type: string
+        - name: replica
+          in: query
+          description: "The path to the replica.
+
+
+ 
+ 
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
+ 
+* For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst `under`volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst` 
+ 
+ 
+
+
+Note: For replication to a table, the command will fail if the replica path you specify points to table that already exists."
+          type: string
+        - name: columns
+          in: query
+          description: 'By default, all columns in the source table are replicated. 
+
+
+ 
+
+
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaautosetup__d903e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+
+
+Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
+
+
+ </dd> <dt>For JSON tables</dt> <dd>Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+
+
+**Example**
+
+
+ 
+
+
+Suppose your table contains documents that contain this general structure:
+
+
+ 
+
+
+```
+
+`{
+
+     "_id" : "ID",
+
+     "a" :
+
+          {
+
+               "b" : 
+
+                    {
+
+                         "c" : "value",
+
+                    },
+
+               "e" : "value"
+
+          }
+
+}`
+
+```
+
+
+
+
+
+To replicate fields `a`, `c`, and `e`, you would specify these field paths:
+
+
+ 
+
+
+
+
+
+```
+
+`a,a.b.c,a.e`
+
+```
+
+
+Do not use quotation marks and do not include spaces after commas. 
+
+
+ 
+
+
+Suppose now that `a.b` and `a.e` were custom column families. You want to replicate only the default column family and column family `a.e`. To do so, you would specify field paths like this:
+
+
+ 
+
+
+```
+
+`",a.e"`
+
+```
+
+
+
+
+
+The empty string before the comma indicates the default column family.
+
+
+ </dd> </dl>'
+          type: string
+        - name: synchronous
+          in: query
+          description: "A Boolean value that specifies whether replication is synchronous or asynchronous. The values are `true` or `false.` Asynchronous (`false`) is the default."
+          type: boolean
+        - name: multimaster
+          in: query
+          description: "A Boolean value that specifies whether or not to set up a multi-master topology. The values are `true` or `false.` Basic master-slave topology (`false`) is the default."
+          type: boolean
+        - name: throttle
+          in: query
+          description: "A Boolean value that specifies whether or not to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are true or false. No throttle (`false`) is the default."
+          type: boolean
+        - name: networkencryption
+          in: query
+          description: "A Boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. No encryption `(false)` is the default`.` If you set this to `true`, the local cluster and any other cluster that is part of the replication process must be enabled for security."
+          type: boolean
+        - name: networkcompression
+          in: query
+          description: "The type of on-wire compression.
+
+
+ 
+
+
+The types are:
+
+
+ 
+ 
+* off
+ 
+*  `on` (default)
+ 
+*  `lzf` 
+ 
+*  `lz4` 
+ 
+*  `zlib` 
+ 
+ 
+
+
+lz4 is the default compression which it set by parameter values ` `on` `or` `lz4`. `"
+          type: string
+          enum:
+            - off
+            - on
+            - lzf
+            - lz4
+            - zlib
+      responses:
+        200:
+          description: OK
+  /table/replica/edit:
+    get:
+      tags:
+        - table
+      summary: "Edits the properties of a replica of a MapR-DB binary or JSON table."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
+ 
+* `readperm` and `replperm` permissions on the source table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-edit_28218152.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the source table that you want to replicate.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
+          type: string
+        - name: replica
+          in: query
+          description: "The path to the replica.
+
+
+ 
+ 
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
+ 
+ 
+ 
+* For a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
+          type: string
+        - name: newreplica
+          in: query
+          description: "The updated replica path due to a renamed replica table, renamed cluster, or changed table path. The table specified in the `replica` parameter and the table specified in the `newreplica` parameter must have the same UUID."
+          type: string
+        - name: columns
+          in: query
+          description: 'By default, all columns in the source table are replicated. 
+
+
+ 
+
+
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaedit__d903e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+
+
+Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
+
+
+ </dd> <dt>For JSON tables</dt> <dd>Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+
+
+**Example**
+
+
+ 
+
+
+Suppose your table contains documents that contain this general structure:
+
+
+ 
+
+
+```
+
+`{
+
+     "_id" : "ID",
+
+     "a" :
+
+          {
+
+               "b" : 
+
+                    {
+
+                         "c" : "value",
+
+                    },
+
+               "e" : "value"
+
+          }
+
+}`
+
+```
+
+
+
+
+
+To replicate fields `a`, `c`, and `e`, you would specify these field paths:
+
+
+ 
+
+
+
+
+
+```
+
+`a,a.b.c,a.e`
+
+```
+
+
+Do not use quotation marks and do not include spaces after commas. 
+
+
+ 
+
+
+Suppose now that `a.b` and `a.e` were custom column families. You want to replicate only the default column family and column family `a.e`. To do so, you would specify field paths like this:
+
+
+ 
+
+
+```
+
+`",a.e"`
+
+```
+
+
+
+
+
+The empty string before the comma indicates the default column family.
+
+
+ </dd> </dl>'
+          type: string
+        - name: throttle
+          in: query
+          description: "A Boolean value that specifies whether or not to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are true or false. No throttle (`false`) is the default."
+          type: string
+        - name: networkencryption
+          in: query
+          description: "A Boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false.` No encryption `(false)` is the default`.` If you set this to true, the local cluster and any other cluster that is part of the replication process must be enabled for security."
+          type: string
+        - name: synchronous
+          in: query
+          description: "A Boolean value that specifies whether replication is synchronous or asynchronous. The values are `true` or `false.` Asynchronous (`false`) is the default."
+          type: string
+        - name: networkcompression
+          in: query
+          description: "The type of on-wire compression.
+
+
+ 
+
+
+The types are:
+
+
+ 
+ 
+* off
+ 
+* on (default)
+ 
+*  `lzf` 
+ 
+*  `lz4.` This is the default
+ 
+*  `zlib` 
+ 
+ 
+
+
+lz4 is the default compression which it set by parameter values on or lz4."
+          type: string
+          enum:
+            - off
+            - on
+            - lzf
+            - lz4
+            - zlib
+      responses:
+        200:
+          description: OK
+  /table/replica/list:
+    get:
+      tags:
+        - table
+      summary: "Lists replicas and the associated replica statistics for a specified MapR-DB binary or JSON table. By default, replica statistics are updated every five minutes."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-list_28218154.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table that you want to list replicas for.
+
+
+ 
+ 
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
+ 
+* For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco`cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
+          type: boolean
+        - name: refreshnow
+          in: query
+          description: "A Boolean value that specifies if you want to trigger an immediate update of the replica statistics. The values are `true` or `false`. By default, the value is `false`; the command lists the current version of the replica statistics, which could be a maximum of five minutes old."
+          type: boolean
+      responses:
+        200:
+          description: OK
+  /table/replica/pause:
+    get:
+      tags:
+        - table
+      summary: "Pauses the replication of data from a source MapR-DB binary or JSON table to a replica MapR-DB binary or JSON table."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
+ 
+* `replperm` permissions on the source table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-pause_28218172.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the source table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
+          type: string
+        - name: replica
+          in: query
+          description: "The path to the replica that will receive updates from the source.
+
+
+ 
+ 
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
+ 
+* For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/replica/remove:
+    get:
+      tags:
+        - table
+      summary: "Un-registers the specified MapR-DB binary or JSON table as a replica."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
+ 
+* `replperm` permissions on the source table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-remove_28218163.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the source table that is being replicated.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
+          type: string
+        - name: replica
+          in: query
+          description: "The path to the replica.
+
+
+ 
+ 
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
+ 
+ 
+ 
+* For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/replica/resume:
+    get:
+      tags:
+        - table
+      summary: "Resumes replication between a source MapR-DB binary or JSON table and a replica of that table when the replication state is set to paused by the maprcli table replica add or the maprcli table replica pause command."
+      description: "## Permissions Required
+
+To run this command, your user ID must have the following permissions:
+ 
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
+ 
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
+ 
+* `replperm` permissions on the source table
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-resume_28218166.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table that will be replicated.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
+ 
+ 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
+          type: string
+        - name: replica
+          in: query
+          description: "The path to the replica.
+
+
+ 
+ 
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
+ 
+ 
+ 
+* For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/replica/elasticsearch/autosetup:
+    get:
+      tags:
+        - table
+      summary: "Maps a MapR-DB source binary table to an Elasticsearch type."
+      description: "The type can already exist, as would be the case if custom mapping of MapR-DB data to Elasticsearch-supported data types is configured. If the type doesn't already exist, this command creates it and then loads data from the source table into the type.
+
+
+ 
+
+
+The final action of this command is to start replication from the source table to the type.
+
+
+ 
+
+
+The user that runs the command must have the following permissions granted through access control expressions on the source table:
+
+
+ 
+ 
+* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression.
+ 
+* Permission to perform replication, which is granted with the `replperm` access control expression.
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656801.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the new MapR-DB table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: target
+          in: query
+          description: "The name of the Elasticsearch cluster that you want to index data in. This name is the name specified for the cluster when it was registered with the current MapR cluster."
+          type: string
+        - name: index
+          in: query
+          description: "The name of the Elasticsearch index in which the type is located (if the type exists) or will be created (if it does not exist)."
+          type: string
+        - name: type
+          in: query
+          description: "The name of the Elasticsearch type. Updates to the MapR-DB source table will be replicated to this type."
+          type: string
+        - name: conversionclass
+          in: query
+          description: "The name of the Java class that extends the MapR-provided interface `MapRESConverter` and specifies how to convert source data to Elasticsearch-supported data types that MapR-DB does not support. For more information about custom mapping of source data types to Elasticsearch-supported data types, see [Converting Data to Elasticsearch Data Types That MapR-DB Does Not Support](http://maprdocs.mapr.com/home/MapR-DB/ConvertingDatatoNonsupportedESTypes.html).
+
+
+ 
+
+
+If use this parameter, you must also use the `conversionjar` parameter."
+          type: string
+        - name: conversionjar
+          in: query
+          description: "The path to the JAR file in which the class specified by the `conversionclass` parameter is located."
+          type: string
+        - name: columns
+          in: query
+          description: "A comma-separated list of column families and specific columns within column families. This list indicates which columns to replicate to the Elasticsearch type that is specified by the type parameter.
+
+
+ 
+
+
+To replicate all columns within a column family, provide the name of the column family.
+
+
+ 
+
+
+To replicate particular columns within a column family, provide the name of the column family and the name of the column. Separate the two with a colon.
+
+
+ 
+
+
+For example, the following list causes the replication of all columns in the column family `personal`, all columns in the column family `purchase`, the `number_of_stars` column in the column family `review`, and the `date` column in the column family `review`:
+
+
+ 
+
+
+ `-columns personal,purchase,review:number_of_stars,review:date`"
+          type: string
+        - name: throttle
+          in: query
+          description: "A Boolean value that specifies whether to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are true or false. No throttle (false) is the default."
+          type: boolean
+        - name: networkencryption
+          in: query
+          description: "A Boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. No encryption (false) is the default. If you set this to true, the source MapR cluster must be enabled for security.
+
+
+ 
+
+
+Note: Data is encrypted only until it reaches a MapR gateway. From the gateway to an Elasticsearch cluster, this parameter has no effect."
+          type: boolean
+        - name: networkcompression
+          in: query
+          description: "The type of on-wire compression.
+
+
+ 
+
+
+The types are:
+
+
+ 
+ 
+*  `off` 
+ 
+*  `on` (default)
+ 
+*  `lzf` 
+ 
+*  `lz4` 
+ 
+*  `zlib` 
+ 
+ 
+
+
+lz4 is the default compression which it set by the parameter values `on` and `lz4`.
+
+
+ 
+
+
+Note: Data is compressed only until it reaches a MapR gateway. From the gateway to an Elasticsearch cluster, this parameter has no effect."
+          type: string
+          enum:
+            - off
+            - on
+            - lzf
+            - lz4
+            - zlib
+      responses:
+        200:
+          description: OK
+  /table/replica/elasticsearch/edit:
+    get:
+      tags:
+        - table
+      summary: "Edits the mapping of a MapR-DB source binary table to an Elasticsearch type."
+      description: "The user that runs the command must have the following permissions granted through access control expressions on the source table:
+
+
+ 
+ 
+* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression.
+ 
+* Permission to perform replication, which is granted with the `replperm` access control expression.
+ 
+ 
+
+
+Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656805.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the MapR-DB table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: target
+          in: query
+          description: "The name of the Elasticsearch cluster in which the index and type are located. This name is the name specified for the cluster when it was registered with the current MapR cluster."
+          type: string
+        - name: index
+          in: query
+          description: "The name of the Elasticsearch index in which the type is located."
+          type: string
+        - name: type
+          in: query
+          description: "The name of the Elasticsearch type that updates to the MapR-DB source table are being replicated to."
+          type: string
+        - name: conversionclass
+          in: query
+          description: "The name of the Java class that extends the MapR-provided interface `MapRESConverter` and specifies how to convert source data to Elasticsearch-supported data types that MapR-DB does not support. For more information about custom mapping of source data types to Elasticsearch-supported data types, see [ Converting Data to Elasticsearch Data Types That MapR-DB Does Not Support](http://maprdocs.mapr.com/home/MapR-DB/ConvertingDatatoNonsupportedESTypes.html).
+
+
+ 
+
+
+If use this parameter, you must also use the `conversionjar` parameter."
+          type: string
+        - name: conversionjar
+          in: query
+          description: "The path to the JAR file in which the class specified by the `conversionclass` parameter is located."
+          type: string
+        - name: columns
+          in: query
+          description: "A comma-separated list of column families and specific columns within column families. This list indicates which columns to replicate to the Elasticsearch type that is specified by the type parameter.
+
+
+ 
+
+
+To replicate all columns within a column family, provide the name of the column family.
+
+
+ 
+
+
+To replicate particular columns within a column family, provide the name of the column family and the name of the column. Separate the two with a colon.
+
+
+ 
+
+
+For example, the following list causes the replication of all columns in the column family `personal`, all columns in the column family `purchase`, the `number_of_stars` column in the column family `review`, and the `date` column in the column family `review`:
+
+
+ 
+
+
+ `-columns personal,purchase,review:number_of_stars,review:date` 
+
+
+ 
+
+
+If you change the list by removing any columns or column families that have already been replicated to the Elasticsearch type, those columns and column families are not deleted from the type. MapR-DB replicates updates only; it does not replicate deletions or remove data from Elasticsearch types. If you do not want to keep the data in the type, follow these steps:
+
+
+ 
+ 
+1. On the source MapR cluster, remove the mapping of the source table to the type by running the command [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656812.html). If the source table is being indexed in more than one type, and those types also contain the columns and column families that you are no longer indexing, run the command [maprcli table replica elasticsearch list](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656816.html) to list all of the types that are mapped to the source table. Then, run the command  [`maprcli table replica elasticsearch remove`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656812.html)  for each type.
+ 
+1. In Elasticsearch, delete all of the types that were mapped to the source table.
+ 
+1. On the source MapR cluster, recreate each type and restart indexing by running the command  [`maprcli table replica elasticsearch autosetup`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656801.html)  for each type.
+ 
+ 
+
+
+Note: To copy the content of the source table into the type, the `maprcli table replica elasticsearch autosetup` command starts a MapReduce job. The length of the job depends on the size of the source table and the number of columns that you are indexing. Moreover, the volume of data and the speed at which the Elasticsearch type is populated could perceptibly slow the performance of other processes running at the same time on the Elasticsearch cluster. The less data there is to copy to the type, the faster the MapReduce job will end and the fewer resources the job will consume on the Elasticsearch cluster."
+          type: string
+        - name: throttle
+          in: query
+          description: "A Boolean value that specifies whether to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are true or false. No throttle (false) is the default."
+          type: boolean
+        - name: networkencryption
+          in: query
+          description: "A Boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. No encryption (false) is the default. If you set this to true, the local cluster and any other cluster that is part of the replication process must be enabled for security.
+
+
+ 
+
+
+Note: Data is encrypted only until it reaches a MapR gateway. From the gateway to an Elasticsearch cluster, this parameter has no effect."
+          type: boolean
+        - name: networkcompression
+          in: query
+          description: "The type of on-wire compression.
+
+
+ 
+
+
+The types are:
+
+
+ 
+ 
+* off
+ 
+* on (default)
+ 
+* lzf
+ 
+* lz4
+ 
+* zlib
+ 
+ 
+
+
+lz4 is the default compression which it set by the parameter values `on` and `lz4`.
+
+
+ 
+
+
+Note: Data is compressed only until it reaches a MapR gateway. From the gateway to an Elasticsearch cluster, this parameter has no effect."
+          type: string
+          enum:
+            - off
+            - on
+            - lzf
+            - lz4
+            - zlib
+      responses:
+        200:
+          description: OK
+  /table/replica/elasticsearch/list:
+    get:
+      tags:
+        - table
+      summary: "Lists the Elasticsearch types and the associated replication statistics for a specified binary table."
+      description: "By default, statistics are updated every five minutes."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656816.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the table that you want to list the Elasticsearch types for.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: refreshnow
+          in: query
+          description: "A Boolean value that specifies if you want to trigger an immediate update of the replication statistics. The values are `true` or `false`. By default, the value is false; the command lists the current version of the replication statistics, which could be a maximum of five minutes old."
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/replica/elasticsearch/pause:
+    get:
+      tags:
+        - table
+      summary: "Pauses replication to an Elasticsearch type from a MapR-DB source binary table."
+      description: "Two reasons that you might want to pause replication are:
+
+
+ 
+ 
+* You want to run [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656812.html) to remove the mapping from a source table to a type that is currently receiving replicated updates.
+ 
+* You want to compare the data in the type to the data in the source table by using the [ `DiffTables` ](http://maprdocs.mapr.com/home/ReferenceGuide/DiffTables.html) utility.
+ 
+ 
+
+
+To resume replication to a type, run the  [`maprcli table replica elasticsearch resume`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656814.html)  command."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656809.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the MapR-DB source table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: target
+          in: query
+          description: "The name of the Elasticsearch cluster in which to create the new type. This name is the name specified for the cluster when it was registered with the current MapR cluster."
+          type: string
+        - name: index
+          in: query
+          description: "The name of the Elasticsearch index in which the type is located."
+          type: string
+        - name: type
+          in: query
+          description: "The name of the Elasticsearch type that updates to the MapR-DB source table are being replicated to."
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/replica/elasticsearch/resume:
+    get:
+      tags:
+        - table
+      summary: "Resumes replication to an Elasticsearch type from a MapR-DB source binary table."
+      description: "The result of this command is the opposite of the command [ `maprcli table replica elasticsearch pause` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656809.html)."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656814.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the MapR-DB source table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: target
+          in: query
+          description: "The name of the Elasticsearch cluster in which to create the new type. This name is the name specified for the cluster when it was registered with the current MapR cluster."
+          type: string
+        - name: index
+          in: query
+          description: "The name of the Elasticsearch index in which the type is located."
+          type: string
+        - name: type
+          in: query
+          description: "The name of the Elasticsearch type that updates to the MapR-DB source table are being replicated to."
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/replica/elasticsearch/remove:
+    get:
+      tags:
+        - table
+      summary: "Removes the mapping from a MapR-DB source binary table to an Elasticsearch type."
+      description: "Updates from the table will no longer be replicated to the type. The type is not removed from the Elasticsearch cluster in which it is located."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656812.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the MapR-DB source table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
+          type: string
+        - name: target
+          in: query
+          description: "The name of the Elasticsearch cluster in which the type being replicated to is located. This name is the name specified for the cluster when it was registered with the current MapR cluster."
+          type: string
+        - name: index
+          in: query
+          description: "The name of the Elasticsearch index in which the type is located."
+          type: string
+        - name: type
+          in: query
+          description: "The name of the Elasticsearch type that updates to the MapR-DB source table are being replicated to."
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/upstream/add:
+    get:
+      tags:
+        - table
+      summary: "Adds a binary table as upstream source for a replica."
+      description: "Note: You do not need to use this command if you use the `table replica autosetup` command."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-add_28217902.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the replica.
+
+
+ 
+ 
+* For a path to a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/testdst` 
+ 
+ 
+ 
+* For a path to a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
+          type: string
+        - name: upstream
+          in: query
+          description: "The path to the source table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/testsrc` 
+ 
+ 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customersrc`"
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/upstream/list:
+    get:
+      tags:
+        - table
+      summary: "Lists the binary tables that replicate data to the specified replica binary table."
+      description: ""
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-list_28218230.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the replica.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
+ 
+ 
+ 
+* For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named customerdst under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customerdst`"
+          type: string
+      responses:
+        200:
+          description: OK
+  /table/upstream/remove:
+    get:
+      tags:
+        - table
+      summary: "Un-registers a binary table as an upstream source for a replica."
+      description: "Note: This step is separate from the `table replica remove` command, which stops replication updates to a replica."
+      externalDocs:
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-remove_28218234.html
+      parameters:
+        - name: path
+          in: query
+          description: "The path to the replica.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
+ 
+ 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
+          type: string
+        - name: upstream
+          in: query
+          description: "The path to the source table.
+
+
+ 
+ 
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testsrc` 
+ 
+ 
+ 
+* For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customersrc`"
           type: string
       responses:
         200:

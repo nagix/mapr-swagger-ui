@@ -148,7 +148,9 @@ def print_command(d, tag):
 
   # Get command path
   syntax = d('h2,p')('*:contains("Syntax") ~ *').text()
-  match = re.search('(?<=rest)/[a-z/<>]+', syntax)
+  if not syntax:
+    syntax = d('dt:contains("REST")').parent().text()
+  match = re.search('(?<=rest)/[a-z\-/<>]+', syntax)
   if not match:
     return
   path = match.group().replace('<','{').replace('>','}')
@@ -177,6 +179,8 @@ def print_command(d, tag):
   for e in content:
     if pq(e)('h2,p')('*:contains("Syntax")'):
       break
+    if pq(e)('dt:contains("REST")'):
+      break
     elements.append(e)
   description = gfm(pq(elements))
   print('  %s:' % path)
@@ -189,7 +193,9 @@ def print_command(d, tag):
   print('        url: %s' % d.base_url)
 
   # Print parameters
-  parameters = d('h2,p')('*:contains("Parameters") ~ * tbody')
+  parameters = d('h2,p')('*:contains("Parameters") ~ * tbody').eq(0)
+  if not parameters:
+    parameters = d('th:contains("Parameter")').closest('table').find('tbody')
   if parameters:
     print('      parameters:')
     for i in parameters('tr').items():
@@ -232,20 +238,24 @@ def print_command(d, tag):
   print('        200:')
   print('          description: OK')
 
+# Find and print command
+def find_command(links, cat=None):
+  for e in links:
+    category = cat
+    if not cat:
+      category = e.text
+    d = pq(e.get('href')).make_links_absolute()
+    sublinks = d('.link a')
+    if sublinks:
+      find_command(sublinks, category)
+    else:
+      print_command(d, category)
+
 # Main
 with open(os.path.join(os.path.dirname(__file__), filename), "w") as sys.stdout:
   d = pq(baseurl).make_links_absolute()
   print_headers(d)
-  category_links = d('.link:gt(0) a')
-  for i in category_links.items():
-    d = pq(i.attr.href).make_links_absolute()
-    command_links = d('.link a')
-    if command_links:
-      for j in command_links.items():
-        d = pq(j.attr.href).make_links_absolute()
-        print_command(d, i.text())
-    else:
-      print_command(d, i.text())
+  find_command(d('.link:gt(0) a'))
 
 sys.stderr.write('\r\033[K')
 sys.stderr.flush()
