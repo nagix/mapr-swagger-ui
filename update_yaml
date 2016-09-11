@@ -203,8 +203,14 @@ def print_command(d, tag):
       name = trim(parameter[0].text())
 
       # Handle MapR doc bug
-      if name == 'virtualip end range':
+      if path == '/rlimit/set' and name == 'limit':
+        name = 'value'
+      elif name == 'virtualip end range':
         name = 'virtualipend'
+      elif name == 'mac':
+        name = 'tomac'
+      elif name == 'clustername':
+        name = 'cluster'
       else:
         name = re.search(r'\w+', name).group()
       if name == 'json' or name == 'long':

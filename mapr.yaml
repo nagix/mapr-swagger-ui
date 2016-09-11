@@ -1977,7 +1977,7 @@ See the lists of parameters below this table."
           in: query
           description: "The name of the cluster whose usage limit is being set."
           type: string
-        - name: limit
+        - name: value
           in: query
           description: "The value of the limit being set. You can express the value as KB, MB, GB, or TB."
           type: string
@@ -6693,7 +6693,7 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
           in: query
           description: "A virtual IP address that defines the end of a virtual IP address range."
           type: string
-        - name: mac
+        - name: tomac
           in: query
           description: "The MAC address that the virtual IP addresses are being assigned."
           type: string
@@ -7223,7 +7223,7 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           description: "The volume name."
           required: true
           type: string
-        - name: clustername
+        - name: cluster
           in: query
           description: "The cluster name"
           type: string
@@ -7298,7 +7298,7 @@ Example: `/home/abc/.rw`"
           description: "The volume name."
           required: true
           type: string
-        - name: clustername
+        - name: cluster
           in: query
           description: "The cluster name."
           type: string
@@ -7330,7 +7330,7 @@ Example: `/home/abc/.rw`"
 *  `volume name` - the name of the volume Example: `/abc/maprfs::mirror::abc`"
           required: true
           type: string
-        - name: clustername
+        - name: cluster
           in: query
           description: "The cluster name."
           type: string
