@@ -105,15 +105,15 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
       parameters:
         - name: cluster
           in: query
-          description: "The name of the cluster on which to run the command"
+          description: "The name of the cluster on which to run the command."
           type: string
         - name: group
           in: query
-          description: "The group for which to display permissions"
+          description: "The group for which to display permissions."
           type: string
         - name: name
           in: query
-          description: "The cluster or volume name"
+          description: "The cluster or volume name."
           type: string
         - name: output
           in: query
@@ -138,7 +138,7 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           type: string
         - name: type
           in: query
-          description: "Cluster or volume."
+          description: "Value can be: `cluster` or `volume`."
           required: true
           type: string
           enum:
@@ -464,7 +464,7 @@ There are three methods of specifying the location of gateways to a MapR cluster
 
 Note: Deleting a list of gateways with the `maprcli cluster gateway delete` command does not uninstall the listed gateways from the MapR cluster where they are located."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-delete_29656076.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-delete.html
       parameters:
         - name: dstcluster
           in: query
@@ -502,7 +502,7 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
 
 This list of gateways is created by the `maprcli cluster gateway set` command."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-get_29656094.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-get.html
       parameters:
         - name: dstcluster
           in: query
@@ -540,7 +540,7 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
 
 This list is created by the `maprcli cluster gateway set` command."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-list_29656099.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-list.html
       parameters:
         - name: cluster
           in: query
@@ -556,7 +556,7 @@ This list is created by the `maprcli cluster gateway set` command."
       summary: "Lists the gateways that are configured on the MapR cluster where this command is run."
       description: ""
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-local_29656115.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-local.html
       parameters:
         - name: format
           in: query
@@ -634,7 +634,7 @@ Note: Unresponsive gateways are not included in the list.
 
 For more information about gateways, see [ MapR Gateways](http://maprdocs.mapr.com/home/Gateways/MapRGateways.html)."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-resolve_29656125.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-resolve.html
       parameters:
         - name: dstcluster
           in: query
@@ -666,7 +666,7 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
       summary: "Specifies the locations of the MapR gateways that a source MapR cluster can use for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch cluster."
       description: "In addition to this method, there are two other methods that you can use to specify the locations of gateways that a source MapR cluster can use when replicating to a particular MapR cluster or when indexing in an Elasticsearch cluster. See [Configuring MapR Gateways for Binary-Table Replication, Stream Replication, or Indexing](http://maprdocs.mapr.com/home/Gateways/ConfiguringMapRGatewaysForTRAndI.html) for details about them."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-set_29656146.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-set.html
       parameters:
         - name: dstcluster
           in: query
@@ -1625,6 +1625,9 @@ See the lists of parameters below this table."
           in: query
           description: "If set to 1, displays only nodes with raised alarms. Cannot be used if `nfsnodes` is set."
           type: string
+          enum:
+            - 0
+            - 1
         - name: cluster
           in: query
           description: "The cluster on which to run the command."
@@ -1645,6 +1648,9 @@ See the lists of parameters below this table."
           in: query
           description: "If set to 1, displays only nodes running NFS. Cannot be used if alarmednodes is set."
           type: string
+          enum:
+            - 0
+            - 1
         - name: output
           in: query
           description: "Specifies whether the output should be terse or verbose."
@@ -2841,6 +2847,9 @@ A value of 0 causes messages to be retained indefinitely."
           in: query
           description: "Specifies whether to create a topic automatically when a producer tries to write the first message to it. Values are `true` and `false`. The default is `true`."
           type: boolean
+          enum:
+            - true
+            - false
         - name: defaultpartitions
           in: query
           description: "Specifies the default number of partitions to allocate to new topics in the stream."
@@ -3676,7 +3685,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-create_29657354.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-create.html
       parameters:
         - name: path
           in: query
@@ -4251,7 +4260,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-create_28219157.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-create.html
       parameters:
         - name: path
           in: query
@@ -4474,7 +4483,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-delete_28219161.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-delete.html
       parameters:
         - name: path
           in: query
@@ -4522,7 +4531,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-edit_28219164.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-edit.html
       parameters:
         - name: path
           in: query
@@ -4709,7 +4718,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-list_28219130.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-cf-list.html
       parameters:
         - name: path
           in: query
@@ -4751,7 +4760,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-delete_28214397.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-delete.html
       parameters:
         - name: path
           in: query
@@ -4787,7 +4796,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-edit_29657362.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-edit.html
       responses:
         200:
           description: OK
@@ -4811,7 +4820,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-info_28217868.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-info.html
       parameters:
         - name: path
           in: query
@@ -4847,7 +4856,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list_28219125.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list.html
       parameters:
         - name: path
           in: query
@@ -4911,11 +4920,11 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-merge_28219173.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-merge.html
       parameters:
         - name: fid
           in: query
-          description: "The FID for the table region that you want to merge. The output of `maprcli` [ `table region list` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list_28219125.html) lists the FIDs for the table."
+          description: "The FID for the table region that you want to merge. The output of `maprcli` [ `table region list` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list.html) lists the FIDs for the table."
           required: true
           type: string
         - name: path
@@ -4966,7 +4975,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-pack_28217873.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-pack.html
       parameters:
         - name: path
           in: query
@@ -4983,7 +4992,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           type: string
         - name: fid
           in: query
-          description: "Specifies that you want to pack all table regions or a single table region that you identify with a FID. The output of maprcli [table region list](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list_28219125.html) lists the FIDs for the table."
+          description: "Specifies that you want to pack all table regions or a single table region that you identify with a FID. The output of maprcli [table region list](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list.html) lists the FIDs for the table."
           type: string
           enum:
             - fid
@@ -5015,7 +5024,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-split_28219240.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-region-split.html
       parameters:
         - name: path
           in: query
@@ -5030,7 +5039,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           type: string
         - name: fid
           in: query
-          description: "The FID of the region to split. The output of `maprcli` [ `table region list` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list_28219125.html) lists the FIDs for the table's regions."
+          description: "The FID of the region to split. The output of `maprcli` [ `table region list` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-region-list.html) lists the FIDs for the table's regions."
           required: true
           type: string
       responses:
@@ -5067,7 +5076,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-add_28217896.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-add.html
       parameters:
         - name: path
           in: query
@@ -5337,7 +5346,7 @@ Note: For replication to a table, the command will fail if the replica path you 
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaautosetup__d903e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaautosetup__d239e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
@@ -5504,7 +5513,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-edit_28218152.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-edit.html
       parameters:
         - name: path
           in: query
@@ -5544,7 +5553,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaedit__d903e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaedit__d239e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
@@ -5705,7 +5714,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-list_28218154.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-list.html
       parameters:
         - name: path
           in: query
@@ -5745,7 +5754,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-pause_28218172.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-pause.html
       parameters:
         - name: path
           in: query
@@ -5792,7 +5801,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-remove_28218163.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-remove.html
       parameters:
         - name: path
           in: query
@@ -5841,7 +5850,7 @@ To run this command, your user ID must have the following permissions:
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-resume_28218166.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-resume.html
       parameters:
         - name: path
           in: query
@@ -5903,7 +5912,7 @@ The user that runs the command must have the following permissions granted throu
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656801.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-autosetup.html
       parameters:
         - name: path
           in: query
@@ -6046,7 +6055,7 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
 
 Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656805.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-edit.html
       parameters:
         - name: path
           in: query
@@ -6122,11 +6131,11 @@ If you change the list by removing any columns or column families that have alre
 
  
  
-1. On the source MapR cluster, remove the mapping of the source table to the type by running the command [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656812.html). If the source table is being indexed in more than one type, and those types also contain the columns and column families that you are no longer indexing, run the command [maprcli table replica elasticsearch list](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656816.html) to list all of the types that are mapped to the source table. Then, run the command  [`maprcli table replica elasticsearch remove`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656812.html)  for each type.
+1. On the source MapR cluster, remove the mapping of the source table to the type by running the command [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html). If the source table is being indexed in more than one type, and those types also contain the columns and column families that you are no longer indexing, run the command [maprcli table replica elasticsearch list](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-list.html) to list all of the types that are mapped to the source table. Then, run the command  [`maprcli table replica elasticsearch remove`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html)  for each type.
  
 1. In Elasticsearch, delete all of the types that were mapped to the source table.
  
-1. On the source MapR cluster, recreate each type and restart indexing by running the command  [`maprcli table replica elasticsearch autosetup`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656801.html)  for each type.
+1. On the source MapR cluster, recreate each type and restart indexing by running the command  [`maprcli table replica elasticsearch autosetup`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-autosetup.html)  for each type.
  
  
 
@@ -6197,7 +6206,7 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
       summary: "Lists the Elasticsearch types and the associated replication statistics for a specified binary table."
       description: "By default, statistics are updated every five minutes."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656816.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-list.html
       parameters:
         - name: path
           in: query
@@ -6227,16 +6236,16 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
 
  
  
-* You want to run [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656812.html) to remove the mapping from a source table to a type that is currently receiving replicated updates.
+* You want to run [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html) to remove the mapping from a source table to a type that is currently receiving replicated updates.
  
 * You want to compare the data in the type to the data in the source table by using the [ `DiffTables` ](http://maprdocs.mapr.com/home/ReferenceGuide/DiffTables.html) utility.
  
  
 
 
-To resume replication to a type, run the  [`maprcli table replica elasticsearch resume`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656814.html)  command."
+To resume replication to a type, run the  [`maprcli table replica elasticsearch resume`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-resume.html)  command."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656809.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-pause.html
       parameters:
         - name: path
           in: query
@@ -6269,9 +6278,9 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
       tags:
         - table
       summary: "Resumes replication to an Elasticsearch type from a MapR-DB source binary table."
-      description: "The result of this command is the opposite of the command [ `maprcli table replica elasticsearch pause` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656809.html)."
+      description: "The result of this command is the opposite of the command [ `maprcli table replica elasticsearch pause` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-pause.html)."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656814.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-resume.html
       parameters:
         - name: path
           in: query
@@ -6306,7 +6315,7 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
       summary: "Removes the mapping from a MapR-DB source binary table to an Elasticsearch type."
       description: "Updates from the table will no longer be replicated to the type. The type is not removed from the Elasticsearch cluster in which it is located."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsear_29656812.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html
       parameters:
         - name: path
           in: query
@@ -6341,7 +6350,7 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
       summary: "Adds a binary table as upstream source for a replica."
       description: "Note: You do not need to use this command if you use the `table replica autosetup` command."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-add_28217902.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-add.html
       parameters:
         - name: path
           in: query
@@ -6379,7 +6388,7 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
       summary: "Lists the binary tables that replicate data to the specified replica binary table."
       description: ""
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-list_28218230.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-list.html
       parameters:
         - name: path
           in: query
@@ -6404,7 +6413,7 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
       summary: "Un-registers a binary table as an upstream source for a replica."
       description: "Note: This step is separate from the `table replica remove` command, which stops replication updates to a replica."
       externalDocs:
-        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-remove_28218234.html
+        url: http://maprdocs.mapr.com/home/ReferenceGuide/table-upstream-remove.html
       parameters:
         - name: path
           in: query
@@ -7348,8 +7357,11 @@ Example: `/home/abc/.rw`"
       parameters:
         - name: alarmedvolumes
           in: query
-          description: "Specifies whether to list alarmed volumes only. Default: false"
+          description: "Specifies whether (1) or not (0) to list alarmed volumes only. Default: 0"
           type: string
+          enum:
+            - 0
+            - 1
         - name: cluster
           in: query
           description: "The cluster name on which to run the command."
@@ -7769,6 +7781,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           in: query
           description: "Forces the removal of the volume, even if it would otherwise be prevented."
           type: string
+          enum:
+            - 0
+            - 1
         - name: name
           in: query
           description: "The volume name."
@@ -7820,7 +7835,7 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           in: query
           description: "The name of the cluster hosting the volume."
           type: string
-        - name: volume
+        - name: name
           in: query
           description: "The name of the volume to return a list of mount points for."
           type: string
@@ -7984,8 +7999,11 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           type: string
         - name: force
           in: query
-          description: "Specifies whether to force the volume to unmount."
+          description: "Specifies whether (1) or not (0) to force the volume to unmount."
           type: string
+          enum:
+            - 0
+            - 1
         - name: name
           in: query
           description: "The name of the volume to unmount."

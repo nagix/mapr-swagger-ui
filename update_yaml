@@ -155,16 +155,6 @@ def print_command(d, tag):
     return
   path = match.group().replace('<','{').replace('>','}')
 
-  # Handle MapR doc bug
-  if 'acl-set' in d.base_url:
-    path = path.replace('edit', 'set')
-  if 'stream_edit' in d.base_url:
-    path = path.replace('create', 'edit')
-  if 'stream_upstream_remove' in d.base_url:
-    path = path.replace('add', 'remove')
-  if 'volume-link-create' in d.base_url:
-    path = path.replace('remove', 'create')
-
   # Print progress
   sys.stderr.write('\r\033[KProcessing %s...' % path)
 
@@ -203,19 +193,9 @@ def print_command(d, tag):
       name = trim(parameter[0].text())
 
       # Handle MapR doc bug
-      if path == '/rlimit/set' and name == 'limit':
-        name = 'value'
-      elif name == 'virtualip end range':
-        name = 'virtualipend'
-      elif name == 'mac':
-        name = 'tomac'
-      elif name == 'clustername':
-        name = 'cluster'
-      else:
-        name = re.search(r'\w+', name).group()
+      name = re.search(r'\w+', name).group()
       if name == 'json' or name == 'long':
         continue
-      name = name[0].lower() + name[1:]
 
       in_ = 'query'
       description = gfm(parameter[1])
