@@ -4765,9 +4765,6 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
         - name: path
           in: query
           description: "Path to the MapR table to delete.
-
-
- 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, if you want to delete a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
@@ -5213,23 +5210,23 @@ The empty string before the comma indicates the default column family.
           type: string
         - name: paused
           in: query
-          description: "A Boolean value that specifies whether to pause the replication so that it does not start immediately. The replication can be resumed using the replica resume command at a later time. The values are `true` or false. Not paused (`false`) is the default."
+          description: "A Boolean value that specifies whether to pause the replication so that it does not start immediately. The replication can be resumed using the replica resume command at a later time. The values are `true` or false. Default: Not paused (`false`)"
           type: boolean
         - name: throttle
           in: query
-          description: "A Boolean value that specifies whether to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are true or false. No throttle (`false`) is the default."
+          description: "A Boolean value that specifies whether to throttle replication operations. Throttle the replication stream to minimize the impact of the replication process on incoming operations during periods of heavy load. The values are true or false. Default: No throttle (`false`)"
           type: boolean
         - name: networkencryption
           in: query
-          description: "A Boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. No encryption (false) is the default. If you set this to `true`, the local cluster and any other cluster that is part of the replication process must be enabled for security."
+          description: "A Boolean value that specifies whether or not to enable on-wire encryption. The values are `true` or `false`. If you set this to `true`, the local cluster and any other cluster that is part of the replication process must be enabled for security. Default: No encryption (false)"
           type: boolean
         - name: synchronous
           in: query
-          description: "A Boolean value that specifies whether replication is synchronous or asynchronous. The values are `true` or `false`. Asynchronous (`false`) is the default."
+          description: "A Boolean value that specifies whether replication is synchronous or asynchronous. The values are `true` or `false`. Default: Asynchronous (`false`)"
           type: boolean
         - name: networkcompression
           in: query
-          description: "The type of on-wire compression.
+          description: "The type of on-wire compression. Default: on
 
 
  
@@ -5346,7 +5343,7 @@ Note: For replication to a table, the command will fail if the replica path you 
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaautosetup__d239e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaautosetup__d847e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
@@ -5553,7 +5550,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaedit__d239e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaedit__d852e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
@@ -5726,7 +5723,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 * For a table on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
  
 * For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco`cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
-          type: boolean
+          type: string
         - name: refreshnow
           in: query
           description: "A Boolean value that specifies if you want to trigger an immediate update of the replica statistics. The values are `true` or `false`. By default, the value is `false`; the command lists the current version of the replica statistics, which could be a maximum of five minutes old."
@@ -6222,7 +6219,7 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
         - name: refreshnow
           in: query
           description: "A Boolean value that specifies if you want to trigger an immediate update of the replication statistics. The values are `true` or `false`. By default, the value is false; the command lists the current version of the replication statistics, which could be a maximum of five minutes old."
-          type: string
+          type: boolean
       responses:
         200:
           description: OK

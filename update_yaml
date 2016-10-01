@@ -10,9 +10,8 @@ filename = 'mapr.yaml'
 baseurl = 'http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax.html'
 
 # Escape HTML text
-# MapR doc bug: u'\u2013' should be '-'
 def escape(text):
-  return (text or '').replace('<', '&lt;').replace('>', '&gt;').replace(u'\u2013', '-')
+  return (text or '').replace('<', '&lt;').replace('>', '&gt;')
 
 # Remove unnecessary spaces
 def trim(text):
@@ -192,9 +191,7 @@ def print_command(d, tag):
       parameter = [j for j in i('td').items()]
       name = trim(parameter[0].text())
 
-      # Handle MapR doc bug
-      name = re.search(r'\w+', name).group()
-      if name == 'json' or name == 'long':
+      if re.search(r'(json|long)$', name):
         continue
 
       in_ = 'query'
