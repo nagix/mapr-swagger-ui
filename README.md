@@ -16,7 +16,7 @@ Download and unzip the mapr-swagger-ui zip file and copy `update_yaml`, `mapr.ya
     wget https://github.com/nagix/mapr-swagger-ui/archive/master.zip
     unzip master.zip
     cd mapr-swagger-ui-master
-    cp -r update_yaml mapr.yaml css image /opt/mapr/adminuiapp/webapp/swagger-ui
+    cp -r update_yaml mapr.yaml css images /opt/mapr/adminuiapp/webapp/swagger-ui
 
 Replace the default css and Swagger definition file.
 
