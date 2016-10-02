@@ -8,6 +8,7 @@ import sys
 
 filename = 'mapr.yaml'
 baseurl = 'http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax.html'
+enums = {}
 
 # Escape HTML text
 def escape(text):
@@ -197,11 +198,20 @@ def print_command(d, tag):
       in_ = 'query'
       description = gfm(parameter[1])
       required = parameter[0]('strong')
-      type = detect_type(name, parameter[1].text(), syntax)
-      enum = parse_enum(name, parameter[1], syntax)
       if 'urls' in d.base_url and name == 'name':
         in_ = 'path'
         required = True
+      type = detect_type(name, parameter[1].text(), syntax)
+      enum = parse_enum(name, parameter[1], syntax)
+      if path == '/node/list' and name == 'columns':
+        type = 'array'
+        enum = enums['node']
+      elif re.search(r'/volume/(info|list)', path) and name == 'columns':
+        type = 'array'
+        enum = enums['volume']
+      elif path == '/volume/snapshot/list' and name == 'columns':
+        type = 'array'
+        enum = enums['volume snapshot list']
       print('        - name: %s' % name)
       print('          in: %s' % in_)
       if '"' in description:
@@ -211,6 +221,11 @@ def print_command(d, tag):
       if required:
         print('          required: true')
       print('          type: %s' % type)
+      if type == 'array':
+        print('          items: {')
+        print('            type: string')
+        print('          }')
+        print('          collectionFormat: csv')
       if enum:
         print('          enum:')
         for value in enum:
@@ -221,6 +236,16 @@ def print_command(d, tag):
   print('        200:')
   print('          description: OK')
 
+# Get enum from field table
+def get_enum(d, tag):
+  if tag not in ['node', 'volume', 'volume snapshot list']:
+    return
+  fields = d('h2')('*:contains("Fields") ~ * tbody').eq(0)
+  if fields:
+    enums[tag] = []
+    for i in fields('tr').items():
+      enums[tag].append(i('td:first').text())
+
 # Find and print command
 def find_command(links, cat=None):
   for e in links:
@@ -228,6 +253,7 @@ def find_command(links, cat=None):
     if not cat:
       category = e.text
     d = pq(e.get('href')).make_links_absolute()
+    get_enum(d, e.text)
     sublinks = d('.link a')
     if sublinks:
       find_command(sublinks, category)
