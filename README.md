@@ -6,9 +6,9 @@ A Swagger UI definition file and css for MapR Control System (MCS). See [wiki pa
 
 Download and unzip the swagger-ui zip file and copy the dist diectory to the MCS webapp directory (as `root` user on MCS node).
     
-    wget https://github.com/swagger-api/swagger-ui/archive/v2.2.5.zip
-    unzip v2.2.5.zip
-    cd swagger-ui-2.2.5
+    wget https://github.com/swagger-api/swagger-ui/archive/v2.2.6.zip
+    unzip v2.2.6.zip
+    cd swagger-ui-2.2.6
     cp -r dist /opt/mapr/adminuiapp/webapp/swagger-ui
 
 Download and unzip the mapr-swagger-ui zip file and copy `update_yaml`, `mapr.yaml`, `css/mapr.css` and `images/logo_mapr.png` to the MCS webapp directory.
