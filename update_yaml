@@ -189,17 +189,21 @@ def print_command(d, tag):
   print('        url: %s' % d.base_url)
 
   # Print parameters
+  found = False
   parameters = d('h2,p')('*:contains("Parameters") ~ * tbody').eq(0)
   if not parameters:
     parameters = d('th:contains("Parameter")').closest('table').find('tbody')
   if parameters:
-    print('      parameters:')
     for i in parameters('tr').items():
       parameter = [j for j in i('td').items()]
       name = trim(parameter[0].text())
 
       if re.search(r'(json|long)$', name):
         continue
+
+      if not found:
+        print('      parameters:')
+        found = True
 
       in_ = 'query'
       description = gfm(parameter[1])
