@@ -34,13 +34,9 @@ def normalize(d):
   return d
 
 # Replace HTML tags with Markdown
-def replace_tags(d, selector, start, end, a_selector=None, a_start=None, a_end=None):
+def replace_tags(d, selector, start, end):
   elements = d.find(selector)
   for e in reversed(elements):
-    start_tag, end_tag = start, end
-    if a_selector:
-      if replace_tags(pq(e), a_selector, a_start, a_end) and a_selector == 'a':
-        start_tag, end_tag = '', ''
     html = escape(e.text)
     children = e.getchildren()
     if children:
@@ -49,7 +45,7 @@ def replace_tags(d, selector, start, end, a_selector=None, a_start=None, a_end=N
     if href:
       href = '(%s)' % href
     tail = escape(e.tail)
-    pq(e).before(start_tag + html + end_tag + href + tail)
+    pq(e).before(start + html + end + href + tail)
     parent = e.getparent()
     parent.remove(e)
   return elements
@@ -59,14 +55,24 @@ def gfm(d):
   s = d.clone().wrap_all('<section></section>')
   normalize(s)
   replace_tags(s, 'h2', '\n\n## ', '\n\n')
-  replace_tags(s, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n', 'code', '', '')
   replace_tags(s, 'strong','**', '**')
-  replace_tags(s, 'code', '`', '`', 'a', '[`', '`]')
+  replace_tags(s, 'code a', '[`', '`]')
+  replace_tags(s, 'pre code,code:contains("`")', '', '')
+  replace_tags(s, 'code', '`', '`')
   replace_tags(s, 'a', '[', ']')
-  replace_tags(s, 'ul ul', '', '', 'li', '\n  * ', '\n')
-  replace_tags(s, 'ul', '\n', '\n\n\n', 'li', '\n* ', '\n')
-  replace_tags(s, 'ol', '\n', '\n\n\n', 'li', '\n1. ', '\n')
+  replace_tags(s, 'ul dl', '', '')
+  replace_tags(s, 'ul dt', '**', '**<br>')
+  replace_tags(s, 'ul dd', '', '<br>')
+  replace_tags(s, 'dl', '\n\n\n', '')
+  replace_tags(s, 'dt', '**', '**\n\n\n')
+  replace_tags(s, 'dd', '', '\n\n\n')
+  replace_tags(s, 'ul ul li', '\n  * ', '\n')
+  replace_tags(s, 'ul ul', '', '')
+  replace_tags(s, 'ul li', '\n* ', '\n')
+  replace_tags(s, 'ol li', '\n1. ', '\n')
+  replace_tags(s, 'ul,ol', '\n', '\n\n\n')
   replace_tags(s, 'section,td,p,div', '\n\n\n', '\n\n\n')
+  replace_tags(s, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n')
   replace_tags(s, 'span', '', '')
   s('*').remove_attr('class')
   return (s.html() or '').strip()

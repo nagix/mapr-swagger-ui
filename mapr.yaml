@@ -3072,7 +3072,7 @@ To run this command, your user ID must have the following permissions:
  
 * [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
  
-*  <dl> <dt>`adminperm`</dt> <dd>When a user with this permission runs the command, the output includes the access-control expressions for the `adminperm` and `topicperm` permissions.</dd> <dt>`produceperm`, `consumeperm`, or `topicperm`</dt> <dd>When a user with one of these permissions runs the command, the output does not include any access-control expressions.</dd> </dl> 
+*   **`adminperm`**<br/> When a user with this permission runs the command, the output includes the access-control expressions for the `adminperm` and `topicperm` permissions.<br/> **`produceperm`, `consumeperm`, or `topicperm`**<br/> When a user with one of these permissions runs the command, the output does not include any access-control expressions.<br/>  
  
 
 
@@ -5372,13 +5372,25 @@ Note: For replication to a table, the command will fail if the table in the repl
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaadd__col_dl1"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: 
+
+
+ **For binary tables**
+
+
+ Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
 
 
- </dd> <dt>For JSON tables</dt> <dd>Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+ 
+
+
+ **For JSON tables**
+
+
+ Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
 
 
 **Example**
@@ -5461,10 +5473,7 @@ Suppose now that `a.b` and `a.e` were custom column families. You want to replic
 
 
 
-The empty string before the comma indicates the default column family.
-
-
- </dd> </dl>'
+The empty string before the comma indicates the default column family.'
           type: string
         - name: paused
           in: query
@@ -5611,13 +5620,25 @@ Note: For replication to a table, the command will fail if the replica path you 
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaautosetup__d798e236"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: 
+
+
+ **For binary tables**
+
+
+ Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
 
 
- </dd> <dt>For JSON tables</dt> <dd>Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+ 
+
+
+ **For JSON tables**
+
+
+ Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
 
 
 **Example**
@@ -5700,10 +5721,7 @@ Suppose now that `a.b` and `a.e` were custom column families. You want to replic
 
 
 
-The empty string before the comma indicates the default column family.
-
-
- </dd> </dl>'
+The empty string before the comma indicates the default column family.'
           type: string
         - name: synchronous
           in: query
@@ -5826,13 +5844,25 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaedit__d798e236"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: 
+
+
+ **For binary tables**
+
+
+ Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
 
 
- </dd> <dt>For JSON tables</dt> <dd>Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+ 
+
+
+ **For JSON tables**
+
+
+ Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
 
 
 **Example**
@@ -5915,10 +5945,7 @@ Suppose now that `a.b` and `a.e` were custom column families. You want to replic
 
 
 
-The empty string before the comma indicates the default column family.
-
-
- </dd> </dl>'
+The empty string before the comma indicates the default column family.'
           type: string
         - name: throttle
           in: query
