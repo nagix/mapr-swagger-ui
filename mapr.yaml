@@ -263,25 +263,24 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           type: string
         - name: output
           in: query
-          description: "Whether the output should be terse or verbose."
+          description: "Whether the output should be terse or verbose. Default: 0"
           type: string
           enum:
             - terse
             - verbose
         - name: start
           in: query
-          description: "The list offset at which to start."
+          description: "The list offset at which to start. Default: 0."
           type: string
         - name: summary
           in: query
           description: "Specifies the type of data to return:
-
-
- 
  
 * 1 = count by alarm type
  
-* 0 = List of alarms"
+* 0 = List of alarms
+ 
+ Default: 0"
           type: boolean
           enum:
             - 1
@@ -305,7 +304,7 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
             - cluster
             - node
             - volume
-            - ae
+            - AE
       responses:
         200:
           description: OK
@@ -1018,7 +1017,47 @@ Note:
  
 * Only use the `-force 1` option if you are sure that you do not need the data on the disk. This option removes the disk without regard to replication factor or other data protection mechanisms, and may result in permanent data loss.
  
-* Removing a disk in the storage pool that contains Container ID 1 will stop your cluster. Container ID 1 contains CLDB data for the master CLDB. Run `disk remove` without the `-force 1` option first and examine the warning messages to make sure you aren't removing the disk with Container ID 1. To safely remove such a disk, perform a [CLDB Failover](http://maprdocs.mapr.com/home/AdministratorGuide/CLDB-Failover.html#CLDB-Failover-TheCLDBserviceautoma-d3e78) to make one of the other CLDB nodes the primary CLDB, then remove the disk as normal."
+* Removing a disk in the storage pool that contains Container ID 1 will stop your cluster. Container ID 1 contains CLDB data for the master CLDB. Run `disk remove` without the `-force 1` option first and examine the warning messages to make sure you aren't removing the disk with Container ID 1. If you try to remove a disk associated with the storage pool that contains Container ID 1, you will see an error message similar to the following: 
+
+
+```
+
+`ERROR (151) -  Failed operation for disk /dev/sdb, Operation may bring 
+
+down cluster due to loss of cluster meta-data.`
+
+```
+
+
+ If necessary, run the following command for information on the disk associated with the storage pool that contains Container ID 1: 
+
+
+```
+
+`/opt/mapr/server/mrconfig info dumpcontainers  | grep cid:1`
+
+```
+
+
+ The command output may look similar to the following: 
+
+
+```
+
+`cid:1 volid:1 sp:SP1:/dev/sdb spid:82380c287085486f0058112ecf016b76 
+
+prev:0 next:0 issnap:0 isclone:0 deleteinprog:0 fixedbyfsck:0 stale:0 
+
+querycldb:0 resyncinprog:0 shared:0 owned:206 logical:206 snapusage:0 
+
+snapusageupdated:1 ismirror:0 isrwmirrorcapable:0 role:1 maxUniq:2100150 
+
+isResyncSnapshot:0 snapId:0 port:5660`
+
+```
+
+
+ To safely remove such a disk, perform a [CLDB Failover](http://maprdocs.mapr.com/home/AdministratorGuide/CLDB-Failover.html#CLDB-Failover-TheCLDBserviceautoma-d3e78) to make one of the other CLDB nodes the primary CLDB, then remove the disk as normal."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/disk-remove.html
       parameters:
@@ -1990,7 +2029,7 @@ See the lists of parameters below this table."
             - restart
         - name: name
           in: query
-          description: "A service on which to perform an action specified by the `action` parameter. Any service can be specified with this option, but the following services can be specified only with the `name` option: `collectd`, `elasticsearch`, `fluentd`, `grafana`, `historyserver`, `hivemeta`, `hoststats`, `hs2`, `httpfs`, `hue`, `kibana`, `nodemanager`, `opentsdb`, `oozie`, and `resourcemanager.`"
+          description: "A service on which to perform an action specified by the `action` parameter. Any service can be specified with this option, but the following services can be specified only with the `name` option: `collectd`, `elasticsearch`, `fluentd`, `grafana`, `historyserver`, `hivemeta`, `hoststats`, `hs2`, `httpfs`, `hue`, `kafka-rest``kibana`, `nodemanager`, `opentsdb`, `oozie`, and `resourcemanager.`"
           type: string
         - name: nfs
           in: query
@@ -3870,7 +3909,7 @@ The default value is `true`. If you set the value to `false`, you can manually s
             - false
         - name: bulkload
           in: query
-          description: "A Boolean value that specifies whether to allow a full bulk load of the table. The default is `false`. For more information, see [Loading Data into MapR-DB Binary Tables](http://maprdocs.mapr.com/home/MapR-DB/BulkLoadingandMapR-DBTables-binary.html) and [Loading Documents into JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/loading_documents_into_json_tables.html)."
+          description: "A Boolean value that specifies whether to allow a full bulk load of the table. The default is `false`. For more information, see [Loading Data into Binary Tables](http://maprdocs.mapr.com/home/MapR-DB/BulkLoadingandMapR-DBTables-binary.html) and [Loading Documents into JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/loading_documents_into_json_tables.html)."
           type: boolean
           enum:
             - true
@@ -4075,18 +4114,18 @@ Note: This permission is not applicable to JSON tables. Versioning is not suppor
           description: "The default Access Control Expression for the read permission on new column families that are created in this table. If no value is specified, the default is `u:<username of the table creator>`. This value of the parameter `readperm` in the `table cf create` and `table cf edit` commands overrides this value.
 
 
-For more information about this permission as it applies to JSON tables, see [Accessing Fields in JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
+For more information about this permission as it applies to JSON tables, see [Granting Access to JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
           type: string
         - name: defaultwriteperm
           in: query
           description: "The default Access Control Expression for the write permission on new column families that are created in this table. If no value is specified, the default is `u:<username of the table creator>`. This value of the parameter `writeperm` in the `table cf create` and `table cf edit` commands overrides this value.
 
 
-For more information about this permission as it applies to JSON tables, see [Accessing Fields in JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
+For more information about this permission as it applies to JSON tables, see [Granting Access to JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
           type: string
         - name: defaulttraverseperm
           in: query
-          description: "**Applies to JSON tables only:** The default Access Control Expression for the traverse permission on new column families. For more information about this permission, see [Accessing Fields in JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
+          description: "**Applies to JSON tables only:** The default Access Control Expression for the traverse permission on new column families. For more information about this permission, see [Granting Access to JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
           type: string
         - name: defaultappendperm
           in: query
@@ -4386,14 +4425,14 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           type: string
         - name: maxversions
           in: query
-          description: "**Applies to binary tables only: **Maximum number of versions of column values to keep. The default is three."
+          description: "**Applies to binary tables only: **Maximum number of versions of column values to keep. The default is one."
           type: string
         - name: ttl
           in: query
-          description: "Time to live in seconds. When the age of the data in this column family exceeds the value of the `ttl` parameter, the data is purged. Setting the value of `ttl` to 0 is equivalent to allowing data to remain indefinitely.
+          description: "Time to live in seconds. When the age of the data in this column family exceeds the value of the `ttl` parameter, the data is purged. Setting the value of `ttl` to 0 is equivalent to allowing data to remain indefinitely. Default: 0
 
 
-Note: If the value of `-ttl` for an existing column family in a JSON table is not 0, you cannot add another column family. See [Setting the Time-to-Live for Data in OJAI Documents](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/setting_the_time_to_live.html#setting_the_time_to_live)."
+Note: If the value of `-ttl` for an existing column family in a JSON table is not 0, you cannot add another column family. See [Setting TTL for Data](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/setting_the_time_to_live.html#setting_the_time_to_live)."
           type: string
         - name: inmemory
           in: query
@@ -4661,14 +4700,14 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           type: string
         - name: maxversions
           in: query
-          description: "**Applies to binary tables only: **Maximum number of versions of column values to keep. The default is three."
+          description: "**Applies to binary tables only: **Maximum number of versions of column values to keep. The default is one."
           type: string
         - name: ttl
           in: query
-          description: "Time to live in seconds. When the age of the data in this column family exceeds the value of the `ttl` parameter, the data is purged. Setting the value of `ttl` to 0 is equivalent to allowing data to remain indefinitely.
+          description: "Time to live in seconds. When the age of the data in this column family exceeds the value of the `ttl` parameter, the data is purged. Setting the value of `ttl` to 0 is equivalent to allowing data to remain indefinitely. Default: 0
 
 
-Note: If the value of `-ttl` for an existing column family in a JSON table is not 0, you cannot add another column family. See [Setting the Time-to-Live for Data in OJAI Documents](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/setting_the_time_to_live.html#setting_the_time_to_live)."
+Note: If the value of `-ttl` for an existing column family in a JSON table is not 0, you cannot add another column family. See [Setting TTL for Data](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/setting_the_time_to_live.html#setting_the_time_to_live)."
           type: string
         - name: inmemory
           in: query
@@ -5109,7 +5148,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
       summary: "Splits a region in a table."
       description: "## Permissions Required
 
-To run this command, your user ID must have the following permissions:
+ To run this command, your user ID must have the following permissions:
  
 * [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
  
@@ -5163,16 +5202,16 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
+* `readAce` and `writeAce` on both the source volume and the target volume
  
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
+* `lookupdir` on directories in the paths of both tables 
  
 * `readperm` and `replperm` permissions on the source table
  
  
 
 
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-add.html
       parameters:
@@ -5444,7 +5483,7 @@ Note: For replication to a table, the command will fail if the replica path you 
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaautosetup__d841e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaautosetup__d798e236"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
@@ -5600,16 +5639,16 @@ lz4 is the default compression which it set by parameter values ` `on` `or` `lz4
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
+* `readAce` and `writeAce` on both the source volume and the target volume
  
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
+* `lookupdir` on directories in the paths of both tables 
  
 * `readperm` and `replperm` permissions on the source table
  
  
 
 
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-edit.html
       parameters:
@@ -5651,7 +5690,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaedit__d846e213"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate: <dl id="tablereplicaedit__d798e236"> <dt>For binary tables</dt> <dd>Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
@@ -5803,14 +5842,14 @@ lz4 is the default compression which it set by parameter values on or lz4."
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
+* `readAce` on the volume
  
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
+* `lookupdir` on directories in the path 
  
  
 
 
-Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the `mapr` user to run this command unless that user is given the relevant permission or permissions with access-control expressions."
+Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow the **mapr user** to run this command unless that user is given the relevant permission or permissions with access-control expressions."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-list.html
       parameters:
@@ -7144,7 +7183,10 @@ Tip: For more information, see [Selective Auditing of Filesystem and Table Opera
           type: string
         - name: minreplication
           in: query
-          description: "The minimum replication level. Default: 2 When the replication factor falls below this minimum, re-replication occurs as aggressively as possible to restore the replication level. If any containers in the CLDB volume fall below the minimum replication factor, writes are disabled until aggressive re-replication restores the minimum level of replication."
+          description: "The minimum replication level. Default: 2 When the replication factor falls below this minimum, re-replication occurs as aggressively as possible to restore the replication level. If any containers in the CLDB volume fall below the minimum replication factor, writes are disabled until aggressive re-replication restores the minimum level of replication. 
+
+
+Tip: For more information, see [Determining Replication Factor](http://maprdocs.mapr.com/home/AdministratorGuide/DetermineVolReplicationFactor.html)."
           type: string
         - name: mirrorschedule
           in: query
@@ -7170,11 +7212,23 @@ Tip: For more information, see [Selective Auditing of Filesystem and Table Opera
           type: string
         - name: nsminreplication
           in: query
-          description: "The minimum replication level for the namespace container. Default: 2 When the replication factor falls below this minimum, re-replication occurs as aggressively as possible to restore the replication level. If any containers in the CLDB volume fall below the minimum replication factor, writes are disabled until aggressive re-replication restores the minimum level of replication. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. Note: This parameter must be the same or larger than the equivalent data replication parameter, `minreplication`."
+          description: "The minimum replication level for the namespace container. Default: 2 When the replication factor falls below this minimum, re-replication occurs as aggressively as possible to restore the replication level. If any containers in the CLDB volume fall below the minimum replication factor, writes are disabled until aggressive re-replication restores the minimum level of replication. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. 
+
+
+Note: This parameter must be the same or larger than the equivalent data replication parameter, `minreplication`.
+
+
+ For more information, see [Determining Replication Factor](http://maprdocs.mapr.com/home/AdministratorGuide/DetermineVolReplicationFactor.html)."
           type: string
         - name: nsreplication
           in: query
-          description: "The desired namespace container replication level. Default: 3. When the number of copies falls below the desired replication factor, but remains equal to or above the minimum replication factor, re-replication occurs after the timeout specified in the `cldb.fs.mark.rereplicate.sec` parameter. This timeout is the time given for a down node to come back online. After this timeout period, the CLDB takes action to restore the replication factor. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. Note: This parameter must be the same or larger than the equivalent data replication parameter, `replication`."
+          description: "The desired namespace container replication level. Default: 3. When the number of copies falls below the desired replication factor, but remains equal to or above the minimum replication factor, re-replication occurs after the timeout specified in the `cldb.fs.mark.rereplicate.sec` parameter. This timeout is the time given for a down node to come back online. After this timeout period, the CLDB takes action to restore the replication factor. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. 
+
+
+Note: This parameter must be the same or larger than the equivalent data replication parameter, `replication`.
+
+
+ For more information, see [Determining Replication Factor](http://maprdocs.mapr.com/home/AdministratorGuide/DetermineVolReplicationFactor.html)."
           type: string
         - name: path
           in: query
@@ -7216,7 +7270,13 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
             - 1
         - name: replication
           in: query
-          description: "The desired replication level. Default: 3 When the number of copies falls below the desired replication factor, but remains equal to or above the minimum replication factor, re-replication occurs after the timeout specified in the `cldb.fs.mark.rereplicate.sec` parameter. Note that this timeout is the time given for a down node to come back online. After this timeout period, the CLDB takes action to restore the replication factor."
+          description: "The desired replication level. Default: 3 When the number of copies falls below the desired replication factor, but remains equal to or above the minimum replication factor, re-replication occurs after the timeout specified in the `cldb.fs.mark.rereplicate.sec` parameter. Note that this timeout is the time given for a down node to come back online. After this timeout period, the CLDB takes action to restore the replication factor.
+
+
+ 
+
+
+Note: For more information, see [Determining Replication Factor](http://maprdocs.mapr.com/home/AdministratorGuide/DetermineVolReplicationFactor.html)."
           type: string
         - name: replicationtype
           in: query
@@ -7261,7 +7321,24 @@ In 4.0.2 and later releases, if a schedule ID is provided, it applies to either 
           type: string
         - name: topology
           in: query
-          description: "The rack path to the volume."
+          description: "The rack path to the volume.
+
+
+ 
+
+
+Note: To create a volume in a specific topology, you must have the [Converged Enterprise Edition](http://maprdocs.mapr.com/home/UpgradeGuide/License-upgrade.html#license-upgrade) installed on your system. Without the Converged Enterprise Edition, when you run the `maprcli volume create` command with the `-topology` option, the following error message is returned: 
+
+
+```
+
+`ERROR (10010) -  Volume Creation Failed: Setting topology on a 
+
+volume requires data placement feature. License not found for 
+
+data placement.`
+
+```"
           type: string
         - name: type
           in: query
@@ -7840,7 +7917,10 @@ Tip: For more information, see [Selective Auditing of Filesystem and Table Opera
           type: string
         - name: minreplication
           in: query
-          description: "The minimum replication level. Default: 0"
+          description: "The minimum replication level. Default: 0. 
+
+
+Tip: For more information, see [Determining Replication Factor](http://maprdocs.mapr.com/home/AdministratorGuide/DetermineVolReplicationFactor.html)."
           type: string
         - name: mirrorschedule
           in: query
@@ -7855,11 +7935,23 @@ Tip: For more information, see [Selective Auditing of Filesystem and Table Opera
             - false
         - name: nsminreplication
           in: query
-          description: "The minimum replication level for the namespace container. Default: 2 When the replication factor falls below this minimum, re-replication occurs as aggressively as possible to restore the replication level. If any containers in the CLDB volume fall below the minimum replication factor, writes are disabled until aggressive re-replication restores the minimum level of replication. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. Note: This parameter must be the same or larger than the equivalent data replication parameter, `minreplication`."
+          description: "The minimum replication level for the namespace container. Default: 2 When the replication factor falls below this minimum, re-replication occurs as aggressively as possible to restore the replication level. If any containers in the CLDB volume fall below the minimum replication factor, writes are disabled until aggressive re-replication restores the minimum level of replication. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. 
+
+
+Note: This parameter must be the same or larger than the equivalent data replication parameter, `minreplication`.
+
+
+ For more information, see [Determining Replication Factor](http://maprdocs.mapr.com/home/AdministratorGuide/DetermineVolReplicationFactor.html)."
           type: string
         - name: nsreplication
           in: query
-          description: "The desired namespace container replication level. Default: 3. When the number of copies falls below the desired replication factor, but remains equal to or above the minimum replication factor, re-replication occurs after the timeout specified in the `cldb.fs.mark.rereplicate.sec` parameter. This timeout is the time given for a down node to come back online. After this timeout period, the CLDB takes action to restore the replication factor. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. Note: This parameter must be the same or larger than the equivalent data replication parameter, `replication`."
+          description: "The desired namespace container replication level. Default: 3. When the number of copies falls below the desired replication factor, but remains equal to or above the minimum replication factor, re-replication occurs after the timeout specified in the `cldb.fs.mark.rereplicate.sec` parameter. This timeout is the time given for a down node to come back online. After this timeout period, the CLDB takes action to restore the replication factor. When enabled, the CLDB manages the namespace container replication separate from the data container replication. This capability is used when you have low volume replication but want to have higher namespace replication. 
+
+
+Note: This parameter must be the same or larger than the equivalent data replication parameter, `replication`.
+
+
+ For more information, see [Determining Replication Factor](http://maprdocs.mapr.com/home/AdministratorGuide/DetermineVolReplicationFactor.html)."
           type: string
         - name: name
           in: query
@@ -7902,7 +7994,13 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
             - 1
         - name: replication
           in: query
-          description: "The desired replication level. Default: 0"
+          description: "The desired replication level. Default: 0.
+
+
+ 
+
+
+Tip: For more information, see [Determining Replication Factor](http://maprdocs.mapr.com/home/AdministratorGuide/DetermineVolReplicationFactor.html)."
           type: string
         - name: rereplicationtimeoutsec
           in: query
@@ -8016,7 +8114,20 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
           type: string
         - name: topology
           in: query
-          description: "The new rack path to the volume."
+          description: "The new rack path to the volume.
+
+
+ 
+
+
+Note: To move the volume to another topology, you must have the [Converged Enterprise Edition](http://maprdocs.mapr.com/home/UpgradeGuide/License-upgrade.html#license-upgrade) installed on your system. Without the Converged Enterprise Edition, when you run the `maprcli volume move` command with the `-topology` option to move the volume to another topology, the following error message is returned: 
+
+
+```
+
+`ERROR (10010) - Volume Move: No license for requested operation`
+
+```"
           required: true
           type: string
       responses:
