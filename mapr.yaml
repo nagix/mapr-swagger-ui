@@ -280,6 +280,8 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
  
 * 0 = List of alarms
  
+
+
  Default: 0"
           type: boolean
           enum:
@@ -622,6 +624,8 @@ If neither of the previous methods was used to specify the locations of the gate
 
  
  
+
+
  
 
 
@@ -1022,9 +1026,9 @@ Note:
 
 ```
 
-`ERROR (151) -  Failed operation for disk /dev/sdb, Operation may bring 
+ERROR (151) -  Failed operation for disk /dev/sdb, Operation may bring 
 
-down cluster due to loss of cluster meta-data.`
+down cluster due to loss of cluster meta-data.
 
 ```
 
@@ -1034,7 +1038,7 @@ down cluster due to loss of cluster meta-data.`
 
 ```
 
-`/opt/mapr/server/mrconfig info dumpcontainers  | grep cid:1`
+/opt/mapr/server/mrconfig info dumpcontainers  | grep cid:1
 
 ```
 
@@ -1044,7 +1048,7 @@ down cluster due to loss of cluster meta-data.`
 
 ```
 
-`cid:1 volid:1 sp:SP1:/dev/sdb spid:82380c287085486f0058112ecf016b76 
+cid:1 volid:1 sp:SP1:/dev/sdb spid:82380c287085486f0058112ecf016b76 
 
 prev:0 next:0 issnap:0 isclone:0 deleteinprog:0 fixedbyfsck:0 stale:0 
 
@@ -1052,7 +1056,7 @@ querycldb:0 resyncinprog:0 shared:0 owned:206 logical:206 snapusage:0
 
 snapusageupdated:1 ismirror:0 isrwmirrorcapable:0 role:1 maxUniq:2100150 
 
-isResyncSnapshot:0 snapId:0 port:5660`
+isResyncSnapshot:0 snapId:0 port:5660
 
 ```
 
@@ -1075,7 +1079,7 @@ isResyncSnapshot:0 snapId:0 port:5660`
 
 ```
 
-`["disk"]or["disk","disk","disk"...]or[]`
+["disk"]or["disk","disk","disk"...]or[]
 
 ```'
           required: true
@@ -1254,6 +1258,8 @@ isResyncSnapshot:0 snapId:0 port:5660`
  
 * `1` - for group
  
+
+
  If necessary, obtain the entity type by running the `maprcli entity list` command."
           type: string
           enum:
@@ -2643,6 +2649,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
  
+
+
  
 
 
@@ -2706,6 +2714,8 @@ To run this command, your user ID must have the following permissions:
  
 * [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
  
+
+
  
 
 
@@ -2836,6 +2846,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` or `consumeperm` permission on the stream
  
+
+
  
 
 
@@ -2877,6 +2889,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
  
+
+
  
 
 
@@ -2924,6 +2938,8 @@ To run this command, your user ID must have the following permissions:
  
 * [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
  
+
+
  
 
 
@@ -2953,6 +2969,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the stream
  
+
+
  
 
 
@@ -3056,6 +3074,8 @@ To run this command, your user ID must have the following permissions:
  
 *  <dl> <dt>`adminperm`</dt> <dd>When a user with this permission runs the command, the output includes the access-control expressions for the `adminperm` and `topicperm` permissions.</dd> <dt>`produceperm`, `consumeperm`, or `topicperm`</dt> <dd>When a user with one of these permissions runs the command, the output does not include any access-control expressions.</dd> </dl> 
  
+
+
  
 
 
@@ -3099,6 +3119,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the stream
  
+
+
  
 
 
@@ -3128,6 +3150,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` and `copyperm` permissions on the source stream
  
+
+
  
 
 
@@ -3215,6 +3239,8 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
  
 1. Clears the paused replication state to start replication.
  
+
+
  
 
 
@@ -3236,6 +3262,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` and `copyperm` permissions on the source stream
  
+
+
  
 
 
@@ -3318,6 +3346,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the source stream
  
+
+
  
 
 
@@ -3400,6 +3430,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the source stream
  
+
+
  
 
 
@@ -3433,6 +3465,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the source stream
  
+
+
  
 
 
@@ -3466,6 +3500,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the source stream
  
+
+
  
 
 
@@ -3499,6 +3535,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the source stream
  
+
+
  
 
 
@@ -3532,6 +3570,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the source stream
  
+
+
  
 
 
@@ -3565,6 +3605,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the source stream
  
+
+
  
 
 
@@ -3594,6 +3636,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm` permission on the source stream
  
+
+
  
 
 
@@ -3627,6 +3671,8 @@ To run this command, your user ID must have the following permissions:
  
 * `topicperm` permission on the stream
  
+
+
  
 
 
@@ -3687,6 +3733,8 @@ To run this command, your user ID must have the following permissions:
  
 * `topicperm` permission on the stream
  
+
+
  
 
 
@@ -3720,6 +3768,8 @@ To run this command, your user ID must have the following permissions:
  
 * `topicperm` permission on the stream
  
+
+
  
 
 
@@ -3760,6 +3810,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
  
+
+
  
 
 
@@ -3793,6 +3845,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
  
+
+
  
 
 
@@ -3820,6 +3874,8 @@ To run this command, your user ID must have the following permissions:
  
 * [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
  
+
+
  
 
 
@@ -3941,7 +3997,7 @@ For example, suppose you had a JSON table that contained documents with this gen
 
 ```
 
-`{
+{
 
      "_id":"value",
 
@@ -3967,7 +4023,7 @@ For example, suppose you had a JSON table that contained documents with this gen
 
           }
 
-}`
+}
 
 ```
 
@@ -3983,7 +4039,7 @@ An application retrieves the full document for each movie. If `-insertionorder` 
 
 ```
 
-`{
+{
 
      "trailers" :
 
@@ -4007,7 +4063,7 @@ An application retrieves the full document for each movie. If `-insertionorder` 
 
      "title" : "Name of movie",
 
-}`
+}
 
 ```
 
@@ -4023,7 +4079,7 @@ If `-insertionorder` is set to `false`, the results are returned in this order:
 
 ```
 
-`{
+{
 
      "images" :
 
@@ -4047,7 +4103,7 @@ If `-insertionorder` is set to `false`, the results are returned in this order:
 
           }
 
-}`
+}
 
 ```
 
@@ -4073,6 +4129,8 @@ The results are similar to the previous results. This time, however, all the fie
  
 * Change the value of `regionsizemb`.
  
+
+
  
 
 
@@ -4149,6 +4207,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminaccessperm` on the table
  
+
+
  
 
 
@@ -4165,6 +4225,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -4195,6 +4257,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminaccessperm` on the table
  
+
+
  
 
 
@@ -4211,6 +4275,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -4231,7 +4297,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 ```
 
-`{
+{
 
   "a" : {
 
@@ -4239,7 +4305,7 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
         }
 
-}`
+}
 
 ```'
           required: true
@@ -4284,7 +4350,7 @@ Writes require permission both at the column-family level and at the column leve
 
 ```
 
-`{
+{
 
      "_id" : "ID",
 
@@ -4298,7 +4364,7 @@ Writes require permission both at the column-family level and at the column leve
 
           }
 
-}`
+}
 
 ```
 
@@ -4346,6 +4412,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminaccessperm` on the table
  
+
+
  
 
 
@@ -4362,6 +4430,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -4395,6 +4465,8 @@ To run this command, your user ID must have the following permissions:
  
 * `createrenamefamilyperm` on the table
  
+
+
  
 
 
@@ -4411,6 +4483,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -4532,7 +4606,7 @@ Column appends require permission both at the column-family level and at the col
 
 ```
 
-`{
+{
 
      "_id" : "ID",
 
@@ -4552,7 +4626,7 @@ Column appends require permission both at the column-family level and at the col
 
           }
 
-}`
+}
 
 ```
 
@@ -4573,7 +4647,7 @@ Important: Ensure that the field at which you want to create the column family d
 
 ```
 
-`{
+{
 
      "_id" : "ID",
 
@@ -4587,7 +4661,7 @@ Important: Ensure that the field at which you want to create the column family d
 
           }
 
-}`
+}
 
 ```
 
@@ -4618,6 +4692,8 @@ To run this command, your user ID must have the following permissions:
  
 * `deletefamilyperm` on the table
  
+
+
  
 
 
@@ -4634,6 +4710,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -4666,6 +4744,8 @@ To run this command, your user ID must have the following permissions:
  
 * `createrenamefamilyperm` on the table
  
+
+
  
 
 
@@ -4682,6 +4762,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -4808,7 +4890,7 @@ Column appends require permission both at the column-family level and at the col
 
 ```
 
-`{
+{
 
      "_id" : "ID",
 
@@ -4822,7 +4904,7 @@ Column appends require permission both at the column-family level and at the col
 
           }
 
-}`
+}
 
 ```
 
@@ -4853,6 +4935,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminaccessperm` on the table
  
+
+
  
 
 
@@ -4869,6 +4953,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -4895,6 +4981,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminaccessperm` on the table
  
+
+
  
 
 
@@ -4928,6 +5016,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminaccessperm` on the table
  
+
+
  
 
 
@@ -4952,6 +5042,8 @@ To run this command, your user ID must have the following permissions:
  
 * `adminaccessperm` on the table
  
+
+
  
 
 
@@ -4968,6 +5060,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -4988,6 +5082,8 @@ To run this command, your user ID must have the following permissions:
  
 * [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
  
+
+
  
 
 
@@ -5004,6 +5100,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, if you want to list regions for a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, if you want to list regions for a table named `test` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -5052,6 +5150,8 @@ To run this command, your user ID must have the following permissions:
  
 * `splitmergeperm` permission on the table
  
+
+
  
 
 
@@ -5073,6 +5173,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, if you want to merge regions for table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on a remote, you must also specify the cluster name in the path. For example, if you want to merge regions for table named `test` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -5107,6 +5209,8 @@ To run this command, your user ID must have the following permissions:
  
 * `packperm` permission on the table
  
+
+
  
 
 
@@ -5123,6 +5227,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, if you want to pack a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on another cluster, you must also specify the cluster name in the path. For example, if you want to pack a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
@@ -5156,6 +5262,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * `splitmergeperm` permission on the table
  
+
+
  
 
 
@@ -5169,6 +5277,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, if you want to split regions in a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
  
+
+
  
  
 * For a path on another cluster, you must also specify the cluster name in the path. For example, if you want to split regions in a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
@@ -5208,6 +5318,8 @@ To run this command, your user ID must have the following permissions:
  
 * `readperm` and `replperm` permissions on the source table
  
+
+
  
 
 
@@ -5224,6 +5336,8 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
  
+
+
  
  
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
@@ -5237,10 +5351,14 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
  
 * For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
  
+
+
  
  
 * For a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst` 
  
+
+
  
 
 
@@ -5277,7 +5395,7 @@ Suppose your table contains documents that contain this general structure:
 
 ```
 
-`{
+{
 
      "_id" : "ID",
 
@@ -5297,7 +5415,7 @@ Suppose your table contains documents that contain this general structure:
 
           }
 
-}`
+}
 
 ```
 
@@ -5316,7 +5434,7 @@ To replicate fields `a`, `c`, and `e`, you would specify these field paths:
 
 ```
 
-`a,a.b.c,a.e`
+a,a.b.c,a.e
 
 ```
 
@@ -5335,7 +5453,7 @@ Suppose now that `a.b` and `a.e` were custom column families. You want to replic
 
 ```
 
-`",a.e"`
+",a.e"
 
 ```
 
@@ -5387,6 +5505,8 @@ The types are:
  
 *  `zlib` 
  
+
+
  
 
 
@@ -5421,6 +5541,8 @@ lz4 is the default compression which it set by parameter values `on` or `lz4`."
  
 1. Clears the paused replication state to start the replication stream.
  
+
+
  
 
 
@@ -5439,6 +5561,8 @@ To run this command, your user ID must have the following permissions:
  
 * `readperm` and `replperm` permissions on the source table
  
+
+
  
 
 
@@ -5455,6 +5579,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
  
+
+
  
  
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
@@ -5470,6 +5596,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst `under`volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst` 
  
+
+
  
 
 
@@ -5506,7 +5634,7 @@ Suppose your table contains documents that contain this general structure:
 
 ```
 
-`{
+{
 
      "_id" : "ID",
 
@@ -5526,7 +5654,7 @@ Suppose your table contains documents that contain this general structure:
 
           }
 
-}`
+}
 
 ```
 
@@ -5545,7 +5673,7 @@ To replicate fields `a`, `c`, and `e`, you would specify these field paths:
 
 ```
 
-`a,a.b.c,a.e`
+a,a.b.c,a.e
 
 ```
 
@@ -5564,7 +5692,7 @@ Suppose now that `a.b` and `a.e` were custom column families. You want to replic
 
 ```
 
-`",a.e"`
+",a.e"
 
 ```
 
@@ -5616,6 +5744,8 @@ The types are:
  
 *  `zlib` 
  
+
+
  
 
 
@@ -5645,6 +5775,8 @@ To run this command, your user ID must have the following permissions:
  
 * `readperm` and `replperm` permissions on the source table
  
+
+
  
 
 
@@ -5661,6 +5793,8 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
@@ -5674,6 +5808,8 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
  
 * For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
  
+
+
  
  
 * For a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
@@ -5713,7 +5849,7 @@ Suppose your table contains documents that contain this general structure:
 
 ```
 
-`{
+{
 
      "_id" : "ID",
 
@@ -5733,7 +5869,7 @@ Suppose your table contains documents that contain this general structure:
 
           }
 
-}`
+}
 
 ```
 
@@ -5752,7 +5888,7 @@ To replicate fields `a`, `c`, and `e`, you would specify these field paths:
 
 ```
 
-`a,a.b.c,a.e`
+a,a.b.c,a.e
 
 ```
 
@@ -5771,7 +5907,7 @@ Suppose now that `a.b` and `a.e` were custom column families. You want to replic
 
 ```
 
-`",a.e"`
+",a.e"
 
 ```
 
@@ -5819,6 +5955,8 @@ The types are:
  
 *  `zlib` 
  
+
+
  
 
 
@@ -5846,6 +5984,8 @@ To run this command, your user ID must have the following permissions:
  
 * `lookupdir` on directories in the path 
  
+
+
  
 
 
@@ -5886,6 +6026,8 @@ To run this command, your user ID must have the following permissions:
  
 * `replperm` permissions on the source table
  
+
+
  
 
 
@@ -5933,6 +6075,8 @@ To run this command, your user ID must have the following permissions:
  
 * `replperm` permissions on the source table
  
+
+
  
 
 
@@ -5960,6 +6104,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
  
+
+
  
  
 * For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
@@ -5982,6 +6128,8 @@ To run this command, your user ID must have the following permissions:
  
 * `replperm` permissions on the source table
  
+
+
  
 
 
@@ -5998,6 +6146,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
  
+
+
  
  
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
@@ -6011,6 +6161,8 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
  
 * For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
  
+
+
  
  
 * For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
@@ -6044,6 +6196,8 @@ The user that runs the command must have the following permissions granted throu
  
 * Permission to perform replication, which is granted with the `replperm` access control expression.
  
+
+
  
 
 
@@ -6153,6 +6307,8 @@ The types are:
  
 *  `zlib` 
  
+
+
  
 
 
@@ -6187,6 +6343,8 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
  
 * Permission to perform replication, which is granted with the `replperm` access control expression.
  
+
+
  
 
 
@@ -6274,6 +6432,8 @@ If you change the list by removing any columns or column families that have alre
  
 1. On the source MapR cluster, recreate each type and restart indexing by running the command  [`maprcli table replica elasticsearch autosetup`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-autosetup.html)  for each type.
  
+
+
  
 
 
@@ -6316,6 +6476,8 @@ The types are:
  
 * zlib
  
+
+
  
 
 
@@ -6377,6 +6539,8 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
  
 * You want to compare the data in the type to the data in the source table by using the [ `DiffTables` ](http://maprdocs.mapr.com/home/ReferenceGuide/DiffTables.html) utility.
  
+
+
  
 
 
@@ -6498,6 +6662,8 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
  
 * For a path to a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/testdst` 
  
+
+
  
  
 * For a path to a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
@@ -6511,6 +6677,8 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/testsrc` 
  
+
+
  
  
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customersrc`"
@@ -6536,6 +6704,8 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
  
+
+
  
  
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named customerdst under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customerdst`"
@@ -6561,6 +6731,8 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
  
+
+
  
  
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
@@ -6574,6 +6746,8 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
  
 * For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testsrc` 
  
+
+
  
  
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customersrc`"
@@ -6953,6 +7127,8 @@ The operations that can be included (`+`) and/or excluded (`-`) from auditing ar
  
 * If excluded (`-`), cannot be specified with a list of other excluded operations.
  
+
+
  
 
 
@@ -7131,6 +7307,8 @@ The operations that can be included (`+`) or excluded (`-`) from auditing are li
  
 * If excluded (`-`), cannot be specified with a list of other excluded operations.
  
+
+
  
 
 
@@ -7149,6 +7327,8 @@ Other than the specified operations, by default, all other operations will be:
  
 * Excluded from auditing if the specified list is a list of included operations.
  
+
+
  
 
 
@@ -7332,11 +7512,11 @@ Note: To create a volume in a specific topology, you must have the [Converged En
 
 ```
 
-`ERROR (10010) -  Volume Creation Failed: Setting topology on a 
+ERROR (10010) -  Volume Creation Failed: Setting topology on a 
 
 volume requires data placement feature. License not found for 
 
-data placement.`
+data placement.
 
 ```"
           type: string
@@ -7361,6 +7541,8 @@ For 4.0.2 and later releases, these values are accepted:
  
 * 1 - non-convertible mirror (read-only) volume (for backward compatibility)
  
+
+
  
 
 
@@ -7740,6 +7922,8 @@ Example: `/home/abc/.rw`"
  
 * Permissions required: `fc` or `restore` on the volume
  
+
+
  
 
 
@@ -7787,6 +7971,8 @@ Normally, the mirroring operation transfers only deltas from the last successful
  
 * Permissions required: `fc` or `restore` on the volume
  
+
+
  
 
 
@@ -7897,6 +8083,8 @@ The operations that can be included (`+`) or excluded (`-`) from auditing are li
  
 * If excluded (`-`), cannot be specified with a list of other excluded operations.
  
+
+
  
 
 
@@ -8125,7 +8313,7 @@ Note: To move the volume to another topology, you must have the [Converged Enter
 
 ```
 
-`ERROR (10010) - Volume Move: No license for requested operation`
+ERROR (10010) - Volume Move: No license for requested operation
 
 ```"
           required: true
