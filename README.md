@@ -13,13 +13,13 @@ cd swagger-ui-2.2.10
 cp -r dist /opt/mapr/adminuiapp/webapp/swagger-ui
 ```
 
-Download and unzip the mapr-swagger-ui zip file and copy `update_yaml`, `mapr.yaml`, `css/mapr.css` and `images/logo_mapr.png` to the swagger-ui directory.
+Download and unzip the mapr-swagger-ui zip file and copy `update_json`, `mapr.json`, `css/mapr.css` and `images/logo_mapr.png` to the swagger-ui directory.
 
 ```
 wget https://github.com/nagix/mapr-swagger-ui/archive/master.zip
 unzip master.zip
 cd mapr-swagger-ui-master
-cp -r update_yaml mapr.yaml css images /opt/mapr/adminuiapp/webapp/swagger-ui
+cp -r update_json mapr.json css images /opt/mapr/adminuiapp/webapp/swagger-ui
 ```
 
 Replace the default css and Swagger definition file.
@@ -28,7 +28,7 @@ Replace the default css and Swagger definition file.
 sed -i /opt/mapr/adminuiapp/webapp/swagger-ui/index.html \
 -e 's/screen\.css/mapr.css/' \
 -e 's/logo_small\.png/logo_mapr.png/' \
--e 's/".*\.json"/"mapr.yaml"/'
+-e 's/".*\.json"/"mapr.json"/'
 ```
 
 Go to `https://<MCS node>:8443/swagger-ui/`
@@ -39,5 +39,5 @@ Run the following command (requires the `python-pyquery` rpm/deb package). This 
 
 ```
 cd /opt/mapr/adminuiapp/webapp/swagger-ui
-./update_yaml
+./update_json
 ```
