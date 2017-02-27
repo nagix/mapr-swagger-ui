@@ -2,11 +2,13 @@
 
 from lxml import etree
 from pyquery import PyQuery as pq
+from collections import OrderedDict
+import json
 import os
 import re
 import sys
 
-filename = 'mapr.yaml'
+filename = 'mapr.json'
 baseurl = 'http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax.html'
 enums = {}
 
@@ -22,13 +24,8 @@ def trim(text):
 def normalize(d):
   pre_descendant = d('pre *')
   for e in d('*'):
-    if e in pre_descendant:
-      e.text = escape(e.text).replace('\n', '\n\n')
-      e.tail = escape(e.tail).replace('\n', '\n\n')
-    else:
-      if e.tag == 'pre':
-        e.text = escape(e.text).replace('\n', '\n\n')
-      else:
+    if e not in pre_descendant:
+      if e.tag != 'pre':
         e.text = trim(escape(e.text))
       e.tail = trim(escape(e.tail))
   return d
@@ -63,16 +60,16 @@ def gfm(d):
   replace_tags(s, 'ul dl', '', '')
   replace_tags(s, 'ul dt', '**', '**<br>')
   replace_tags(s, 'ul dd', '', '<br>')
-  replace_tags(s, 'dl', '', '\n\n\n')
-  replace_tags(s, 'dt', '\n\n\n**', '**')
-  replace_tags(s, 'dd', '\n\n\n', '')
-  replace_tags(s, 'ul ul li', '\n\n  * ', '')
+  replace_tags(s, 'dl', '', '\n\n')
+  replace_tags(s, 'dt', '\n\n**', '**')
+  replace_tags(s, 'dd', '\n\n', '')
+  replace_tags(s, 'ul ul li', '\n  * ', '')
   replace_tags(s, 'ul ul', '', '')
-  replace_tags(s, 'ul li', '\n\n* ', '')
-  replace_tags(s, 'ol li', '\n\n1. ', '')
-  replace_tags(s, 'ul,ol', '\n', '\n\n\n')
-  replace_tags(s, 'section,td,p,div', '\n\n\n', '\n\n\n')
-  replace_tags(s, 'pre', '\n\n\n```\n\n', '\n\n```\n\n\n')
+  replace_tags(s, 'ul li', '\n* ', '')
+  replace_tags(s, 'ol li', '\n1. ', '')
+  replace_tags(s, 'ul,ol', '\n', '\n\n')
+  replace_tags(s, 'section,td,p,div', '\n\n', '\n\n')
+  replace_tags(s, 'pre', '\n\n```\n', '\n```\n\n')
   replace_tags(s, 'span', '', '')
   s('*').remove_attr('class')
   return (s.html() or '').strip()
@@ -121,37 +118,9 @@ def detect_type(name, description, syntax):
     return 'boolean'
   return 'string'
 
-# Print headers
-def print_headers(d):
-
-  # Print info
-  print('swagger: "2.0"')
-  print('info:')
-  print('  title: MapR API')
-  print('  description: The information about the MapR REST API')
-  print('  contact:')
-  print('    url: http://maprdocs.mapr.com')
-
-  # Print version
-  version = d('meta[name=version]').attr.content
-  print('  version: "%s"' % version)
-
-  # Print other headers
-  print('basePath: /rest')
-  print('schemes:')
-  print('  - https')
-  print('produces:')
-  print('  - application/json')
-  print('securityDefinitions:')
-  print('  BasicAuth:')
-  print('    type: basic')
-  print('security:')
-  print('  - BasicAuth: []')
-  print('paths:')
-
-# Print parameters
-def print_parameters(d, path, syntax):
-  found = False
+# Parse parameters
+def parse_parameters(d, path, syntax):
+  parameters_json = []
   parameters = d('h2,p')('*:contains("Parameters") ~ * tbody').eq(0)
   if not parameters:
     parameters = d('th:contains("Parameter")').closest('table').find('tbody')
@@ -163,13 +132,9 @@ def print_parameters(d, path, syntax):
       if re.search(r'(json|long)$', name):
         continue
 
-      if not found:
-        print('      parameters:')
-        found = True
-
       in_ = 'query'
       description = gfm(parameter[1])
-      required = parameter[0]('strong')
+      required = len(parameter[0]('strong')) > 0
       if 'urls' in d.base_url and name == 'name':
         in_ = 'path'
         required = True
@@ -184,27 +149,28 @@ def print_parameters(d, path, syntax):
       elif path == '/volume/snapshot/list' and name == 'columns':
         type = 'array'
         enum = enums['volume snapshot list']
-      print('        - name: %s' % name)
-      print('          in: %s' % in_)
-      if '"' in description:
-        print('          description: \'%s\'' % description)
-      else:
-        print('          description: "%s"' % description)
-      if required:
-        print('          required: true')
-      print('          type: %s' % type)
-      if type == 'array':
-        print('          items: {')
-        print('            type: string')
-        print('          }')
-        print('          collectionFormat: csv')
-      if enum:
-        print('          enum:')
-        for value in enum:
-          print('            - %s' % value)
 
-# Print command
-def print_command(d, tag):
+      parameters_json.append(OrderedDict([
+        ('name', name),
+        ('in', in_),
+        ('description', description),
+      ] + ([
+        ('required', True),
+      ] if required else []) + [
+        ('type', type)
+      ] + ([
+        ('items', {
+          'type': 'string'
+        }),
+        ('collectionFormat', 'csv')
+      ] if type == 'array' else []) + ([
+        ('enum', enum)
+      ] if enum else [])))
+
+  return parameters_json
+
+# Parse command
+def parse_command(d, tag):
 
   # Get command path
   syntax = d('h2,p')('*:contains("Syntax") ~ *').text()
@@ -212,13 +178,13 @@ def print_command(d, tag):
     syntax = d('dt:contains("REST")').parent().text()
   match = re.search('(?<=rest)/[a-z\-/<>]+', syntax)
   if not match:
-    return
+    return {}
   path = match.group().replace('<','{').replace('>','}')
 
   # Print progress
   sys.stderr.write('\r\033[KProcessing %s...' % path)
 
-  # Print summary and description
+  # Parse summary and description
   short_desc = d('.shortdesc') or d('p:first')
   summary = trim(short_desc.text())
   if short_desc.next().find('p:contains("Syntax")'):
@@ -233,22 +199,25 @@ def print_command(d, tag):
       break
     elements.append(e)
   description = gfm(pq(elements))
-  print('  %s:' % path)
-  print('    get:')
-  print('      tags:')
-  print('        - %s' % tag)
-  print('      summary: "%s"' % summary)
-  print('      description: "%s"' % description)
-  print('      externalDocs:')
-  print('        url: %s' % d.base_url)
 
-  # Print parameters
-  print_parameters(d, path, syntax)
-
-  # Print responses
-  print('      responses:')
-  print('        200:')
-  print('          description: OK')
+  return {
+    path: {
+      'get': OrderedDict([
+        ('tags', [tag]),
+        ('summary', summary),
+        ('description', description),
+        ('externalDocs', {
+          'url': d.base_url
+        }),
+        ('parameters', parse_parameters(d, path, syntax)),
+        ('responses', {
+          '200': {
+            'description': 'OK'
+          }
+        })
+      ])
+    }
+  }
 
 # Get enum from field table
 def get_enum(d, tag):
@@ -260,8 +229,9 @@ def get_enum(d, tag):
     for i in fields('tr').items():
       enums[tag].append(i('td:first').text())
 
-# Find and print command
+# Find and parse command
 def find_command(links, cat=None):
+  document = OrderedDict()
   for e in links:
     category = cat
     if not cat:
@@ -270,15 +240,39 @@ def find_command(links, cat=None):
     get_enum(d, e.text)
     sublinks = d('.link a')
     if sublinks:
-      find_command(sublinks, category)
+      document.update(find_command(sublinks, category))
     else:
-      print_command(d, category)
+      document.update(parse_command(d, category))
+  return document
 
 # Main
-with open(os.path.join(os.path.dirname(__file__), filename), "w") as sys.stdout:
-  d = pq(baseurl).make_links_absolute()
-  print_headers(d)
-  find_command(d('.link:gt(0) a'))
+d = pq(baseurl).make_links_absolute()
+document = OrderedDict([
+  ('swagger', '2.0'),
+  ('info', OrderedDict([
+    ('title', 'MapR API'),
+    ('description', 'The information about the MapR REST API'),
+    ('contact', {
+      'url': 'http://maprdocs.mapr.com'
+    }),
+    ('version', d('meta[name=version]').attr.content)
+  ])),
+  ('basePath', '/rest'),
+  ('schemes', ['https']),
+  ('produces', ['application/json']),
+  ('paths', find_command(d('.link:gt(0) a'))),
+  ('securityDefinitions', {
+    'basic_auth': {
+      'type': 'basic'
+    }
+  }),
+  ('security', [{
+    'basic_auth': []
+  }])
+])
+
+with open(os.path.join(os.path.dirname(__file__), filename), "w") as f:
+  json.dump(document, f, indent=2)
 
 sys.stderr.write('\r\033[K')
 sys.stderr.flush()

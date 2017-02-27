@@ -122,10 +122,11 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
 
  
  
-* long
- 
-* short
- 
+
+* long 
+
+* short 
+
 * terse"
           type: string
           enum:
@@ -276,10 +277,10 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
           in: query
           description: "Specifies the type of data to return:
  
-* 1 = count by alarm type
- 
-* 0 = List of alarms
- 
+
+* 1 = count by alarm type 
+
+* 0 = List of alarms 
 
 
  Default: 0"
@@ -294,12 +295,13 @@ Note: The `acl set` command removes any previous ACL values. If you wish to pres
 
  
  
-*  `cluster` 
- 
-*  `node` 
- 
-*  `volume` 
- 
+
+*  `cluster`  
+
+*  `node`  
+
+*  `volume`  
+
 *  `ae`"
           type: string
           enum:
@@ -565,8 +567,9 @@ This list is created by the `maprcli cluster gateway set` command."
 
 Note: 
  
-* If the output is formatted as DNS, you can copy and paste the output into a DNS record in the zone file for your domain. The source MapR cluster can then locate the gateways by doing a DNS lookup.
- 
+
+* If the output is formatted as DNS, you can copy and paste the output into a DNS record in the zone file for your domain. The source MapR cluster can then locate the gateways by doing a DNS lookup. 
+
 * If the output is formatted as text, you can copy and paste that text into the `-gateways` parameter of the `maprcli cluster gateway set` command. Running this command is an alternative way of specifying the location of these gateways to the source MapR cluster."
           type: string
           enum:
@@ -576,8 +579,9 @@ Note:
           in: query
           description: "If you are not on a MapR cluster where one or more gateways are configured, provide the name of the cluster. 
  
-* When replicating MapR-DB table data to one or more replicas on this cluster, then the cluster is a destination MapR cluster.
- 
+
+* When replicating MapR-DB table data to one or more replicas on this cluster, then the cluster is a destination MapR cluster. 
+
 * When indexing MapR-DB table data in one or more Elasticsearch cluster, then the current cluster is a source MapR cluster where the tables being indexed are located."
           type: string
       responses:
@@ -599,30 +603,30 @@ This command uses the following criteria to get the list:
 
  
  
+
 *  
 
 
 If the locations of the gateways were specified with the `marpcli cluster gateway set` command, the maprcli cluster gateway resolve command returns the list of the gateways.
 
 
- 
- 
+  
+
 *  
 
 
 If the locations of the gateways were specified with a DNS record only, this command performs a DNS lookup for gateways on the specified MapR cluster and returns the list that it finds.
 
 
- 
- 
+  
+
 *  
 
 
 If neither of the previous methods was used to specify the locations of the gateways, this command assumes that gateways are located on the CLDB nodes configured in the `mapr-clusters.conf` file on the MapR cluster where the command is executed.
 
 
- 
- 
+  
 
 
  
@@ -724,8 +728,9 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
 
  
  
-*  `classic`: Use JobTracker and TaskTracker to run MapReduce Jobs.
- 
+
+*  `classic`: Use JobTracker and TaskTracker to run MapReduce Jobs. 
+
 *  `yarn`: Use Resource Manager and Node Manager to run MapReduce jobs or applications."
           type: string
           enum:
@@ -847,8 +852,9 @@ Values: true/false. Default: false"
 
  
  
-* 0 - Disable
- 
+
+* 0 - Disable 
+
 * 1 - Enable"
           type: string
           enum:
@@ -921,8 +927,9 @@ Values: true/false. Default: false"
 
  
  
-*  /dev/sdc
- 
+
+*  /dev/sdc 
+
 *  /dev/sdd,/dev/sde,/dev/sdf"
           required: true
           type: string
@@ -962,10 +969,11 @@ Values: true/false. Default: false"
 
  
  
-* 0 - shows only MapR-FS disks
- 
-* 1 - shows only operating system disks
- 
+
+* 0 - shows only MapR-FS disks 
+
+* 1 - shows only operating system disks 
+
 * Not specified - shows both MapR-FS and operating system disks"
           type: string
           enum:
@@ -1018,8 +1026,9 @@ Values: true/false. Default: false"
 
 Note: 
  
-* Only use the `-force 1` option if you are sure that you do not need the data on the disk. This option removes the disk without regard to replication factor or other data protection mechanisms, and may result in permanent data loss.
- 
+
+* Only use the `-force 1` option if you are sure that you do not need the data on the disk. This option removes the disk without regard to replication factor or other data protection mechanisms, and may result in permanent data loss. 
+
 * Removing a disk in the storage pool that contains Container ID 1 will stop your cluster. Container ID 1 contains CLDB data for the master CLDB. Run `disk remove` without the `-force 1` option first and examine the warning messages to make sure you aren't removing the disk with Container ID 1. If you try to remove a disk associated with the storage pool that contains Container ID 1, you will see an error message similar to the following: 
 
 
@@ -1090,8 +1099,9 @@ isResyncSnapshot:0 snapId:0 port:5660
 
  
  
-*  `0` (default) - do not remove the disk or disks if there is unreplicated data on the disk
- 
+
+*  `0` (default) - do not remove the disk or disks if there is unreplicated data on the disk 
+
 *  `1` - remove the disk or disks regardless of data loss or other consequences"
           type: string
           enum:
@@ -1225,8 +1235,9 @@ isResyncSnapshot:0 snapId:0 port:5660
 
  
  
-* 0=user
- 
+
+* 0=user 
+
 * 1-group"
           required: true
           type: string
@@ -1253,10 +1264,10 @@ isResyncSnapshot:0 snapId:0 port:5660
           in: query
           description: "The entity type. Value can be: 
  
-* `0` - for user
- 
-* `1` - for group
- 
+
+* `0` - for user 
+
+* `1` - for group 
 
 
  If necessary, obtain the entity type by running the `maprcli entity list` command."
@@ -1335,8 +1346,8 @@ isResyncSnapshot:0 snapId:0 port:5660
       parameters:
         - name: jobid
           in: query
-          description: "* For MapReduce v1, specify a regular expression specifying the target jobs. To specify a pattern, you can use asterisks. You can prefix a pattern with `job;` otherwise, `job` will be automatically prepended to the pattern. There is just one match if the full job ID is used.
- 
+          description: "* For MapReduce v1, specify a regular expression specifying the target jobs. To specify a pattern, you can use asterisks. You can prefix a pattern with `job;` otherwise, `job` will be automatically prepended to the pattern. There is just one match if the full job ID is used. 
+
 * For MapReduce v2, specify the application ID."
           type: string
         - name: todir
@@ -1345,8 +1356,8 @@ isResyncSnapshot:0 snapId:0 port:5660
           type: string
         - name: jobconf
           in: query
-          description: "* For MapReduce v1 jobs, specify this parameter if the centralized job history location has changed since the job of interest was run. This command uses the centralized job history location specified by `mapred.job.tracker.history.completed.location.` The centralized job history location is by default `/var/mapr/cluster/mapred/jobTracker/history/done`.
- 
+          description: "* For MapReduce v1 jobs, specify this parameter if the centralized job history location has changed since the job of interest was run. This command uses the centralized job history location specified by `mapred.job.tracker.history.completed.location.` The centralized job history location is by default `/var/mapr/cluster/mapred/jobTracker/history/done`. 
+
 * For MapReduce v2, this parameter is not applicable."
           type: string
       responses:
@@ -1613,24 +1624,25 @@ isResyncSnapshot:0 snapId:0 port:5660
 
  
  
+
 *  `status` = Node status (the default view):  
-  *  `0` = Healthy
- 
-  *  `1` = Needs attention
- 
-  *  `2` = Degraded
- 
-  *  `3` = Maintenance
- 
-  *  `4` = Critical
-  
- 
-*  `cpu` = CPU utilization, as a percent from 0-100.
- 
-*  `memory` = Memory utilization, as a percent from 0-100. 
- 
-*  `diskspace` = MapR-FS disk space utilization, as a percent from 0-100. 
- 
+
+  *  `0` = Healthy 
+
+  *  `1` = Needs attention 
+
+  *  `2` = Degraded 
+
+  *  `3` = Maintenance 
+
+  *  `4` = Critical   
+
+*  `cpu` = CPU utilization, as a percent from 0-100. 
+
+*  `memory` = Memory utilization, as a percent from 0-100.  
+
+*  `diskspace` = MapR-FS disk space utilization, as a percent from 0-100.  
+
 *  `NODE_*` = Status of various alarms: `0` if clear, `1` if raised. For example: `NODE_ALARM_DISK_FAILURE` or `NODE_ALARM_SERVICE_CLDB_DOWN`. You can return a complete list of supported alarm parameters by running: 
 
 
@@ -1655,12 +1667,13 @@ See the lists of parameters below this table."
 
  
  
-* To list only nodes with raised alarms, set `alarmednodes` to 1.
- 
-* To list only NFS nodes, set `nfsnodes` to 1.
- 
-* To window the list, use the `start` and `limit` options to select only a portion of the results.
- 
+
+* To list only nodes with raised alarms, set `alarmednodes` to 1. 
+
+* To list only NFS nodes, set `nfsnodes` to 1. 
+
+* To window the list, use the `start` and `limit` options to select only a portion of the results. 
+
 * To list nodes that match certain criteria, pass a filter to the `filter` parameter. See the Fields table on the [node](http://maprdocs.mapr.com/home/ReferenceGuide/node.html) page for the fields available to filter. See the [maprcli and REST API Syntax](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html#concept_znz_qxz_5t) page for information on filters."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/node-list.html
@@ -1970,8 +1983,9 @@ See the lists of parameters below this table."
 
  
  
-* Use the `nodes` parameter to specify a space-delimited list of node names.
- 
+
+* Use the `nodes` parameter to specify a space-delimited list of node names. 
+
 * Use the `filter` parameter to specify all nodes that match a certain pattern. See [Filters](http://maprdocs.mapr.com/home/ReferenceGuide/maprcli-REST-API-Syntax-Filters.html) for more information."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/node-services.html
@@ -2189,10 +2203,11 @@ See the lists of parameters below this table."
 
  
  
-1. Use the [schedule list](http://maprdocs.mapr.com/home/ReferenceGuide/schedule-list.html) command to list the schedules.
- 
-1. Select the schedule to modify.
- 
+
+1. Use the [schedule list](http://maprdocs.mapr.com/home/ReferenceGuide/schedule-list.html) command to list the schedules. 
+
+1. Select the schedule to modify. 
+
 1. Pass the selected schedule's ID in the -id parameter to the `schedule modify` command."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/schedule-modify.html
@@ -2276,16 +2291,17 @@ See the lists of parameters below this table."
 
  
  
-* DEBUG
- 
-* ERROR
- 
-* FATAL
- 
-* INFO
- 
-* TRACE
- 
+
+* DEBUG 
+
+* ERROR 
+
+* FATAL 
+
+* INFO 
+
+* TRACE 
+
 * WARN"
           required: true
           type: string
@@ -2329,16 +2345,17 @@ See the lists of parameters below this table."
 
  
  
-* DEBUG
- 
-* ERROR
- 
-* FATAL
- 
-* INFO
- 
-* TRACE
- 
+
+* DEBUG 
+
+* ERROR 
+
+* FATAL 
+
+* INFO 
+
+* TRACE 
+
 * WARN"
           required: true
           type: string
@@ -2382,16 +2399,17 @@ See the lists of parameters below this table."
 
  
  
-* DEBUG
- 
-* ERROR
- 
-* FATAL
- 
-* INFO
- 
-* TRACE
- 
+
+* DEBUG 
+
+* ERROR 
+
+* FATAL 
+
+* INFO 
+
+* TRACE 
+
 * WARN"
           required: true
           type: string
@@ -2435,16 +2453,17 @@ See the lists of parameters below this table."
 
  
  
-* DEBUG
- 
-* ERROR
- 
-* FATAL
- 
-* INFO
- 
-* TRACE
- 
+
+* DEBUG 
+
+* ERROR 
+
+* FATAL 
+
+* INFO 
+
+* TRACE 
+
 * WARN"
           required: true
           type: string
@@ -2488,16 +2507,17 @@ See the lists of parameters below this table."
 
  
  
-* DEBUG
- 
-* ERROR
- 
-* FATAL
- 
-* INFO
- 
-* TRACE
- 
+
+* DEBUG 
+
+* ERROR 
+
+* FATAL 
+
+* INFO 
+
+* TRACE 
+
 * WARN"
           required: true
           type: string
@@ -2541,16 +2561,17 @@ See the lists of parameters below this table."
 
  
  
-* DEBUG
- 
-* ERROR
- 
-* FATAL
- 
-* INFO
- 
-* TRACE
- 
+
+* DEBUG 
+
+* ERROR 
+
+* FATAL 
+
+* INFO 
+
+* TRACE 
+
 * WARN"
           required: true
           type: string
@@ -2601,16 +2622,17 @@ See the lists of parameters below this table."
 
  
  
-* DEBUG
- 
-* ERROR
- 
-* FATAL
- 
-* INFO
- 
-* TRACE
- 
+
+* DEBUG 
+
+* ERROR 
+
+* FATAL 
+
+* INFO 
+
+* TRACE 
+
 * WARN"
           required: true
           type: string
@@ -2642,12 +2664,12 @@ See the lists of parameters below this table."
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream 
 
 
  
@@ -2709,10 +2731,10 @@ To run this command, your user ID must have write permission on the directory in
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
 
 
  
@@ -2839,12 +2861,12 @@ For example, the consumer `consumer1` continues reading the messages in a partit
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` or `consumeperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` or `consumeperm` permission on the stream 
 
 
  
@@ -2882,12 +2904,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream 
 
 
  
@@ -2933,10 +2955,10 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
 
 
  
@@ -2962,12 +2984,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the stream 
 
 
  
@@ -3067,12 +3089,12 @@ This permission includes the `topicperm` permission."
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-*   **`adminperm`**<br/> When a user with this permission runs the command, the output includes the access-control expressions for the `adminperm` and `topicperm` permissions.<br/> **`produceperm`, `consumeperm`, or `topicperm`**<br/> When a user with one of these permissions runs the command, the output does not include any access-control expressions.<br/>  
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+*   **`adminperm`**<br/> When a user with this permission runs the command, the output includes the access-control expressions for the `adminperm` and `topicperm` permissions.<br/> **`produceperm`, `consumeperm`, or `topicperm`**<br/> When a user with one of these permissions runs the command, the output does not include any access-control expressions.<br/>   
 
 
  
@@ -3112,12 +3134,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the stream 
 
 
  
@@ -3143,12 +3165,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` and `copyperm` permissions on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` and `copyperm` permissions on the source stream 
 
 
  
@@ -3169,8 +3191,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
 * [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path"
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_add.html
@@ -3197,8 +3220,9 @@ Set `-paused` to `true` if you want to run `mapr copystream` to load the replica
 
 Throttling has two effects, both of which allow MapR Streams to use more system resources to process new messages:
  
-* Throttling slows down the rate at which changes to a stream are replicated.
- 
+
+* Throttling slows down the rate at which changes to a stream are replicated. 
+
 * Throttling slows down the rate at which messages to be replicated are read from disk."
           type: boolean
         - name: networkencryption
@@ -3228,16 +3252,16 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
       summary: "Sets up and starts replication between a source stream and replica stream."
       description: "The `maprcli stream replica autosetup` command performs the following steps to set up replication:
  
-1. Creates a stream in the destination cluster.
- 
-1. Declares the new stream to be a replica of the source stream and ensures that replication does not begin immediately after the next step.
- 
-1. Declares the source stream as the original of the replica stream.
- 
-1. Runs the `mapr copystream` utility to load a copy of the source data into the replica.
- 
-1. Clears the paused replication state to start replication.
- 
+
+1. Creates a stream in the destination cluster. 
+
+1. Declares the new stream to be a replica of the source stream and ensures that replication does not begin immediately after the next step. 
+
+1. Declares the source stream as the original of the replica stream. 
+
+1. Runs the `mapr copystream` utility to load a copy of the source data into the replica. 
+
+1. Clears the paused replication state to start replication. 
 
 
  
@@ -3255,12 +3279,12 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` and `copyperm` permissions on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` and `copyperm` permissions on the source stream 
 
 
  
@@ -3281,8 +3305,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
 * [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path"
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_autosetup.html
@@ -3310,8 +3335,9 @@ To run this command, your user ID must have the following permissions:
 
 Throttling has two effects, both of which allow MapR Streams to use more system resources to process new messages:
  
-* Throttling slows down the rate at which changes to a stream are replicated.
- 
+
+* Throttling slows down the rate at which changes to a stream are replicated. 
+
 * Throttling slows down the rate at which messages to be replicated are read from disk."
           type: boolean
         - name: networkencryption
@@ -3339,12 +3365,12 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the source stream 
 
 
  
@@ -3365,8 +3391,9 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
 * [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path"
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/stream_replica_edit.html
@@ -3390,8 +3417,9 @@ To run this command, your user ID must have the following permissions:
 
 Throttling has two effects, both of which allow MapR Streams to use more system resources to process new messages:
  
-* Throttling slows down the rate at which changes to a stream are replicated.
- 
+
+* Throttling slows down the rate at which changes to a stream are replicated. 
+
 * Throttling slows down the rate at which messages to be replicated are read from disk."
           type: boolean
         - name: networkencryption
@@ -3423,12 +3451,12 @@ Throttling has two effects, both of which allow MapR Streams to use more system 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the source stream 
 
 
  
@@ -3458,12 +3486,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the source stream 
 
 
  
@@ -3493,12 +3521,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the source stream 
 
 
  
@@ -3528,12 +3556,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the source stream 
 
 
  
@@ -3563,12 +3591,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the source stream 
 
 
  
@@ -3598,12 +3626,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the source stream 
 
 
  
@@ -3629,12 +3657,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm` permission on the source stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm` permission on the source stream 
 
 
  
@@ -3664,12 +3692,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `topicperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `topicperm` permission on the stream 
 
 
  
@@ -3726,12 +3754,12 @@ If the parameter `-autocreate` for the stream is set to `true`, a topic with the
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `topicperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `topicperm` permission on the stream 
 
 
  
@@ -3761,12 +3789,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `topicperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `topicperm` permission on the stream 
 
 
  
@@ -3803,12 +3831,12 @@ To find out how many partitions a topic is currently using, run the command `map
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream 
 
 
  
@@ -3838,12 +3866,12 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminperm`, `consumeperm`, `produceperm`, or `topicperm` permission on the stream 
 
 
  
@@ -3869,10 +3897,10 @@ Note: The `mapr` user is not treated as a superuser. MapR Streams does not allow
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
 
 
  
@@ -3889,8 +3917,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at /volume1, specify the following path: `/volume1/test`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: copymetafrom
@@ -3900,8 +3929,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, if you want to copymetadata from a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` `` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to copymetadata from a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` ``  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, if you want to copymetadata from a table named test under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: copymetatype
@@ -3911,14 +3941,15 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-*  `all`. Copy all metadata. This is the default.
- 
-*  `cfs`. Copy column family metadata.
- 
-*  `aces`. Copy ACE permissions.
- 
-*  `splits`. Copy split keys.
- 
+
+*  `all`. Copy all metadata. This is the default. 
+
+*  `cfs`. Copy column family metadata. 
+
+*  `aces`. Copy ACE permissions. 
+
+*  `splits`. Copy split keys. 
+
 *  `attrs`. Copy table attributes."
           type: string
           enum:
@@ -4124,10 +4155,10 @@ The results are similar to the previous results. This time, however, all the fie
 
  
  
-* Run the `table region split` and `table region merge` commands to split the table into regions or to merge regions of the table together. 
- 
-* Change the value of `regionsizemb`.
- 
+
+* Run the `table region split` and `table region merge` commands to split the table into regions or to merge regions of the table together.  
+
+* Change the value of `regionsizemb`. 
 
 
  
@@ -4200,12 +4231,12 @@ For more information about this permission as it applies to JSON tables, see [Gr
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminaccessperm` on the table 
 
 
  
@@ -4222,12 +4253,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: cfname
@@ -4250,12 +4282,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminaccessperm` on the table 
 
 
  
@@ -4272,12 +4304,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           required: true
           type: string
@@ -4405,12 +4438,12 @@ If this user were to try to read from the same two columns, MapR-DB would simply
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminaccessperm` on the table 
 
 
  
@@ -4427,12 +4460,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           required: true
           type: string
@@ -4458,12 +4492,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `createrenamefamilyperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `createrenamefamilyperm` on the table 
 
 
  
@@ -4480,12 +4514,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: cfname
@@ -4685,12 +4720,12 @@ This permission is inherited by fields within the column family. By default, thi
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `deletefamilyperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `deletefamilyperm` on the table 
 
 
  
@@ -4707,12 +4742,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: cfname
@@ -4737,12 +4773,12 @@ Note: In JSON tables, it is not possible to delete the default column family."
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `createrenamefamilyperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `createrenamefamilyperm` on the table 
 
 
  
@@ -4759,12 +4795,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: cfname
@@ -4928,12 +4965,12 @@ This permission is inherited by fields within the column family. By default, thi
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminaccessperm` on the table 
 
 
  
@@ -4950,12 +4987,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named test under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named test under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: cfname
@@ -4974,12 +5012,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminaccessperm` on the table 
 
 
  
@@ -4993,8 +5031,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           in: query
           description: "Path to the MapR table to delete.
  
-* For a path on the local cluster, start the path at the volume mount point. For example, if you want to delete a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to delete a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, if you want to delete a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
       responses:
@@ -5009,12 +5048,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminaccessperm` on the table 
 
 
  
@@ -5035,12 +5074,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `adminaccessperm` on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `adminaccessperm` on the table 
 
 
  
@@ -5057,12 +5096,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           type: string
       responses:
@@ -5077,10 +5117,10 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
 
 
  
@@ -5097,12 +5137,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, if you want to list regions for a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to list regions for a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, if you want to list regions for a table named `test` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           required: true
           type: string
@@ -5143,12 +5184,12 @@ Note: Consider the table configuration when you decide to merge regions because 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `splitmergeperm` permission on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `splitmergeperm` permission on the table 
 
 
  
@@ -5170,12 +5211,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, if you want to merge regions for table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to merge regions for table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on a remote, you must also specify the cluster name in the path. For example, if you want to merge regions for table named `test` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           required: true
           type: string
@@ -5202,12 +5244,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `packperm` permission on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `packperm` permission on the table 
 
 
  
@@ -5224,12 +5266,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, if you want to pack a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to pack a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, if you want to pack a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: fid
@@ -5255,12 +5298,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path
- 
-* `splitmergeperm` permission on the table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on the volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the path 
+
+* `splitmergeperm` permission on the table 
 
 
  
@@ -5274,12 +5317,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
           in: query
           description: "Path to the table.
  
-* For a path on the local cluster, start the path at the volume mount point. For example, if you want to split regions in a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, if you want to split regions in a table named `test` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/test`  
 
 
  
  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, if you want to split regions in a table named `customer` under volume1 in the sanfrancisco cluster, specify the following path:`/mapr/sanfrancisco/volume1/customer`"
           required: true
           type: string
@@ -5311,12 +5355,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* `readAce` and `writeAce` on both the source volume and the target volume
- 
-* `lookupdir` on directories in the paths of both tables 
- 
-* `readperm` and `replperm` permissions on the source table
- 
+
+* `readAce` and `writeAce` on both the source volume and the target volume 
+
+* `lookupdir` on directories in the paths of both tables  
+
+* `readperm` and `replperm` permissions on the source table 
 
 
  
@@ -5333,12 +5377,13 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc`  
 
 
  
  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
           type: string
         - name: replica
@@ -5348,14 +5393,14 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
  
  
-* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
- 
+
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst`  
 
 
  
  
-* For a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst` 
- 
+
+* For a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`  
 
 
  
@@ -5371,25 +5416,25 @@ Note: For replication to a table, the command will fail if the table in the repl
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate:  
 
 
- **For binary tables**
+**For binary tables** 
 
 
- Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
 
 
- 
+  
 
 
- **For JSON tables**
+**For JSON tables** 
 
 
- Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
 
 
 **Example**
@@ -5503,16 +5548,16 @@ The types are:
 
  
  
-*  `off` 
- 
-* on (default)
- 
-*  `lzf` 
- 
-*  `lz4` 
- 
-*  `zlib` 
- 
+
+*  `off`  
+
+* on (default) 
+
+*  `lzf`  
+
+*  `lz4`  
+
+*  `zlib`  
 
 
  
@@ -5539,16 +5584,16 @@ lz4 is the default compression which it set by parameter values `on` or `lz4`."
 
  
  
-1. Creates a table with the required column families in the destination cluster.
- 
-1. Declares the new table to be a replica of the source table and ensures that replication does not begin immediately after the next step.
- 
-1. Declares the source table as an upstream source for the replica.
- 
-1. Runs the `CopyTable` utility to load a copy of the source data into the replica.
- 
-1. Clears the paused replication state to start the replication stream.
- 
+
+1. Creates a table with the required column families in the destination cluster. 
+
+1. Declares the new table to be a replica of the source table and ensures that replication does not begin immediately after the next step. 
+
+1. Declares the source table as an upstream source for the replica. 
+
+1. Runs the `CopyTable` utility to load a copy of the source data into the replica. 
+
+1. Clears the paused replication state to start the replication stream. 
 
 
  
@@ -5563,12 +5608,12 @@ lz4 is the default compression which it set by parameter values `on` or `lz4`."
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
- 
-* `readperm` and `replperm` permissions on the source table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables 
+
+* `readperm` and `replperm` permissions on the source table 
 
 
  
@@ -5585,12 +5630,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc`  
 
 
  
  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
           type: string
         - name: replica
@@ -5600,10 +5646,10 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
- 
-* For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst `under`volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst` 
- 
+
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst`  
+
+* For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst `under`volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`  
 
 
  
@@ -5619,25 +5665,25 @@ Note: For replication to a table, the command will fail if the replica path you 
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate:  
 
 
- **For binary tables**
+**For binary tables** 
 
 
- Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
 
 
- 
+  
 
 
- **For JSON tables**
+**For JSON tables** 
 
 
- Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
 
 
 **Example**
@@ -5751,22 +5797,22 @@ The types are:
 
  
  
-* off
- 
-*  `on` (default)
- 
-*  `lzf` 
- 
-*  `lz4` 
- 
-*  `zlib` 
- 
+
+* off 
+
+*  `on` (default) 
+
+*  `lzf`  
+
+*  `lz4`  
+
+*  `zlib`  
 
 
  
 
 
-lz4 is the default compression which it set by parameter values ` `on` `or` `lz4`. `"
+lz4 is the default compression which it set by parameter values ` on `or` lz4. `"
           type: string
           enum:
             - off
@@ -5786,12 +5832,12 @@ lz4 is the default compression which it set by parameter values ` `on` `or` `lz4
 
 To run this command, your user ID must have the following permissions:
  
-* `readAce` and `writeAce` on both the source volume and the target volume
- 
-* `lookupdir` on directories in the paths of both tables 
- 
-* `readperm` and `replperm` permissions on the source table
- 
+
+* `readAce` and `writeAce` on both the source volume and the target volume 
+
+* `lookupdir` on directories in the paths of both tables  
+
+* `readperm` and `replperm` permissions on the source table 
 
 
  
@@ -5808,12 +5854,13 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
           type: string
         - name: replica
@@ -5823,12 +5870,13 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
  
  
-* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
- 
+
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst`  
 
 
  
  
+
 * For a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
           type: string
         - name: newreplica
@@ -5843,25 +5891,25 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
  
 
 
-If you do not want to replicate all columns in the table, you can specify specific columns to replicate: 
+If you do not want to replicate all columns in the table, you can specify specific columns to replicate:  
 
 
- **For binary tables**
+**For binary tables** 
 
 
- Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
+Provide a comma-separated list of column families or columns from a certain column family (column family:qualifier). For example, use the following syntax to replicate the column family purchases and the column stars in the reviews column family: `-columns purchases,reviews:stars` 
 
 
 Note: While the column families that you specify must already exist in the source table, the columns that you specify do not have to exist in the destination table for replication to succeed. If the column is added at a later date, replication for that column will start at that time. 
 
 
- 
+  
 
 
- **For JSON tables**
+**For JSON tables** 
 
 
- Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
+Provide a comma-delimited list of fields to replicate. Include the full field path for each field. 
 
 
 **Example**
@@ -5971,16 +6019,16 @@ The types are:
 
  
  
-* off
- 
-* on (default)
- 
-*  `lzf` 
- 
-*  `lz4.` This is the default
- 
-*  `zlib` 
- 
+
+* off 
+
+* on (default) 
+
+*  `lzf`  
+
+*  `lz4.` This is the default 
+
+*  `zlib`  
 
 
  
@@ -6006,10 +6054,10 @@ lz4 is the default compression which it set by parameter values on or lz4."
 
 To run this command, your user ID must have the following permissions:
  
-* `readAce` on the volume
- 
-* `lookupdir` on directories in the path 
- 
+
+* `readAce` on the volume 
+
+* `lookupdir` on directories in the path  
 
 
  
@@ -6026,8 +6074,9 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
  
  
-* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
- 
+
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test`  
+
 * For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco`cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: refreshnow
@@ -6046,12 +6095,12 @@ Note: The **mapr user** is not treated as a superuser. MapR-DB does not allow th
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
- 
-* `replperm` permissions on the source table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables 
+
+* `replperm` permissions on the source table 
 
 
  
@@ -6068,8 +6117,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc`  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
           type: string
         - name: replica
@@ -6079,8 +6129,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
- 
+
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst`  
+
 * For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
           type: string
       responses:
@@ -6095,12 +6146,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
- 
-* `replperm` permissions on the source table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables 
+
+* `replperm` permissions on the source table 
 
 
  
@@ -6117,8 +6168,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
           type: string
         - name: replica
@@ -6128,12 +6180,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
- 
+
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst`  
 
 
  
  
+
 * For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
           type: string
       responses:
@@ -6148,12 +6201,12 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
 To run this command, your user ID must have the following permissions:
  
-* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume
- 
-* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables
- 
-* `replperm` permissions on the source table
- 
+
+* [`readAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) and [`writeAce`](http://maprdocs.mapr.com/home/ReferenceGuide/volume-modify.html#volumemodify) on both the source volume and the target volume 
+
+* [`lookupdir`](http://maprdocs.mapr.com/home/ReferenceGuide/hadoop-mfs.html#hadoopmfs) on directories in the paths of both tables 
+
+* `replperm` permissions on the source table 
 
 
  
@@ -6170,12 +6223,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under a volume with a mount point at /volume1, specify the following path: `/volume1/testsrc`  
 
 
  
  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customersrc`"
           type: string
         - name: replica
@@ -6185,12 +6239,13 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
- 
+
+* For a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/testdst`  
 
 
  
  
+
 * For a table on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
           type: string
       responses:
@@ -6218,10 +6273,10 @@ The user that runs the command must have the following permissions granted throu
 
  
  
-* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression.
- 
-* Permission to perform replication, which is granted with the `replperm` access control expression.
- 
+
+* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression. 
+
+* Permission to perform replication, which is granted with the `replperm` access control expression. 
 
 
  
@@ -6238,8 +6293,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: target
@@ -6323,16 +6379,16 @@ The types are:
 
  
  
-*  `off` 
- 
-*  `on` (default)
- 
-*  `lzf` 
- 
-*  `lz4` 
- 
-*  `zlib` 
- 
+
+*  `off`  
+
+*  `on` (default) 
+
+*  `lzf`  
+
+*  `lz4`  
+
+*  `zlib`  
 
 
  
@@ -6365,10 +6421,10 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
 
  
  
-* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression.
- 
-* Permission to perform replication, which is granted with the `replperm` access control expression.
- 
+
+* Permission to perform column-family and column reads, which is granted with the `readperm` access control expression. 
+
+* Permission to perform replication, which is granted with the `replperm` access control expression. 
 
 
  
@@ -6385,8 +6441,9 @@ Note: The `mapr` user is not treated as a superuser. MapR-DB does not allow the 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: target
@@ -6452,12 +6509,12 @@ If you change the list by removing any columns or column families that have alre
 
  
  
-1. On the source MapR cluster, remove the mapping of the source table to the type by running the command [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html). If the source table is being indexed in more than one type, and those types also contain the columns and column families that you are no longer indexing, run the command [maprcli table replica elasticsearch list](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-list.html) to list all of the types that are mapped to the source table. Then, run the command  [`maprcli table replica elasticsearch remove`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html)  for each type.
- 
-1. In Elasticsearch, delete all of the types that were mapped to the source table.
- 
-1. On the source MapR cluster, recreate each type and restart indexing by running the command  [`maprcli table replica elasticsearch autosetup`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-autosetup.html)  for each type.
- 
+
+1. On the source MapR cluster, remove the mapping of the source table to the type by running the command [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html). If the source table is being indexed in more than one type, and those types also contain the columns and column families that you are no longer indexing, run the command [maprcli table replica elasticsearch list](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-list.html) to list all of the types that are mapped to the source table. Then, run the command  [`maprcli table replica elasticsearch remove`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html)  for each type. 
+
+1. In Elasticsearch, delete all of the types that were mapped to the source table. 
+
+1. On the source MapR cluster, recreate each type and restart indexing by running the command  [`maprcli table replica elasticsearch autosetup`](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-autosetup.html)  for each type. 
 
 
  
@@ -6492,16 +6549,16 @@ The types are:
 
  
  
-* off
- 
-* on (default)
- 
-* lzf
- 
-* lz4
- 
-* zlib
- 
+
+* off 
+
+* on (default) 
+
+* lzf 
+
+* lz4 
+
+* zlib 
 
 
  
@@ -6540,8 +6597,9 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: refreshnow
@@ -6561,10 +6619,10 @@ Note: Data is compressed only until it reaches a MapR gateway. From the gateway 
 
  
  
-* You want to run [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html) to remove the mapping from a source table to a type that is currently receiving replicated updates.
- 
-* You want to compare the data in the type to the data in the source table by using the [ `DiffTables` ](http://maprdocs.mapr.com/home/ReferenceGuide/DiffTables.html) utility.
- 
+
+* You want to run [ `maprcli table replica elasticsearch remove` ](http://maprdocs.mapr.com/home/ReferenceGuide/table-replica-elasticsearch-remove.html) to remove the mapping from a source table to a type that is currently receiving replicated updates. 
+
+* You want to compare the data in the type to the data in the source table by using the [ `DiffTables` ](http://maprdocs.mapr.com/home/ReferenceGuide/DiffTables.html) utility. 
 
 
  
@@ -6581,8 +6639,9 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: target
@@ -6616,8 +6675,9 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: target
@@ -6651,8 +6711,9 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `test` under a volume with a mount point at `/volume1`, specify the following path: `/volume1/test`  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customer` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customer`"
           type: string
         - name: target
@@ -6686,12 +6747,13 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* For a path to a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/testdst` 
- 
+
+* For a path to a table on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/testdst`  
 
 
  
  
+
 * For a path to a table on a remote cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
           type: string
         - name: upstream
@@ -6701,12 +6763,13 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/testsrc` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under volume1 which has a mount point at /volume1, specify the following path: `/volume1/testsrc`  
 
 
  
  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under volume1 in the sanfrancisco cluster, specify the following path: `/mapr/sanfrancisco/volume1/customersrc`"
           type: string
       responses:
@@ -6728,12 +6791,13 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testdst`  
 
 
  
  
+
 * For a path on a remote cluster, you must also specify the cluster name in the path. For example, for a table named customerdst under `volume1` in the `sanfrancisco` cluster, specify the following path:`/mapr/sanfrancisco/volume1/customerdst`"
           type: string
       responses:
@@ -6755,12 +6819,13 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testdst` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testdst` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testdst`  
 
 
  
  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customerdst` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customerdst`"
           type: string
         - name: upstream
@@ -6770,12 +6835,13 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testsrc` 
- 
+
+* For a path on the local cluster, start the path at the volume mount point. For example, for a table named `testsrc` under `volume1` which has a mount point at `/volume1`, specify the following path: `/volume1/testsrc`  
 
 
  
  
+
 * For a path on another cluster, you must also specify the cluster name in the path. For example, for a table named `customersrc` under `volume1` in the `sanfrancisco` cluster, specify the following path: `/mapr/sanfrancisco/volume1/customersrc`"
           type: string
       responses:
@@ -6873,10 +6939,11 @@ To resume replication to a type, run the  [`maprcli table replica elasticsearch 
 
  
  
-* cldb
- 
-* jobtracker
- 
+
+* cldb 
+
+* jobtracker 
+
 * tasktracker"
           required: true
           type: string
@@ -7149,10 +7216,10 @@ The operations that can be included (`+`) and/or excluded (`-`) from auditing ar
 
  
  
-* If included (`+`), cannot be specified with a list of other included operations.
- 
-* If excluded (`-`), cannot be specified with a list of other excluded operations.
- 
+
+* If included (`+`), cannot be specified with a list of other included operations. 
+
+* If excluded (`-`), cannot be specified with a list of other excluded operations. 
 
 
  
@@ -7239,8 +7306,9 @@ Note: Only the root and the MAPR_USER (user name under which MapR services runs)
 
  
  
-*  `0`=`user` 
- 
+
+*  `0`=`user`  
+
 *  `1`=`group`"
           type: string
           enum:
@@ -7306,8 +7374,9 @@ The default value is 60 minutes. Setting this field to a larger number helps pre
 
  
  
-*  `0` = Do not create a parent directory.
- 
+
+*  `0` = Do not create a parent directory. 
+
 *  `1` = Create a parent directory."
           type: string
           enum:
@@ -7329,10 +7398,10 @@ Note: If the first operation in the list (of operations) is to be excluded from 
 
 The operations that can be included (`+`) or excluded (`-`) from auditing are listed in [Auditing Operations](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-FilesystemTableOperations.html). You can, alternatively, group all the operations using the keyword `all`, which: 
  
-* If included (`+`), cannot be specified with a list of other included operations.
- 
-* If excluded (`-`), cannot be specified with a list of other excluded operations.
- 
+
+* If included (`+`), cannot be specified with a list of other included operations. 
+
+* If excluded (`-`), cannot be specified with a list of other excluded operations. 
 
 
  
@@ -7349,10 +7418,10 @@ Note: All specified operations must either be included or excluded from auditing
 
 Other than the specified operations, by default, all other operations will be: 
  
-* Included for auditing if the specified list is a list of excluded operations.
- 
-* Excluded from auditing if the specified list is a list of included operations.
- 
+
+* Included for auditing if the specified list is a list of excluded operations. 
+
+* Excluded from auditing if the specified list is a list of included operations. 
 
 
  
@@ -7467,8 +7536,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
 
  
  
-*  `0` = Volume is read/write.
- 
+
+*  `0` = Volume is read/write. 
+
 *  `1` = Volume is read-only."
           type: string
           enum:
@@ -7559,14 +7629,14 @@ For 4.0.2 and later releases, these values are accepted:
 
  
  
-* mirror - standard mirror (read-only) volume (promotable to standard read-write volume)
- 
-* rw - standard (read-write) volume (convertible to standard mirror volume)
- 
-* 0 - standard (read-write) volume (for backward compatibility)
- 
-* 1 - non-convertible mirror (read-only) volume (for backward compatibility)
- 
+
+* mirror - standard mirror (read-only) volume (promotable to standard read-write volume) 
+
+* rw - standard (read-write) volume (convertible to standard mirror volume) 
+
+* 0 - standard (read-write) volume (for backward compatibility) 
+
+* 1 - non-convertible mirror (read-only) volume (for backward compatibility) 
 
 
  
@@ -7577,8 +7647,9 @@ For 4.0.1 and earlier releases, these values are accepted:
 
  
  
-* 0 - standard (read-write) volume (this volume is non-convertible)
- 
+
+* 0 - standard (read-write) volume (this volume is non-convertible) 
+
 * 1 - standard mirror (read-only) volume (this volume is non-convertible)"
           type: string
           enum:
@@ -7793,12 +7864,13 @@ Example: `/home/abc/.rw`"
 
  
  
-*  `link` - the symbolic link path *`maprfs` - a keyword to indicate a special MapR-FS link
- 
-*  `volume` - a keyword to indicate a link to a volume
- 
-*  `volume type` - `writeable` or `mirror` 
- 
+
+*  `link` - the symbolic link path *`maprfs` - a keyword to indicate a special MapR-FS link 
+
+*  `volume` - a keyword to indicate a link to a volume 
+
+*  `volume type` - `writeable` or `mirror`  
+
 *  `volume name` - the name of the volume Example: `/abc/maprfs::mirror::abc`"
           required: true
           type: string
@@ -7944,10 +8016,9 @@ Example: `/home/abc/.rw`"
       tags:
         - volume
       summary: "Starts mirroring on the specified volume from its source volume."
-      description: "* License required: Enterprise Edition
- 
-* Permissions required: `fc` or `restore` on the volume
- 
+      description: "* License required: Enterprise Edition 
+
+* Permissions required: `fc` or `restore` on the volume 
 
 
  
@@ -7993,10 +8064,9 @@ Normally, the mirroring operation transfers only deltas from the last successful
       tags:
         - volume
       summary: "Stops mirroring on the specified volume."
-      description: "* License required: Enterprise Edition
- 
-* Permissions required: `fc` or `restore` on the volume
- 
+      description: "* License required: Enterprise Edition 
+
+* Permissions required: `fc` or `restore` on the volume 
 
 
  
@@ -8042,8 +8112,9 @@ Normally, the mirroring operation transfers only deltas from the last successful
 
  
  
-*  `0`=`user` 
- 
+
+*  `0`=`user`  
+
 *  `1`=`group`"
           type: string
           enum:
@@ -8105,10 +8176,10 @@ Note: If the first operation in the list (of operations) is to be excluded from 
 
 The operations that can be included (`+`) or excluded (`-`) from auditing are listed [here](http://maprdocs.mapr.com/home/SecurityGuide/Auditing-FilesystemTableOperations.html#AuditingofFilesystemOperationsandTableOperations). You can, alternatively, group all the operations using the keyword `all`, which: 
  
-* If included (`+`), cannot be specified with a list of other included operations.
- 
-* If excluded (`-`), cannot be specified with a list of other excluded operations.
- 
+
+* If included (`+`), cannot be specified with a list of other included operations. 
+
+* If excluded (`-`), cannot be specified with a list of other excluded operations. 
 
 
  
@@ -8199,8 +8270,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
 
  
  
-*  `0` = read/write
- 
+
+*  `0` = read/write 
+
 *  `1` = read-only"
           type: string
           enum:
@@ -8298,8 +8370,9 @@ Note: An ACE (up to 2KB in length) is a combination of users, groups, and/or rol
 
  
  
-*  `0` = Do not create a parent volume.
- 
+
+*  `0` = Do not create a parent volume. 
+
 *  `1` = Create a parent volume."
           type: string
           enum:
@@ -8430,8 +8503,8 @@ ERROR (10010) - Volume Move: No license for requested operation
       tags:
         - volume
       summary: "Creates a snapshot of the specified volume, using the specified snapshot name."
-      description: "* License required: Enterprise Edition
- 
+      description: "* License required: Enterprise Edition 
+
 * Permissions required: `fc` or `m` on the volume"
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-snapshot-create.html
@@ -8524,8 +8597,9 @@ ERROR (10010) - Volume Move: No license for requested operation
 
  
  
-* License required: Enterprise Edition
- 
+
+* License required: Enterprise Edition 
+
 * Permissions required: `fc `or `m` on the volume"
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-snapshot-preserve.html
@@ -8558,8 +8632,8 @@ ERROR (10010) - Volume Move: No license for requested operation
       tags:
         - volume
       summary: "Removes one or more snapshots."
-      description: "* License required: Enterprise Edition
- 
+      description: "* License required: Enterprise Edition 
+
 * Permissions required: `fc` or `m` on the volume"
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/volume-snapshot-remove.html
