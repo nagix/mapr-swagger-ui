@@ -670,7 +670,7 @@ If you are indexing table data in an Elasticsearch cluster, specify the name of 
       tags:
         - cluster
       summary: "Specifies the locations of the MapR gateways that a source MapR cluster can use for table replication to a destination MapR cluster or for indexing table data in an Elasticsearch cluster."
-      description: "In addition to this method, there are two other methods that you can use to specify the locations of gateways that a source MapR cluster can use when replicating to a particular MapR cluster or when indexing in an Elasticsearch cluster. See [Configuring MapR Gateways for Binary-Table Replication, Stream Replication, or Indexing](http://maprdocs.mapr.com/home/Gateways/ConfiguringMapRGatewaysForTRAndI.html) for details about them."
+      description: "In addition to this method, there are two other methods that you can use to specify the locations of gateways that a source MapR cluster can use when replicating to a particular MapR cluster or when indexing in an Elasticsearch cluster. See [Configuring a MapR Gateway Master-Slave Topology](http://maprdocs.mapr.com/home/Gateways/ConfiguringMapRGatewaysForTRAndI.html) for details about them."
       externalDocs:
         url: http://maprdocs.mapr.com/home/ReferenceGuide/cluster-gateway-set.html
       parameters:
@@ -4202,18 +4202,18 @@ Note: This permission is not applicable to JSON tables. Versioning is not suppor
           description: "The default Access Control Expression for the read permission on new column families that are created in this table. If no value is specified, the default is `u:<username of the table creator>`. This value of the parameter `readperm` in the `table cf create` and `table cf edit` commands overrides this value.
 
 
-For more information about this permission as it applies to JSON tables, see [Granting Access to JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
+For more information about this permission as it applies to JSON tables, see [Permission Types for JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
           type: string
         - name: defaultwriteperm
           in: query
           description: "The default Access Control Expression for the write permission on new column families that are created in this table. If no value is specified, the default is `u:<username of the table creator>`. This value of the parameter `writeperm` in the `table cf create` and `table cf edit` commands overrides this value.
 
 
-For more information about this permission as it applies to JSON tables, see [Granting Access to JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
+For more information about this permission as it applies to JSON tables, see [Permission Types for JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
           type: string
         - name: defaulttraverseperm
           in: query
-          description: "**Applies to JSON tables only:** The default Access Control Expression for the traverse permission on new column families. For more information about this permission, see [Granting Access to JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
+          description: "**Applies to JSON tables only:** The default Access Control Expression for the traverse permission on new column families. For more information about this permission, see [Permission Types for JSON Tables](http://maprdocs.mapr.com/home/MapR-DB/JSON_DB/granting_or_denying_access_to_fields_with_aces.html#granting_or_denying_access_to_fields_with_aces)."
           type: string
         - name: defaultappendperm
           in: query
