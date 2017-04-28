@@ -159,11 +159,12 @@ def parse_parameters(d, path, syntax):
       ] if required else []) + [
         ('type', type)
       ] + ([
-        ('items', {
-          'type': 'string'
-        }),
+        ('items', OrderedDict([
+          ('type', 'string'),
+          ('enum', enum)
+        ])),
         ('collectionFormat', 'csv')
-      ] if type == 'array' else []) + ([
+      ] if type == 'array' else [
         ('enum', enum)
       ] if enum else [])))
 

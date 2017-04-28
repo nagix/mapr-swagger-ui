@@ -194,11 +194,13 @@ def print_parameters(d, path, syntax):
         print('          required: true')
       print('          type: %s' % type)
       if type == 'array':
-        print('          items: {')
+        print('          items:')
         print('            type: string')
-        print('          }')
+        print('            enum:')
+        for value in enum:
+          print('              - %s' % value)
         print('          collectionFormat: csv')
-      if enum:
+      elif enum:
         print('          enum:')
         for value in enum:
           print('            - %s' % value)
